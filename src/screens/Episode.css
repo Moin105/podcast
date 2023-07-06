@@ -1,0 +1,9 @@
+.other-range::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
+  appearance: none; /* Remove default styling in other browsers */
+  background-color: none;
+  width: 6px; /* Set the width of the slider thumb */
+  height: 6px; /* Set the height of the slider thumb */
+  cursor: pointer; /* Set the cursor style on hover */
+  border-radius: 50%;
+}
