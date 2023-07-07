@@ -129,8 +129,9 @@ useEffect(() => {
       fetchResponses();
 }, [tags])
 const filteredSerie = serie?.filter(ser => ser.status=='published');
+const filteredEpisode = episode?.filter(ep => ep.status=='published');
 
-const filteredEpisodes = episode?.filter(ep => ep.name.includes(searchings.search.search));
+const filteredEpisodes = filteredEpisode?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredSeries = filteredSerie?.filter(ser => ser.name.includes(searchings.search.search));
 const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name.includes(searchings.search.search)));
