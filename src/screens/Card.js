@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import ListRenderOne from "./ListRenderOne";
 import hoverImg from "../images/hoverImg.png";
 import ListRenderTwo from "./ListRenderTwo";
+import { useSelector } from "react-redux";
 
 function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
   const { categories, episodes, series, tags,id } = item;
@@ -114,6 +115,8 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
         console.error('Error posting data', error);
     }
 }
+const searchings = useSelector((state) => state);
+
 const fetchResponses = async () => {
     const responses = await Promise.all(idArray.map(id => postSeries(id.id)));
     setCategorySeries(responses);
@@ -122,11 +125,37 @@ useEffect(() => {
       postData();   
       fetchResponses();
 }, [tags])
+const filteredEpisodes = episode?.filter(ep => ep.name.includes(searchings.search.search));
+const filteredSeries = serie?.filter(ser => ser.name.includes(searchings.search.search));
+const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name.includes(searchings.search.search));
+const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name.includes(searchings.search.search)));
+useEffect(() => {
+  console.log("miseeeeee",filteredSeries)
+}, [searchings.search.search])
 
   return (
     <>
       <Draggable>
-        {episode && episode.length > 0
+      {filteredEpisodes && filteredEpisodes.length > 0
+          ? filteredEpisodes.map((epos, index) => {
+        // console.log("epos",epos);
+              return (
+                <>
+                <ListRenderOne
+                        item={epos}
+                        index={index}
+                        audioRef={audioRef}
+                        setVolume={setVolume}
+                        list={epos?.subData}
+                        volume={volume}
+                        setIsPlaying={setIsPlaying}
+                      />
+                </>
+
+              );
+            })
+          : ""}
+        {/* {episode && episode.length > 0
           ? episode.map((epos, index) => {
         // console.log("epos",epos);
               return (
@@ -141,163 +170,12 @@ useEffect(() => {
                         setIsPlaying={setIsPlaying}
                       />
                 </>
-            //     <>
-            //     {" "}
-            //     <div
-            //       key={index}
-            //       style={{
-            //         width: customWidth,
-            //         marginLeft: 10,
-            //       }}
-            //     >
-            //       <div
-            //         style={{
-            //           marginTop: 10,
-            //           color: "#000",
-            //         }}
-            //       ></div>
-            //       <div
-            //         style={{
-            //           width: customWidth,
-            //           height: customHeight,
-            //         }}
-            //       >
-            //         <div
-            //           style={{
-            //             position: "absolute",
-            //             alignItems: "center",
-            //             justifyContent: "center",
-            //             display: "flex",
-            //             width: customWidth,
-            //             height: customHeight,
-            //           }}
-            //         >
-            //           <div
-            //           // onClick={() => {
-            //           //   setCurrentSong({
-            //           //     song: item?.url,
-            //           //     index: 0,
-            //           //   });
-            //           //   if (index == selectedEpisodeIndex) {
-            //           //     setSelectedSeries(item?.episodes);
-            //           //     setSelectedEpisodeIndex(0);
-            //           //     const { episodes, ...selectedSeriesData } = item;
-            //           //     setSelectedSeriesData(selectedSeriesData);
-            //           //   } else {
-            //           //     audioRef.current.pause();
-            //           //     audioRef.current.currentTime = 0;
-            //           //     setSelectedSeries(item?.episodes);
-            //           //     setSelectedEpisodeIndex(0);
-            //           //     const { episodes, ...selectedSeriesData } = item;
-            //           //     setSelectedSeriesData(selectedSeriesData);
-            //           //   }
 
-            //           //   setTimeout(() => {
-            //           //     navigate("/player");
-            //           //     // setShowPlayer(true);
-            //           //   }, 500);
-            //           // }}
-            //           // onMouseEnter={() => handleMouseEnter(index)}
-            //           // onMouseLeave={handleMouseLeave}
-            //           // style={{
-            //           //   width: 75,
-            //           //   height: 75,
-            //           //   position: "absolute",
-            //           //   cursor: "pointer",
-            //           // }}
-            //           />
-            //         {hoveredIndex === index && (
-            //             <img
-            //               src={hoverImg}
-            //               style={{
-            //                 width: customWidth,
-            //                 height: customHeight,
-            //                 borderRadius: 10,
-            //               }}
-            //             />
-            //           )}
-            //         </div>
-
-            //         <img
-            //           src={
-            //             "https://podcasts.cucurico.co.il/podcast/public/images/" +
-            //             epos?.image
-            //           }
-            //           style={{
-            //             width: customWidth,
-            //             height: customHeight,
-            //             borderRadius: 15,
-            //             // background:"red",
-            //             objectFit: "cover",
-            //           }}
-            //         />
-            //       </div>
-            //       <div
-            //       style={{
-            //         fontSize: "15px",
-            //         fontWeight: "bold",
-            //         marginTop: 5,
-            //         color: darkMode ? "#fff" : "#212121",
-            //         textAlign: "right",
-            //         whiteSpace: "nowrap",
-            //         overflow: "hidden",
-            //         textOverflow: "ellipsis",
-            //       }}
-            //       >
-            //         {epos?.name}
-            //       </div>
-
-            //       <div
-            //         style={{
-            //           marginTop: 2,
-            //           fontSize: "11px",
-            //           color: darkMode ? "#fff" : "#E97B65",
-            //           textAlign: "right",
-            //           whiteSpace: "nowrap",
-            //           overflow: "hidden",
-            //           textOverflow: "ellipsis",
-            //         }}
-            //       >
-            //         {epos?.about_series}
-            //       </div>
-
-            //       <div
-            //       style={{
-            //         marginTop: 2,
-            //         color: darkMode ? "#777777" : "#000",
-            //         fontSize: 12,
-
-            //         textAlign: "right",
-            //         whiteSpace: "nowrap",
-            //         overflow: "hidden",
-            //         textOverflow: "ellipsis",
-            //       }}
-            //       >
-            //         :With {epos?.guests}
-            //       </div>
-
-            //       <div
-            //         style={{
-            //           marginTop: 2,
-            //           color: "#777777",
-            //           textAlign: "right",
-
-            //           fontSize: 12,
-            //           whiteSpace: "nowrap",
-            //           overflow: "hidden",
-            //           textOverflow: "ellipsis",
-            //         }}
-            //       >
-            //         {epos?.duration}
-            //         {/* {`${"00:41:55"}`} */}
-            //       </div>
-            //     </div>
-            //   </>
               );
             })
-          : ""}
-              {serie && serie.length > 0
-          ? serie.map((serie, index) => {
+          : ""} */}
+              {filteredSeries && filteredSeries.length > 0
+          ? filteredSeries.map((serie, index) => {
               return (
                 <>
                    <ListRenderTwo
@@ -310,165 +188,12 @@ useEffect(() => {
                         setIsPlaying={setIsPlaying}
                       />
                 </>
-                // <>
-                //   {" "}
-                //   <div
-                //   key={index}
-                //   style={{
-                //     width: customWidthThird,
-                //     marginLeft: 10,
-                //   }}
-                // >
-                //   <div
-                //     style={{
-                //       marginTop: 10,
-                //       color: "#000",
-                //     }}
-                //   ></div>
-                //   <div
-                //     style={{
-                //       width: customWidthThird,
-                //       height: customHeightThird + 15,
-                //     }}
-                //   >
-                //     <div
-                //       style={{
-                //         position: "absolute",
-                //         color: "#fff",
-                //         width: customWidthThird,
-                //         height: customHeightThird + 15,
-                //         display: "flex",
-                //         alignItems: "center",
-                //         justifyContent: "center",
-                //       }}
-                //     >
-                //         <div
-                //         // onClick={() => {
-                //         //   setCurrentSong({
-                //         //     song: item?.url,
-                //         //     index: 0,
-                //         //   });
-                //         //   if (index == selectedEpisodeIndex) {
-                //         //     setSelectedSeries(item?.episodes);
-                //         //     setSelectedEpisodeIndex(0);
-                //         //     const { episodes, ...selectedSeriesData } = item;
-                //         //     setSelectedSeriesData(selectedSeriesData);
-                //         //   } else {
-                //         //     audioRef.current.pause();
-                //         //     audioRef.current.currentTime = 0;
-                //         //     setSelectedSeries(item?.episodes);
-                //         //     setSelectedEpisodeIndex(0);
-                //         //     const { episodes, ...selectedSeriesData } = item;
-                //         //     setSelectedSeriesData(selectedSeriesData);
-                //         //   }
-
-                //         //   setTimeout(() => {
-                //         //     navigate("/player");
-                //         //     // setShowPlayer(true);
-                //         //   }, 500);
-                //         // }}
-                //         // onMouseEnter={() => handleMouseEnter(index)}
-                //         // onMouseLeave={handleMouseLeave}
-                //         // style={{
-                //         //   width: 75,
-                //         //   height: 75,
-                //         //   position: "absolute",
-                //         //   cursor: "pointer",
-                //         // }}
-                //         />
-                //         {/* {hoveredIndex === index && (
-                //     <img
-                //       src={hoverImg}
-                //       style={{
-                //         width: customWidth,
-                //         height: customHeight,
-                //         borderRadius: 10,
-                //       }}
-                //     />
-                //   )} */}
-                //       </div>
-
-                //       <img
-                //         src={
-                //           "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                //           serie?.featured_image
-                //         }
-                //         style={{
-                //           width: "150px",
-                //           height: "150px",
-                //           borderRadius: 15,
-                //           // background:"red",
-                //           objectFit: "cover",
-                //         }}
-                //       />
-                //     </div>
-                //     <div
-                //     // style={{
-                //     //   fontSize: "15px",
-                //     //   fontWeight: "bold",
-                //     //   marginTop: 5,
-                //     //   color: darkMode ? "#fff" : "#212121",
-                //     //   textAlign: "right",
-                //     //   whiteSpace: "nowrap",
-                //     //   overflow: "hidden",
-                //     //   textOverflow: "ellipsis",
-                //     // }}
-                //     >
-                //       {item?.name}
-                //     </div>
-
-                //     <div
-                //       style={{
-                //         marginTop: 2,
-                //         fontSize: "11px",
-                //         //   color: darkMode ? "#fff" : "#E97B65",
-                //         textAlign: "right",
-                //         whiteSpace: "nowrap",
-                //         overflow: "hidden",
-                //         width: "150px",
-                //         textOverflow: "ellipsis",
-                //       }}
-                //     >
-                //       {serie?.about_series}
-                //     </div>
-
-                //     <div
-                //     // style={{
-                //     //   marginTop: 2,
-                //     //   color: darkMode ? "#777777" : "#000",
-                //     //   fontSize: 12,
-
-                //     //   textAlign: "right",
-                //     //   whiteSpace: "nowrap",
-                //     //   overflow: "hidden",
-                //     //   textOverflow: "ellipsis",
-                //     // }}
-                //     >
-                //       :With {serie?.guests}
-                //     </div>
-
-                //     <div
-                //       style={{
-                //         marginTop: 2,
-                //         color: "#777777",
-                //         textAlign: "right",
-
-                //         fontSize: 12,
-                //         whiteSpace: "nowrap",
-                //         overflow: "hidden",
-                //         textOverflow: "ellipsis",
-                //       }}
-                //     >
-                //       {serie?.duration}
-                //       {/* {`${"00:41:55"}`} */}
-                //     </div>
-                //   </div>
-                // </>
+              
               );
             })
           : ""}
-             {tagEpisode && tagEpisode.length > 0
-          ? tagEpisode.map((epos, index) => {
+             {filteredTagEpisodes && filteredTagEpisodes.length > 0
+          ? filteredTagEpisodes.map((epos, index) => {
             return (
                 <>
                 <ListRenderOne
@@ -481,146 +206,12 @@ useEffect(() => {
                         setIsPlaying={setIsPlaying}
                       />
                 </>
-            //     <>
-            //     {" "}
-            //     <div key={index}>
-            //       <div></div>
-            //       <div>
-            //         <div
-            //           style={{
-            //             position: "absolute",
-            //             alignItems: "center",
-            //             justifyContent: "center",
-            //             display: "flex",
-            //           }}
-            //         >
-            //           <div
-            //           // onClick={() => {
-            //           //   setCurrentSong({
-            //           //     song: item?.url,
-            //           //     index: 0,
-            //           //   });
-            //           //   if (index == selectedEpisodeIndex) {
-            //           //     setSelectedSeries(item?.episodes);
-            //           //     setSelectedEpisodeIndex(0);
-            //           //     const { episodes, ...selectedSeriesData } = item;
-            //           //     setSelectedSeriesData(selectedSeriesData);
-            //           //   } else {
-            //           //     audioRef.current.pause();
-            //           //     audioRef.current.currentTime = 0;
-            //           //     setSelectedSeries(item?.episodes);
-            //           //     setSelectedEpisodeIndex(0);
-            //           //     const { episodes, ...selectedSeriesData } = item;
-            //           //     setSelectedSeriesData(selectedSeriesData);
-            //           //   }
-
-            //           //   setTimeout(() => {
-            //           //     navigate("/player");
-            //           //     // setShowPlayer(true);
-            //           //   }, 500);
-            //           // }}
-            //           // onMouseEnter={() => handleMouseEnter(index)}
-            //           // onMouseLeave={handleMouseLeave}
-            //           // style={{
-            //           //   width: 75,
-            //           //   height: 75,
-            //           //   position: "absolute",
-            //           //   cursor: "pointer",
-            //           // }}
-            //           />
-            //           {/* {hoveredIndex === index && (
-            //       <img
-            //         src={hoverImg}
-            //         style={{
-            //           width: customWidth,
-            //           height: customHeight,
-            //           borderRadius: 10,
-            //         }}
-            //       />
-            //     )} */}
-            //         </div>
-
-            //         <img
-            //           src={
-            //             "https://podcasts.cucurico.co.il/podcast/public/images/" +
-            //             epos?.image
-            //           }
-            //           style={{
-            //             width: "150px",
-            //             height: "150px",
-            //             borderRadius: 15,
-            //             // background:"red",
-            //             objectFit: "cover",
-            //           }}
-            //         />
-            //       </div>
-            //       <div
-            //       // style={{
-            //       //   fontSize: "15px",
-            //       //   fontWeight: "bold",
-            //       //   marginTop: 5,
-            //       //   color: darkMode ? "#fff" : "#212121",
-            //       //   textAlign: "right",
-            //       //   whiteSpace: "nowrap",
-            //       //   overflow: "hidden",
-            //       //   textOverflow: "ellipsis",
-            //       // }}
-            //       >
-            //         {epos?.name}
-            //       </div>
-
-            //       <div
-            //         style={{
-            //           marginTop: 2,
-            //           fontSize: "11px",
-            //           //   color: darkMode ? "#fff" : "#E97B65",
-            //           textAlign: "right",
-            //           whiteSpace: "nowrap",
-            //           overflow: "hidden",
-            //           width: "150px",
-            //           textOverflow: "ellipsis",
-            //         }}
-            //       >
-            //         {epos?.about_series}
-            //       </div>
-
-            //       <div
-            //       // style={{
-            //       //   marginTop: 2,
-            //       //   color: darkMode ? "#777777" : "#000",
-            //       //   fontSize: 12,
-
-            //       //   textAlign: "right",
-            //       //   whiteSpace: "nowrap",
-            //       //   overflow: "hidden",
-            //       //   textOverflow: "ellipsis",
-            //       // }}
-            //       >
-            //         :With {epos?.guests}
-            //       </div>
-
-            //       <div
-            //         style={{
-            //           marginTop: 2,
-            //           color: "#777777",
-            //           textAlign: "right",
-
-            //           fontSize: 12,
-            //           whiteSpace: "nowrap",
-            //           overflow: "hidden",
-            //           textOverflow: "ellipsis",
-            //         }}
-            //       >
-            //         {epos?.duration}
-            //         {/* {`${"00:41:55"}`} */}
-            //       </div>
-            //     </div>
-            //   </>
+           
               );
             })
           : ""}
-            {categorySeries && categorySeries.length > 0
-          ? categorySeries.map((series, index) => {
+            {filteredCategorySeries && filteredCategorySeries.length > 0
+          ? filteredCategorySeries.map((series, index) => {
           return  series.map((serie,index)=>{
                     return (
                         <>
@@ -634,141 +225,7 @@ useEffect(() => {
                         setIsPlaying={setIsPlaying}
                       />
                         </>
-                // <>
-                //   {" "}
-                //   <div key={index}>
-                //     <div></div>
-                //     <div>
-                //       <div
-                //         style={{
-                //           position: "absolute",
-                //           alignItems: "center",
-                //           justifyContent: "center",
-                //           display: "flex",
-                //         }}
-                //       >
-                //         <div
-                //         // onClick={() => {
-                //         //   setCurrentSong({
-                //         //     song: item?.url,
-                //         //     index: 0,
-                //         //   });
-                //         //   if (index == selectedEpisodeIndex) {
-                //         //     setSelectedSeries(item?.episodes);
-                //         //     setSelectedEpisodeIndex(0);
-                //         //     const { episodes, ...selectedSeriesData } = item;
-                //         //     setSelectedSeriesData(selectedSeriesData);
-                //         //   } else {
-                //         //     audioRef.current.pause();
-                //         //     audioRef.current.currentTime = 0;
-                //         //     setSelectedSeries(item?.episodes);
-                //         //     setSelectedEpisodeIndex(0);
-                //         //     const { episodes, ...selectedSeriesData } = item;
-                //         //     setSelectedSeriesData(selectedSeriesData);
-                //         //   }
-
-                //         //   setTimeout(() => {
-                //         //     navigate("/player");
-                //         //     // setShowPlayer(true);
-                //         //   }, 500);
-                //         // }}
-                //         // onMouseEnter={() => handleMouseEnter(index)}
-                //         // onMouseLeave={handleMouseLeave}
-                //         // style={{
-                //         //   width: 75,
-                //         //   height: 75,
-                //         //   position: "absolute",
-                //         //   cursor: "pointer",
-                //         // }}
-                //         />
-                //         {/* {hoveredIndex === index && (
-                //     <img
-                //       src={hoverImg}
-                //       style={{
-                //         width: customWidth,
-                //         height: customHeight,
-                //         borderRadius: 10,
-                //       }}
-                //     />
-                //   )} */}
-                //       </div>
-
-                //       <img
-                //         src={
-                //           "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                //           serie?.featured_image
-                //         }
-                //         style={{
-                //           width: "150px",
-                //           height: "150px",
-                //           borderRadius: 15,
-                //           // background:"red",
-                //           objectFit: "cover",
-                //         }}
-                //       />
-                //     </div>
-                //     <div
-                //     // style={{
-                //     //   fontSize: "15px",
-                //     //   fontWeight: "bold",
-                //     //   marginTop: 5,
-                //     //   color: darkMode ? "#fff" : "#212121",
-                //     //   textAlign: "right",
-                //     //   whiteSpace: "nowrap",
-                //     //   overflow: "hidden",
-                //     //   textOverflow: "ellipsis",
-                //     // }}
-                //     >
-                //       {item?.name}
-                //     </div>
-
-                //     <div
-                //       style={{
-                //         marginTop: 2,
-                //         fontSize: "11px",
-                //         //   color: darkMode ? "#fff" : "#E97B65",
-                //         textAlign: "right",
-                //         whiteSpace: "nowrap",
-                //         overflow: "hidden",
-                //         width: "150px",
-                //         textOverflow: "ellipsis",
-                //       }}
-                //     >
-                //       {serie?.about_series}
-                //     </div>
-
-                //     <div
-                //     // style={{
-                //     //   marginTop: 2,
-                //     //   color: darkMode ? "#777777" : "#000",
-                //     //   fontSize: 12,
-
-                //     //   textAlign: "right",
-                //     //   whiteSpace: "nowrap",
-                //     //   overflow: "hidden",
-                //     //   textOverflow: "ellipsis",
-                //     // }}
-                //     >
-                //       :With {serie?.guests}
-                //     </div>
-
-                //     <div
-                //       style={{
-                //         marginTop: 2,
-                //         color: "#777777",
-                //         textAlign: "right",
-
-                //         fontSize: 12,
-                //         whiteSpace: "nowrap",
-                //         overflow: "hidden",
-                //         textOverflow: "ellipsis",
-                //       }}
-                //     >
-                //       {serie?.duration}
-                //       {/* {`${"00:41:55"}`} */}
-                //     </div>
-                //   </div>
-                // </>
+    
               );
             })
         
@@ -780,165 +237,9 @@ useEffect(() => {
 
           }
       </Draggable>
-      {/* <Draggable>
-        {category && category.length > 0
-          ? category.map((epos, item) => {
-              return <>categosry</>;
-            })
-          : ""}
-      </Draggable> */}
-     
-      {/* <Draggable>
-        {tagEpisode && tagEpisode.length > 0
-          ? tagEpisode.map((epos, item) => {
-              return <>sifewefwefwe</>;
-            })
-          : ""}
-      </Draggable> */}
+   
     </>
   );
 }
 
 export default Card;
-//  <Draggable>
-//         {serie && serie.length > 0
-//           ? serie.map((serie, index) => {
-//               return (
-//                 <>
-//                   {" "}
-//                   <div key={index}>
-//                     <div></div>
-//                     <div>
-//                       <div
-//                         style={{
-//                           position: "absolute",
-//                           alignItems: "center",
-//                           justifyContent: "center",
-//                           display: "flex",
-//                         }}
-//                       >
-//                         <div
-//                         // onClick={() => {
-//                         //   setCurrentSong({
-//                         //     song: item?.url,
-//                         //     index: 0,
-//                         //   });
-//                         //   if (index == selectedEpisodeIndex) {
-//                         //     setSelectedSeries(item?.episodes);
-//                         //     setSelectedEpisodeIndex(0);
-//                         //     const { episodes, ...selectedSeriesData } = item;
-//                         //     setSelectedSeriesData(selectedSeriesData);
-//                         //   } else {
-//                         //     audioRef.current.pause();
-//                         //     audioRef.current.currentTime = 0;
-//                         //     setSelectedSeries(item?.episodes);
-//                         //     setSelectedEpisodeIndex(0);
-//                         //     const { episodes, ...selectedSeriesData } = item;
-//                         //     setSelectedSeriesData(selectedSeriesData);
-//                         //   }
-
-//                         //   setTimeout(() => {
-//                         //     navigate("/player");
-//                         //     // setShowPlayer(true);
-//                         //   }, 500);
-//                         // }}
-//                         // onMouseEnter={() => handleMouseEnter(index)}
-//                         // onMouseLeave={handleMouseLeave}
-//                         // style={{
-//                         //   width: 75,
-//                         //   height: 75,
-//                         //   position: "absolute",
-//                         //   cursor: "pointer",
-//                         // }}
-//                         />
-//                         {/* {hoveredIndex === index && (
-//                     <img
-//                       src={hoverImg}
-//                       style={{
-//                         width: customWidth,
-//                         height: customHeight,
-//                         borderRadius: 10,
-//                       }}
-//                     />
-//                   )} */}
-//                       </div>
-
-//                       <img
-//                         src={
-//                           "https://podcasts.cucurico.co.il/podcast/public" +
-//                           serie?.featured_image
-//                         }
-//                         style={{
-//                           width: "150px",
-//                           height: "150px",
-//                           borderRadius: 15,
-//                           // background:"red",
-//                           objectFit: "cover",
-//                         }}
-//                       />
-//                     </div>
-//                     <div
-//                     style={{
-//                       fontSize: "15px",
-//                       fontWeight: "bold",
-//                       marginTop: 5,
-//                     //   color: darkMode ? "#fff" : "#212121",
-//                       textAlign: "right",
-//                       whiteSpace: "nowrap",
-//                       overflow: "hidden",
-//                       textOverflow: "ellipsis",
-//                     }}
-//                     >
-//                       {item?.name}
-//                     </div>
-
-//                     <div
-//                       style={{
-//                         marginTop: 2,
-//                         fontSize: "11px",
-//                         //   color: darkMode ? "#fff" : "#E97B65",
-//                         textAlign: "right",
-//                         whiteSpace: "nowrap",
-//                         overflow: "hidden",
-//                         width: "150px",
-//                         textOverflow: "ellipsis",
-//                       }}
-//                     >
-//                       {serie?.about_series}
-//                     </div>
-
-//                     <div
-//                     style={{
-//                       marginTop: 2,
-//                     //   color: darkMode ? "#777777" : "#000",
-//                       fontSize: 12,
-
-//                       textAlign: "right",
-//                       whiteSpace: "nowrap",
-//                       overflow: "hidden",
-//                       textOverflow: "ellipsis",
-//                     }}
-//                     >
-//                       :With {serie?.guests}
-//                     </div>
-
-//                     <div
-//                       style={{
-//                         marginTop: 2,
-//                         color: "#777777",
-//                         textAlign: "right",
-
-//                         fontSize: 12,
-//                         whiteSpace: "nowrap",
-//                         overflow: "hidden",
-//                         textOverflow: "ellipsis",
-//                       }}
-//                     >
-//                       {serie?.duration}
-//                     </div>
-//                   </div>
-//                 </>
-//               );
-//             })
-//           : ""}
-//       </Draggable>

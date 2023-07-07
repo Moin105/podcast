@@ -8,9 +8,11 @@ import menu2 from "../images/menu2.png";
 import MediaQuery from "react-responsive";
 import { Link } from "react-router-dom";
 import expandup from "../images/expandup.png";
-
+import { useSelector } from "react-redux";
 import "./header.css";
 import { ThemeContext } from "./ThemeContext";
+import { useDispatch } from "react-redux";
+import { setSearch } from "../features/Search";
 const Header = ({ list }) => {
   const [showDropdown, setShowDropdown] = React.useState(false);
   const {
@@ -45,15 +47,22 @@ const Header = ({ list }) => {
 
     return filteredCarousels;
   }
-
-  const [searchText, setSearchText] = useState("");
+  const dispatch = useDispatch()
+  const searchings = useSelector((state) => state); 
   const handleInputChange = (event) => {
     const searchText = event.target.value;
+      dispatch(setSearch(searchText))
+
     setSearchText(searchText);
     let filteredData = filterCarouselsByName(completeCarousels, searchText);
     //console.log("FILTERED DATA ==============", filteredData);
     setFilteredCarousels(filteredData);
   };
+useEffect(() => {
+  console.log("miseeeeee",searchings.search.search)
+}, [handleInputChange])
+  const [searchText, setSearchText] = useState("");
+ 
   return (
     <>
       <div
