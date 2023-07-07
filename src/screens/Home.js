@@ -144,6 +144,9 @@ const Home = ({
             onClick={() => {
               setDarkMode(!darkMode);
             }}
+            style={{
+              margin:"0px 0px 0px 50px "
+            }}
           >
             SWITCH MODE
           </button>
@@ -163,6 +166,9 @@ const Home = ({
             <button
               onClick={() => {
                 setDarkMode(!darkMode);
+              }}
+              style={{
+                margin:"0px 0px 0px 50px "
               }}
             >
               SWITCH MODE
@@ -199,8 +205,13 @@ const Home = ({
                         fontWeight: "400",
                         marginTop: height * 0.005,
                         color: darkMode ? "#dddddd" : "#212121",
+                        width: "300px", 
+                        textAlign:"end",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap", 
                       }}
-                    ></div>
+                    >{item.carousel.short_description}</div>
                     <div
                       style={{
                         marginRight: customDivMargin,
