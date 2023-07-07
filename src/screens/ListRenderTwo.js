@@ -57,7 +57,7 @@ const handleRouteChange = (url,datas) => {
     setSelectedSeriesData,
   } = useContext(ThemeContext);
   let tag = item?.category;
-  // //console.log("iski ma ka bhossra", item)
+  console.log("iski ma ka bharosa", item)
   tag = typeof tag === 'string' ? [tag] : tag; 
   
   return (

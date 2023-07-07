@@ -386,7 +386,7 @@ const Player = ({
                 className="absoluteImageText"
                 style={{
                   position: "absolute",
-                  width: isTabletOrMobile ? "90%" : "55%",
+                  width: isTabletOrMobile ? "90%" : "90%",
                   marginBottom: isTabletOrMobile ? 0 : 17.4,
                 }}
               >

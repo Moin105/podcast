@@ -75,7 +75,7 @@ useEffect(() => {
 
 }, [list])
 let tag = item?.tags;
-// //console.log("iski ma ka bhossra", item)
+// console.log("iski ma ka bhossra", item)
 tag = typeof tag === 'string' ? [tag] : tag; 
 
 // Array.isArray(tag) && tag.map(item => {

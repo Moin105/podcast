@@ -410,7 +410,7 @@ const Players = ({
                 className="absoluteImageText"
                 style={{
                   position: "absolute",
-                  width: isTabletOrMobile ? "90%" : "55%",
+                  width: isTabletOrMobile ? "90%" : "90%",
                   marginBottom: isTabletOrMobile ? 0 : 17.4,
                 }}
               >
@@ -562,7 +562,7 @@ const Players = ({
                           // alignItems: "flex-end",
                           textAlign: "right",
                           fontSize: 13,
-                          width: "50%",
+                          width: "100%",
                         }}
                       >
                         {active == 1
