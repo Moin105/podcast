@@ -128,6 +128,7 @@ const Player = ({
       color: "white",
       fontSize: 14,
       cursor: "pointer",
+      margin:"0px 10px 0px 0px",
       paddingRight: 3,
     },
     cont1: {
@@ -536,6 +537,7 @@ const Player = ({
                           // alignItems: "flex-end",
                           textAlign: "right",
                           fontSize: 13,
+                          margin:"0px 10px 0px 0px",
                           width: "50%",
                         }}
                       >
@@ -654,6 +656,7 @@ const Player = ({
                           color: "white",
                           fontSize: 12,
                           cursor: "pointer",
+                          margin:"0px 10px 0px 0px",
                           paddingRight: 3,
                         }}
                       >

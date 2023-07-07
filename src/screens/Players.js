@@ -153,6 +153,7 @@ const Players = ({
       color: "white",
       fontSize: 14,
       cursor: "pointer",
+      margin:"0px 10px 0px 0px",
       paddingRight: 3,
     },
     cont1: {
@@ -680,6 +681,7 @@ const Players = ({
                           color: "white",
                           fontSize: 12,
                           cursor: "pointer",
+                          margin:"0px 10px 0px 0px",
                           paddingRight: 3,
                         }}
                       >
@@ -739,6 +741,7 @@ const Players = ({
                         textAlign: "right",
                         fontSize: 10,
                         width: "80%",
+                        margin:"0px 10px 0px 0px",
                         marginBottom: 30,
                       }}
                     >
