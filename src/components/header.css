@@ -5,7 +5,7 @@ align-items: center;
 }
 
 .footer-main {
-    padding: 12px 20px;
+    padding: 12px 0px;
 }
 .input-main{
     display: flex;
@@ -69,6 +69,13 @@ align-items: center;
     .footer3{
 display: flex;
 justify-content: space-between;
+    }
+    .footer3 a div{
+        width: 50px !important;
+        height: 50px !important;
+    }
+    .footer3 a div img{
+        width: 18px !important; 
     }
 .footer-main{
     display: block;
