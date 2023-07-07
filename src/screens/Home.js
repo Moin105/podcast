@@ -74,8 +74,8 @@ const Home = ({
         setLoading(false);
         getSeries(response?.data?.data);
         setCarouselList(response?.data?.data);
-        //console.log("THE CAROUSELS -------------", response?.data?.data);
-        //console.log("THE CAROUSELS -------------", carouselList);
+        ////console.log("THE CAROUSELS -------------", response?.data?.data);
+        ////console.log("THE CAROUSELS -------------", carouselList);
       })
       .catch((error) => {
         setLoading(false);
@@ -96,7 +96,7 @@ const Home = ({
         setCompleteCarousels(mergedData);
         setFinalArray(mergedData);
         setLoading(false);
-        //console.log("THE MERGED DATA -------------", mergedData);
+        ////console.log("THE MERGED DATA -------------", mergedData);
       })
       .catch((error) => {
         setLoading(false);
@@ -218,8 +218,8 @@ const Home = ({
                       // }}
                       className="row"
                     >
-                      <Card item={item}
-                         
+                      <Card 
+                        item={item}   
                          audioRef={audioRef}
                          setVolume={setVolume}
                          list={item?.subData}
@@ -474,7 +474,7 @@ const Home = ({
             </div>
             <div>
               {finalArray?.map((item, index) => {
-                //console.log("SUBDATA =============", item);
+                ////console.log("SUBDATA =============", item);
                 // return (
                 //   <div
                 //     style={{

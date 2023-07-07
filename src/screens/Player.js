@@ -9,15 +9,19 @@ import plusRed from "../images/plusRed.png";
 import pauseLogo from "../images/pauseLogo.png";
 import axios from "axios";
 import playLogo from "../images/playLogo.png";
-import  roundArrow from '../../src/images/return.png'
-import './player.css'
-import { format } from 'date-fns';
+import roundArrow from "../../src/images/return.png";
+import "./player.css";
+import { format } from "date-fns";
 import { useLocation } from "react-router-dom";
 import MediaQuery, { useMediaQuery } from "react-responsive";
 import { useState } from "react";
 import "./Episode.css";
-import { useDispatch,useSelector } from "react-redux";
-import  {setSeriesEpisodes,setPlayingEpisode,setPlayingEpisodeData} from '../features/playingEpisode' 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setSeriesEpisodes,
+  setPlayingEpisode,
+  setPlayingEpisodeData,
+} from "../features/playingEpisode";
 import Header from "../components/Header";
 import { ThemeContext } from "../components/ThemeContext";
 const Player = ({
@@ -39,7 +43,8 @@ const Player = ({
     });
   }, []);
   const location = useLocation();
-  const [episodeList ,setEpisodeList] = useState([])
+  const [show, setShow] = useState(false);
+  const [episodeList, setEpisodeList] = useState([]);
   const data = location.state ? location.state.data : null;
   const postData = async (series_id) => {
     // Define the data body
@@ -47,36 +52,45 @@ const Player = ({
       series_id: series_id,
     };
     try {
-        const response = await axios.post('https://podcasts.cucurico.co.il/podcast/public/api/seriesEpisode', data);
-        if(response.data.data.length>0 && response.data.data !== [] && response.data.data !== null){
-          setEpisodeList( response.data.data);
-          disptach(setSeriesEpisodes(response.data.data))
-          console.log(episodeList)
-        } else if(response.data.data.length == [] || response.data.data == null){
- 
-        } else { 
-        }
+      const response = await axios.post(
+        "https://podcasts.cucurico.co.il/podcast/public/api/seriesEpisode",
+        data
+      );
+      if (
+        response.data.data.length > 0 &&
+        response.data.data !== [] &&
+        response.data.data !== null
+      ) {
+        setEpisodeList(response.data.data);
+        disptach(setSeriesEpisodes(response.data.data));
+        //console.log(episodeList);
+      } else if (
+        response.data.data.length == [] ||
+        response.data.data == null
+      ) {
+      } else {
+      }
     } catch (error) {
-        // Handle the error
-        console.error('Error posting data', error);
+      // Handle the error
+      console.error("Error posting data", error);
     }
-}
-useEffect(() => {
-   console.log("laila",data)
-   postData(data)
-}, [])
-const  episodesss = useSelector((state) => state.seriesEpisodes);
-useEffect(() => {
-  console.log("laila",episodesss) 
-  console.log("laila",episodesss.currentEpisode)
-  if(episodesss.currentEpisode == null){
-      const episodeone = episodesss.episodes[0]
-      disptach(setPlayingEpisodeData(episodeone))
-    console.log("laila",episodesss.currentEpisode)
-    // disptach(setPlayingEpisodeData(episodesss.playingEpisode))
-  }
-console.log(episodesss)
-}, [episodesss?.episodes])
+  };
+  useEffect(() => {
+    //console.log("laila", data);
+    postData(data);
+  }, []);
+  const episodesss = useSelector((state) => state.seriesEpisodes);
+  useEffect(() => {
+    //console.log("laila", episodesss);
+    //console.log("laila", episodesss.currentEpisode);
+    if (episodesss.currentEpisode == null) {
+      const episodeone = episodesss.episodes[0];
+      disptach(setPlayingEpisodeData(episodeone));
+      //console.log("laila", episodesss.currentEpisode);
+      // disptach(setPlayingEpisodeData(episodesss.playingEpisode))
+    }
+    //console.log(episodesss);
+  }, [episodesss?.episodes]);
   const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
@@ -309,15 +323,15 @@ console.log(episodesss)
       paddingRight: 35,
     },
   };
-useEffect(() => {
- //console.log("sadapay",selectedSeries)
-}, [])
+  useEffect(() => {
+    ////console.log("sadapay",selectedSeries)
+  }, []);
 
   // STYLES <<<<<<<<<<
 
   return (
     <>
-      <div className="wrapper" style={{background:"white"}}>
+      <div className="wrapper" style={{ background: "white" }}>
         <Header />
 
         <div
@@ -336,18 +350,28 @@ useEffect(() => {
               "https://podcasts.cucurico.co.il/podcast/public/images/" +
               // selectedSeriesData?.cover_image;
               episodesss?.currentEpisode?.image
-
             }
             alt=""
           />
         </div>
         <div style={styles.cont1}>
           <div style={styles.cont2}>
-                 <div className="button-container" style={{position:"absolute",top:"0px"}}>
-                  <button className="qwe">הושמע</button>
-                  <button className="share">שיתוף<img src={kinina}/></button>
-                 </div>
-              <img
+            <div
+              className="button-container"
+              style={{ position: "absolute", top: "0px" }}
+            >
+              <button className="qwe">הושמע</button>
+              <button
+                className="share"
+                onClick={() => {
+                  setShow(true);
+                }}
+              >
+                שיתוף
+                <img src={kinina} />
+              </button>
+            </div>
+            <img
               style={{ width: "100%", height: isTabletOrMobile ? 250 : 700 }}
               src={
                 "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -356,7 +380,7 @@ useEffect(() => {
               }
               alt=""
             />
-         
+
             <div className="absoluteImage" style={styles.cont3}>
               <div
                 className="absoluteImageText"
@@ -754,9 +778,14 @@ useEffect(() => {
                       }}
                       onClick={() => {
                         setSelectedEpisodeIndex(index);
-                        disptach(setPlayingEpisode({song: item?.url, index: item.ep_number}));
-                        disptach(setPlayingEpisodeData(item))
-                        console.log("laila",episodesss)
+                        disptach(
+                          setPlayingEpisode({
+                            song: item?.url,
+                            index: item.ep_number,
+                          })
+                        );
+                        disptach(setPlayingEpisodeData(item));
+                        //console.log("laila", episodesss);
                         // setCurrentSong({
                         //   song: item?.url,
                         //   index: index,
@@ -865,9 +894,8 @@ useEffect(() => {
                               marginTop: "6px",
                               color: darkMode ? "#777777" : "#484848",
                             }}
-                          >{
-                            format(new Date(item?.created_at), 'dd.MM.yyyy')
-                          }
+                          >
+                            {format(new Date(item?.created_at), "dd.MM.yyyy")}
                             {/* {item?.created_at} */}
                           </div>
                           <div
@@ -879,19 +907,23 @@ useEffect(() => {
                               fontSize: 11,
                               marginTop: "2px",
                             }}
+                            onClick={() => {
+                              setShow(true);
+                            }}
                           >
                             שיתוף
                             <div>
                               <img
                                 style={{
                                   width: "16px",
-                                  height:"16px",
-                                  objectFit:"contain",
+                                  height: "16px",
+                                  objectFit: "contain",
                                   marginLeft: "4px",
                                 }}
-                                src={
-                                  roundArrow
-                                }
+                                onClick={()=>{
+                                  setShow(true)
+                                }}
+                                src={roundArrow}
                                 alt=""
                               />
                             </div>
@@ -935,7 +967,6 @@ useEffect(() => {
                   </>
                 );
               })}
-          
             </div>
           </div>
           <div
@@ -985,26 +1016,15 @@ useEffect(() => {
             </div>
           </div>
         </div>
-
-        {/* <div
-          className="marginDiv"
-          style={{
-            width: "100%",
-            background: darkMode ? "#1A1A1A" : "#F5F5F5",
-            top: "140px",
-            display: "flex",
-
-            justifyContent: "center",
-          }}
-        ></div> */}
+        {show &&         <div className="overlay" onClick={()=>{setShow(false)}}>
+      <div className="modal">share</div>
+    </div>}
       </div>
     </>
   );
 };
 
 export default Player;
-
-
 
 // {selectedSeries?.map((item, index) => {
 //   return (
@@ -1172,7 +1192,7 @@ export default Player;
 //           />
 //         </div>
 //         {/* <img
-         
+
 //           src={playerLine}
 //           alt=""
 //         /> */}

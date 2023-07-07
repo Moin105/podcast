@@ -24,14 +24,14 @@ const Header = ({ list }) => {
     setFilteredCarousels,
   } = useContext(ThemeContext);
   useEffect(() => {
-    //console.log("lister", list);
+    ////console.log("lister", list);
   }, []);
 
   function filterCarouselsByName(completeCarousels, desiredName) {
     const filteredCarousels = completeCarousels.map((carousel) => {
       // Assuming each carousel object has a "subData" field
       const filteredSubData = carousel?.subData?.filter((item, index) => {
-        //console.log("NAME ========", item?.name);
+        ////console.log("NAME ========", item?.name);
         let subDataWithName = item?.name;
         return (
           subDataWithName &&
@@ -55,11 +55,11 @@ const Header = ({ list }) => {
 
     setSearchText(searchText);
     let filteredData = filterCarouselsByName(completeCarousels, searchText);
-    //console.log("FILTERED DATA ==============", filteredData);
+    ////console.log("FILTERED DATA ==============", filteredData);
     setFilteredCarousels(filteredData);
   };
 useEffect(() => {
-  console.log("miseeeeee",searchings.search.search)
+  //console.log("miseeeeee",searchings.search.search)
 }, [handleInputChange])
   const [searchText, setSearchText] = useState("");
  

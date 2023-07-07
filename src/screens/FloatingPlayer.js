@@ -76,10 +76,10 @@ const FloatingPlayer = ({
   };
   
 const  episodesss = useSelector((state) => state.seriesEpisodes);
-console.log("sharjeeel",episodesss)
+//console.log("sharjeeel",episodesss)
 const dispatch = useDispatch();
 const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number);
-console.log("")
+//console.log("")
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
     <>
@@ -165,22 +165,22 @@ console.log("")
                 >
                   <div
                     onClick={() => {
-                      console.log("wwqqeqwewqeqwe")
+                      //console.log("wwqqeqwewqeqwe")
                       // if (episodesss?.playingEpisode.index >= 0 ) {
                         if(episodesss.episodes.length > 0 && currentEp >= 1){
-                        console.log("wwqqeqwewqeqwe")
+                        //console.log("wwqqeqwewqeqwe")
                         audioRef?.current?.pause();
                         audioRef.current.currentTime = 0;
-                        console.log("currentSong", episodesss?.playingEpisode.index);
-                        // console.log("currentSong", episodesss.playingEpisode);
+                        //console.log("currentSong", episodesss?.playingEpisode.index);
+                        // //console.log("currentSong", episodesss.playingEpisode);
                         setCurrentEp(parseInt(currentEp) - 1)
-                        console.log("currentSong", episodesss.currentEpisode.ep_number);
+                        //console.log("currentSong", episodesss.currentEpisode.ep_number);
                         var currentSong = episodesss.currentEpisode.ep_number;
-                        console.log("currentSong", currentEp);
+                        //console.log("currentSong", currentEp);
                         currentSong++;
-                        console.log("currentSong", episodesss.episodes);
+                        //console.log("currentSong", episodesss.episodes);
                         const nextSong = episodesss.episodes.find(obj=>obj.ep_number == currentEp);
-                        console.log("currentSong", nextSong);
+                        //console.log("currentSong", nextSong);
                         setTimeout(() => {
                           dispatch(setPlayingEpisode({song: nextSong?.url, index: nextSong.ep_number}));
                           dispatch(setPlayingEpisodeData(nextSong))
@@ -194,7 +194,7 @@ console.log("")
                           //   index: currentSong.index - 1,
                           // });
                         }, 100);
-                        console.log("qwqwewqewqeqwewqewqewqewqeqwqweqweqwe",episodesss.playingEpisode,episodesss.episodes.length )
+                        //console.log("qwqwewqewqeqwewqewqewqewqeqwqweqweqwe",episodesss.playingEpisode,episodesss.episodes.length )
                        
                         setTimeout(() => {
                           audioRef.current.play();
@@ -287,13 +287,13 @@ console.log("")
                         audioRef?.current?.pause();
                         audioRef.current.currentTime = 0;
                         setCurrentEp(parseInt(currentEp) + 1)
-                        console.log("currentSong", episodesss.currentEpisode.ep_number);
+                        //console.log("currentSong", episodesss.currentEpisode.ep_number);
                         var currentSong = episodesss.currentEpisode.ep_number;
-                        console.log("currentSong", currentEp);
+                        //console.log("currentSong", currentEp);
                         currentSong++;
-                        console.log("currentSong", episodesss.episodes);
+                        //console.log("currentSong", episodesss.episodes);
                         const nextSong = episodesss.episodes.find(obj=>obj.ep_number == currentEp);
-                        console.log("currentSong", nextSong);
+                        //console.log("currentSong", nextSong);
 
                         setTimeout(() => {
                           dispatch(setPlayingEpisode({song: nextSong?.url, index: nextSong?.ep_number}));
@@ -302,7 +302,7 @@ console.log("")
                       //       song:episodesss.episodes[parseInt(episodesss.playingEpisode.index) + parseInt(1)]?.url ,
                       //       index: parseInt(episodesss.playingEpisode.index ) + parseInt(1),
                       //     }))
-                          console.log("qwqwewqewqeqwewqewqewqewqeqwqweqweqwe",episodesss.playingEpisode,episodesss.episodes.length )
+                          //console.log("qwqwewqewqeqwewqewqewqewqeqwqweqweqwe",episodesss.playingEpisode,episodesss.episodes.length )
                           // setCurrentSong({
                           //   song: selectedSeries[currentSong.index + 1]?.url,
                           //   index: currentSong.index + 1,
@@ -505,6 +505,69 @@ console.log("")
                       alt=""
                     />
                   </div>
+                 <div>  <div
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: "bold",
+                      marginTop: 5,
+                      color: darkMode ? "#fff" : "#212121",
+                      textAlign: "right",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {episodesss?.currentEpisode.series?.name}
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 2,
+                      fontSize: "11px",
+                      color: darkMode ? "#fff" : "#E97B65",
+                      textAlign: "right",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {episodesss?.currentEpisode.series?.description}
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 2,
+                      color: darkMode ? "#777777" : "#000",
+                      fontSize: 12,
+
+                      textAlign: "right",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    With :{episodesss?.currentEpisode.series?.presenter}
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 2,
+                      color: "#777777",
+                      textAlign: "right",
+
+                      fontSize: 12,
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  > 
+                  {/* {episodesss?.currentEpisode.series?.tags[0].name} */}
+                   | {episodesss?.currentEpisode.series?.duration}
+                 
+                   {/* {item?.tags.map((item,index)=>{return <span key={index}>{item.name} </span>})} */}
+                    {/* {`${"00:41:55"}`} */}
+                  </div>
+                </div> 
                 </div>
                 <img
                   style={{

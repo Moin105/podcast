@@ -17,10 +17,10 @@ const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,i
   const width = window.innerWidth;
   const height = window.innerHeight;
   // const {categories,episodes,series,tags} = item;
-  //console.log(categories)
-  //console.log(episodes)
-  //console.log(series)
-  //console.log(tags)
+  ////console.log(categories)
+  ////console.log(episodes)
+  ////console.log(series)
+  ////console.log(tags)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleRouteChange = (url,datas) => {
@@ -64,17 +64,23 @@ const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,i
    const [episode,setEpisodes]= useState(null);
 
 useEffect(() => {
-console.log("THE LIST ========wakawaka==",  list)
-console.log(item)
+//console.log("THE LIST ========wakawaka==",  list)
+//console.log(item)
    if(list !== undefined){     
-     //console.log("THE LIST ========wakawaka==",  list);
-    //console.log(list[0]?.episodes)
+     ////console.log("THE LIST ========wakawaka==",  list);
+    ////console.log(list[0]?.episodes)
      setEpisodes(list[0]?.episodes)
-     //console.log("THE EPISODES ========wakawaka==",  episode)
+     ////console.log("THE EPISODES ========wakawaka==",  episode)
    }
 
 }, [list])
-// console.log("iski ma ka bhossra",item.tags)
+let tag = item?.tags;
+// //console.log("iski ma ka bhossra", item)
+tag = typeof tag === 'string' ? [tag] : tag; 
+
+// Array.isArray(tag) && tag.map(item => {
+//     //console.log(item.name); // replace this with your map function logic
+// });
   return (
     <>
       {item? (
@@ -113,8 +119,8 @@ console.log(item)
                     >
                       <div
                         onClick={() => {
-                          console.log(item.series_id)
-                          console.log(item.id)
+                          //console.log(item.series_id)
+                          //console.log(item.id)
                           dispatch(setPlayingEpisodeData(null))
                           dispatch(setSeriesEpisodes([])) 
                           handleRouteChange(`/players/${item.series_id}`,item)
@@ -225,15 +231,24 @@ console.log(item)
                       marginTop: 2,
                       color: "#777777",
                       textAlign: "right",
-
+                      display: "flex",
                       fontSize: 12,
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                     }}
                   > 
-                  {item?.tags[0].name} | {item?.duration}
-                 
+                  {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
+                   {item?.duration} |   { Array.isArray(tag) && tag.map(item => {
+                      return <p style={{margin:"0px 3px"}}>{item.name}</p>
+                      //console.log(item.name); // replace this with your map function logic
+                  })}
+                  {/* {
+                    Array.isArray(tag) && tag.map(item => {
+                      return <p>{item.name}</p>
+                      //console.log(item.name); // replace this with your map function logic
+                  })
+                  } */}
                    {/* {item?.tags.map((item,index)=>{return <span key={index}>{item.name} </span>})} */}
                     {/* {`${"00:41:55"}`} */}
                   </div>

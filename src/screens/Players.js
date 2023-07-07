@@ -8,16 +8,20 @@ import plusRed from "../images/plusRed.png";
 import pauseLogo from "../images/pauseLogo.png";
 import kinina from "../images/rightround.png";
 import axios from "axios";
-import './player.css'
+import "./player.css";
 import playLogo from "../images/playLogo.png";
-import  roundArrow from '../../src/images/return.png'
-import { format } from 'date-fns';
+import roundArrow from "../../src/images/return.png";
+import { format } from "date-fns";
 import { useLocation } from "react-router-dom";
 import MediaQuery, { useMediaQuery } from "react-responsive";
 import { useState } from "react";
 import "./Episode.css";
-import { useDispatch,useSelector } from "react-redux";
-import  {setSeriesEpisodes,setPlayingEpisode,setPlayingEpisodeData} from '../features/playingEpisode' 
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setSeriesEpisodes,
+  setPlayingEpisode,
+  setPlayingEpisodeData,
+} from "../features/playingEpisode";
 import Header from "../components/Header";
 import { ThemeContext } from "../components/ThemeContext";
 const Players = ({
@@ -39,7 +43,7 @@ const Players = ({
     });
   }, []);
   const location = useLocation();
-  const [episodeList ,setEpisodeList] = useState([])
+  const [episodeList, setEpisodeList] = useState([]);
   const data = location.state ? location.state.data : null;
   const postData = async (series_id) => {
     // Define the data body
@@ -47,25 +51,34 @@ const Players = ({
       series_id: series_id,
     };
     try {
-        const response = await axios.post('https://podcasts.cucurico.co.il/podcast/public/api/seriesEpisode', data);
-        if(response.data.data.length>0 && response.data.data !== [] && response.data.data !== null){
-          setEpisodeList( response.data.data);
-          disptach(setSeriesEpisodes(response.data.data))
-          console.log(episodeList)
-        } else if(response.data.data.length == [] || response.data.data == null){
- 
-        } else { 
-        }
+      const response = await axios.post(
+        "https://podcasts.cucurico.co.il/podcast/public/api/seriesEpisode",
+        data
+      );
+      if (
+        response.data.data.length > 0 &&
+        response.data.data !== [] &&
+        response.data.data !== null
+      ) {
+        setEpisodeList(response.data.data);
+        disptach(setSeriesEpisodes(response.data.data));
+        //console.log(episodeList);
+      } else if (
+        response.data.data.length == [] ||
+        response.data.data == null
+      ) {
+      } else {
+      }
     } catch (error) {
-        // Handle the error
-        console.error('Error posting data', error);
+      // Handle the error
+      console.error("Error posting data", error);
     }
-}
-useEffect(() => {
-   console.log("laila",data.series_id)
-   postData(data.series_id)
-   disptach(setPlayingEpisode({song: data?.url, index: data.ep_number}))
-    disptach(setPlayingEpisodeData(data))
+  };
+  useEffect(() => {
+    //console.log("laila", data.series_id);
+    postData(data.series_id);
+    disptach(setPlayingEpisode({ song: data?.url, index: data.ep_number }));
+    disptach(setPlayingEpisodeData(data));
     // audioRef.current.pause();
     // audioRef.current.currentTime = 0;
     // if (volume == 0) {
@@ -77,35 +90,36 @@ useEffect(() => {
     // //   audioRef?.current?.play();
     // // }, 200);
     // setShowPlayer(true);
-}, [])
-const  episodesss = useSelector((state) => state.seriesEpisodes);
-useEffect(() => {
-  console.log("laila",episodesss) 
-  console.log("laila",episodesss.currentEpisode,episodesss?.currentEpisode)
-  if(episodesss.currentEpisode == null){
-      const episodeone = episodesss.episodes[0]
-      disptach(setPlayingEpisode(episodeone))
-    //   disptach(setPlayingEpisodeData({song: data.url, index: data.ep_number}))
-    //   audioRef.current.pause();
-    //   audioRef.current.currentTime = 0;
-    //   if (volume == 0) {
-    //     audioRef.current.volume = 0.5;
-    //     setVolume(audioRef.current.volume * 100);
-    //   }
-    //   setIsPlaying(true);
-    //   setTimeout(() => {
-    //     audioRef?.current?.play();
-    //   }, 200);
-    //   setShowPlayer(true);
-    // console.log("laila",episodesss.currentEpisode)
-    // disptach(setPlayingEpisodeData(episodesss.playingEpisode))
-  }
-console.log(episodesss)
-}, [episodesss?.episodes])
+  }, []);
+  const episodesss = useSelector((state) => state.seriesEpisodes);
+  useEffect(() => {
+    //console.log("laila", episodesss);
+    //console.log("laila", episodesss.currentEpisode, episodesss?.currentEpisode);
+    if (episodesss.currentEpisode == null) {
+      const episodeone = episodesss.episodes[0];
+      disptach(setPlayingEpisode(episodeone));
+      //   disptach(setPlayingEpisodeData({song: data.url, index: data.ep_number}))
+      //   audioRef.current.pause();
+      //   audioRef.current.currentTime = 0;
+      //   if (volume == 0) {
+      //     audioRef.current.volume = 0.5;
+      //     setVolume(audioRef.current.volume * 100);
+      //   }
+      //   setIsPlaying(true);
+      //   setTimeout(() => {
+      //     audioRef?.current?.play();
+      //   }, 200);
+      //   setShowPlayer(true);
+      // //console.log("laila",episodesss.currentEpisode)
+      // disptach(setPlayingEpisodeData(episodesss.playingEpisode))
+    }
+    //console.log(episodesss);
+  }, [episodesss?.episodes]);
   const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
   const [active, setActive] = useState(0);
+  const [show, setShow] = useState(false);
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
   const {
     darkMode,
@@ -334,15 +348,15 @@ console.log(episodesss)
       paddingRight: 35,
     },
   };
-useEffect(() => {
- //console.log("sadapay",selectedSeries)
-}, [])
+  useEffect(() => {
+    ////console.log("sadapay",selectedSeries)
+  }, []);
 
   // STYLES <<<<<<<<<<
 
   return (
     <>
-      <div className="wrapper" style={{background:"white"}}>
+      <div className="wrapper" style={{ background: "white" }}>
         <Header />
 
         <div
@@ -361,18 +375,27 @@ useEffect(() => {
               "https://podcasts.cucurico.co.il/podcast/public/images/" +
               // selectedSeriesData?.cover_image;
               episodesss?.currentEpisode?.image
-
             }
             alt=""
           />
         </div>
         <div style={styles.cont1}>
           <div style={styles.cont2}>
-          <div className="button-container" style={{position:"absolute",top:"0px"}}>
-                  <button className="qwe">הושמע</button>
-                  <button className="share">שיתוף <img src={kinina}/></button>
-                 </div>
-              <img
+            <div
+              className="button-container"
+              style={{ position: "absolute", top: "0px" }}
+            >
+              <button className="qwe">הושמע</button>
+              <button
+                className="share"
+                onClick={() => {
+                  setShow(true);
+                }}
+              >
+                שיתוף <img src={kinina} />
+              </button>
+            </div>
+            <img
               style={{ width: "100%", height: isTabletOrMobile ? 250 : 700 }}
               src={
                 "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -381,7 +404,7 @@ useEffect(() => {
               }
               alt=""
             />
-         
+
             <div className="absoluteImage" style={styles.cont3}>
               <div
                 className="absoluteImageText"
@@ -391,7 +414,9 @@ useEffect(() => {
                   marginBottom: isTabletOrMobile ? 0 : 17.4,
                 }}
               >
-                <div style={styles.txt1}>{episodesss?.currentEpisode?.series?.name}</div>
+                <div style={styles.txt1}>
+                  {episodesss?.currentEpisode?.series?.name}
+                </div>
                 <div style={styles.txt2}>
                   {episodesss?.currentEpisode?.name}
                 </div>
@@ -779,9 +804,14 @@ useEffect(() => {
                       }}
                       onClick={() => {
                         setSelectedEpisodeIndex(index);
-                        disptach(setPlayingEpisode({song: item?.url, index: item.ep_number}));
-                        disptach(setPlayingEpisodeData(item))
-                        console.log("laila",episodesss)
+                        disptach(
+                          setPlayingEpisode({
+                            song: item?.url,
+                            index: item.ep_number,
+                          })
+                        );
+                        disptach(setPlayingEpisodeData(item));
+                        //console.log("laila", episodesss);
                         // setCurrentSong({
                         //   song: item?.url,
                         //   index: index,
@@ -890,9 +920,8 @@ useEffect(() => {
                               marginTop: "6px",
                               color: darkMode ? "#777777" : "#484848",
                             }}
-                          >{
-                            format(new Date(item?.created_at), 'dd.MM.yyyy')
-                          }
+                          >
+                            {format(new Date(item?.created_at), "dd.MM.yyyy")}
                             {/* {item?.created_at} */}
                           </div>
                           <div
@@ -904,19 +933,23 @@ useEffect(() => {
                               fontSize: 11,
                               marginTop: "2px",
                             }}
+                            onClick={()=>{
+                              setShow(true)
+                            }}
                           >
                             שיתוף
                             <div>
                               <img
+                                onClick={()=>{
+                                  setShow(true)
+                                }}
                                 style={{
                                   width: "16px",
-                                  height:"16px",
-                                  objectFit:"contain",
+                                  height: "16px",
+                                  objectFit: "contain",
                                   marginLeft: "4px",
                                 }}
-                                src={
-                                  roundArrow
-                                }
+                                src={roundArrow}
                                 alt=""
                               />
                             </div>
@@ -960,7 +993,6 @@ useEffect(() => {
                   </>
                 );
               })}
-          
             </div>
           </div>
           <div
@@ -1023,199 +1055,11 @@ useEffect(() => {
           }}
         ></div> */}
       </div>
+{show &&         <div className="overlay" onClick={()=>{setShow(false)}}>
+      <div className="modal">share</div>
+    </div>}
     </>
   );
 };
 
 export default Players;
-
-
-
-// {selectedSeries?.map((item, index) => {
-//   return (
-//     <>
-//       <div
-//         style={{
-//           cursor: "pointer",
-//           width: "100%",
-//         }}
-//         onClick={() => {
-//           setSelectedEpisodeIndex(index);
-//           setCurrentSong({
-//             song: item?.url,
-//             index: index,
-//           });
-//           audioRef.current.pause();
-//           audioRef.current.currentTime = 0;
-//           if (volume == 0) {
-//             audioRef.current.volume = 0.5;
-//             setVolume(audioRef.current.volume * 100);
-//           }
-//           setIsPlaying(true);
-//           setTimeout(() => {
-//             audioRef.current.play();
-//           }, 200);
-//           setShowPlayer(true);
-//         }}
-//       >
-//         <div
-//           className="episodes"
-//           style={{
-//             display: "flex",
-//             justifyContent: "center",
-//             alignItems: "center",
-//             flexDirection: "row",
-
-//             backgroundColor:
-//               darkMode && index == selectedEpisodeIndex
-//                 ? "#1a1a1a"
-//                 : !darkMode && index == selectedEpisodeIndex
-//                 ? "#f9f3f2"
-//                 : darkMode
-//                 ? "#252525"
-//                 : "#fff",
-//             margin: "0% 2%",
-//             padding: "2%",
-//             padding: "0px 8px",
-//             paddingTop: 8,
-//             paddingBottom: 8,
-//             marginTop: 8,
-//           }}
-//         >
-//           <div
-//             style={{
-//               width: "80%",
-//               padding: "10px",
-//               paddingRight: "4%",
-//               display: "flex",
-//               flexDirection: "column",
-//               justifyContent: "center",
-//               alignItems: "flex-end",
-//               textAlign: "right",
-//             }}
-//           >
-//             <div
-//               style={{
-//                 width: "100%",
-//                 display: "flex",
-//                 justifyContent: "center",
-//                 alignItems: "center",
-//               }}
-//             >
-//               <div
-//                 style={{
-//                   fontSize: 12,
-//                   width: "20%",
-//                   display: "flex",
-//                   justifyContent: "flex-start",
-//                   alignItems: "center",
-//                   color: darkMode ? "#777777" : "#484848",
-//                 }}
-//               >
-//                 {item?.duration}
-//               </div>
-//               <div
-//                 style={{
-//                   width: "80%",
-//                   fontSize: 17,
-//                   fontWeight: "",
-//                   color: darkMode ? "#FFFFFF" : "#212121",
-//                 }}
-//               >
-//                 {item?.name}
-//               </div>
-//             </div>
-
-//             <div
-//               style={{
-//                 fontSize: 12,
-//                 color: darkMode ? "#FFFFFF" : "#212121",
-//               }}
-//             >
-//               {item?.description}
-//             </div>
-//             <div
-//               style={{
-//                 fontSize: 12,
-//                 marginTop: "6px",
-//                 color: darkMode ? "#777777" : "#484848",
-//               }}
-//             >
-//               {item?.author_name}
-//             </div>
-//             <div
-//               style={{
-//                 fontSize: 12,
-//                 marginTop: "6px",
-//                 color: darkMode ? "#777777" : "#484848",
-//               }}
-//             >{
-//               format(new Date(item?.created_at), 'dd.MM.yyyy')
-//             }
-//               {/* {item?.created_at} */}
-//             </div>
-//             <div
-//               style={{
-//                 color: "#E97B65",
-//                 display: "flex",
-//                 justifyContent: "center",
-//                 alignItems: "center",
-//                 fontSize: 11,
-//                 marginTop: "2px",
-//               }}
-//             >
-//               שיתוף
-//               <div>
-//                 <img
-//                   style={{
-//                     width: "16px",
-//                     height:"16px",
-//                     objectFit:"contain",
-//                     marginLeft: "4px",
-//                   }}
-//                   src={
-//                     roundArrow
-//                   }
-//                   alt=""
-//                 />
-//               </div>
-//             </div>
-//           </div>
-//           <img
-//             style={{
-//               width: isTabletOrMobile ? 60 : 200,
-//               display: "flex",
-//               justifyContent: "flex-end",
-//               height: isTabletOrMobile ? 60 : 170,
-//             }}
-//             src={
-//               "https://podcasts.cucurico.co.il/podcast/public/images/" +
-//               item?.image
-//               // playerEp1
-//             }
-//             alt=""
-//           />
-//         </div>
-//         {/* <img
-         
-//           src={playerLine}
-//           alt=""
-//         /> */}
-//         <div
-//           style={{
-//             width: "96%",
-//             marginLeft: "2%",
-//             background:
-//               index == selectedSeries.length - 1
-//                 ? "transparent"
-//                 : darkMode
-//                 ? "#424242"
-//                 : "#dddddd",
-//             height: 1.5,
-//             marginTop: 7,
-//           }}
-//         />
-//       </div>
-//     </>
-//   );
-// })}

@@ -13,12 +13,12 @@ import { useSelector } from "react-redux";
 function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
   const { categories, episodes, series, tags,id } = item;
 
-    //console.log(categories);
-  //console.log("datta",item.categories);
+    console.log("wfewewwefewfebitches",item);
+  ////console.log("datta",item.categories);
   const idArray = categories.map(category => ({ id: category.id }));
-  //console.log("juni",idArray);
-  //   //console.log(series);
-  //   //console.log(tags);
+  ////console.log("juni",idArray);
+  //   ////console.log(series);
+  //   ////console.log(tags);
   const [episode, setEpisodes] = useState(null);
   const [category, setCategory] = useState(null);
   const [serie, setSerie] = useState(null);
@@ -66,18 +66,19 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
    
 
     if (episode && episode.length > 0) {
-      //console.log("THE LIST ========epsiode==", episode);
+      ////console.log("THE LIST ========epsiode==", episode);
     }
     else if (category && category.length > 0) {
-      //console.log("THE LIST ========wakawaka==", category);
+      ////console.log("THE LIST ========wakawaka==", category);
     } else if (serie && serie.length > 0) {
-      //console.log("THE LIST ========wakawaka==", serie);
+      ////console.log("THE LIST ========wakawaka==", serie);
     } else if (tag && tag.length > 0) {
-      //console.log("THE LIST ========wakawaka==", tag);
+      ////console.log("THE LIST ========wakawaka==", tag);
     }
   }, []);
   const postData = async () => {
       // Define the data body
+      
       let data = {
           tags: item.carousel.tags,
           carousel_id: item.id
@@ -88,8 +89,10 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
 
         }else{
           const response = await axios.post('https://podcasts.cucurico.co.il/podcast/public/api/episodetag', data);
-          if(response.data.data.length>0 && response.data.data !== [] && response.data.data !== null){
-              setTagEpisode( response.data.data);
+          if( response.data.data !== null){
+            console.log("response.data.data",response.data.data)
+              setTagEpisode([ response.data.data]);
+
           } else if(response.data.data.length == [] || response.data.data == null){
    
           } else { 
@@ -130,7 +133,8 @@ const filteredSeries = serie?.filter(ser => ser.name.includes(searchings.search.
 const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name.includes(searchings.search.search)));
 useEffect(() => {
-  console.log("miseeeeee",filteredSeries)
+  console.log("filteredEpisodes",filteredEpisodes,filteredSeries,tagEpisode,filteredCategorySeries)
+  //console.log("miseeeeee",filteredSeries)
 }, [searchings.search.search])
 
   return (
@@ -138,7 +142,7 @@ useEffect(() => {
       {/* <Draggable> */}
       {filteredEpisodes && filteredEpisodes.length > 0
           ? filteredEpisodes.map((epos, index) => {
-        // console.log("epos",epos);
+        // //console.log("epos",epos);
               return (
                 <>
                  <Draggable>
@@ -159,7 +163,7 @@ useEffect(() => {
           : ""}
         {/* {episode && episode.length > 0
           ? episode.map((epos, index) => {
-        // console.log("epos",epos);
+        // //console.log("epos",epos);
               return (
                 <>
                 <ListRenderOne
@@ -197,7 +201,7 @@ useEffect(() => {
             })
           : ""}
              {filteredTagEpisodes && filteredTagEpisodes.length > 0
-          ? filteredTagEpisodes.map((epos, index) => {
+          ? filteredTagEpisodes?.map((epos, index) => {
             return (
                 <>
                 <Draggable>

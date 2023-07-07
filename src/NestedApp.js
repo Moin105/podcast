@@ -32,12 +32,12 @@ const NestedApp = () => {
  const dispatch = useDispatch()
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
-    // console.log(audioRef.current.currentTime)
+    // //console.log(audioRef.current.currentTime)
   };
 
   const handleLoadedData = () => {
     setDuration(audioRef.current.duration);
-    // console.log(audioRef.current.currentTime)
+    // //console.log(audioRef.current.currentTime)
   };
 
   const handleSeek = (e) => {
@@ -55,7 +55,7 @@ const NestedApp = () => {
   };
 
   useEffect(() => {
-    console.log("wwwwwwwwwwwwwwww")
+    //console.log("wwwwwwwwwwwwwwww")
     if (darkMode) {
       document.body.style.backgroundColor = "#161616";
     } else {
@@ -76,10 +76,10 @@ const NestedApp = () => {
     
 //     // Update the last song
 //     setLastSong(playingSong);
-// console.log("wwwwwwwwwwwwwwwwwwwwwwww222",episodesss.playedSongs)
+// //console.log("wwwwwwwwwwwwwwwwwwwwwwww222",episodesss.playedSongs)
 //   }, [playingSong, dispatch, lastSong]);
-//    console.log("wwwwwwwwwwwwwwwwwwwwwwww222",playingSong)
-console.log("playingsonger",playingSong)
+//    //console.log("wwwwwwwwwwwwwwwwwwwwwwww222",playingSong)
+//console.log("playingsonger",playingSong)
   return (
     <div className="bodylight">
       <audio

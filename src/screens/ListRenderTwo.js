@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import {setPlayingEpisodeData,setSeriesEpisodes} from '../features/playingEpisode'
 
 const ListRenderTwo = ({ audioRef, setVolume,index, list,item, volume, setIsPlaying }) => {
-  //console.log("LIST IN 2 ===============", list);
+  ////console.log("LIST IN 2 ===============", list);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const navigate = useNavigate();
 const handleRouteChange = (url,datas) => {
@@ -56,7 +56,10 @@ const handleRouteChange = (url,datas) => {
     selectedSeriesData,
     setSelectedSeriesData,
   } = useContext(ThemeContext);
-
+  let tag = item?.category;
+  // //console.log("iski ma ka bhossra", item)
+  tag = typeof tag === 'string' ? [tag] : tag; 
+  
   return (
     <>
       {item ? (
@@ -96,7 +99,7 @@ const handleRouteChange = (url,datas) => {
                     >
                       <div
                         onClick={() => {
-                          console.log(item.id)
+                          //console.log(item.id)
                           dispatch(setPlayingEpisodeData(null))
                           dispatch(setSeriesEpisodes([])) 
                           handleRouteChange(`/player/${item.id}`,item.id)
@@ -223,6 +226,12 @@ const handleRouteChange = (url,datas) => {
                       }}
                     >
                       {item?.category?.name?.toString()} {`${"00:41:55"}`}
+                      {
+                          Array.isArray(tag) && tag.map(item => {
+                          return <p style={{margin:"0px 3px"}}>{item.name}</p>
+                          //console.log(item.name); // replace this with your map function logic
+                      })
+                      }
                     </div>
                   </div>
                 </div>
