@@ -240,7 +240,7 @@ tag = typeof tag === 'string' ? [tag] : tag;
                   > 
                   {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
                    {item?.duration} |   { Array.isArray(tag) && tag.map(item => {
-                      return <p style={{margin:"0px 3px"}}>{item.name}</p>
+                      return <p style={{margin:"0px 3px"}}>{item.name} &bull;</p>
                       //console.log(item.name); // replace this with your map function logic
                   })}
                   {/* {

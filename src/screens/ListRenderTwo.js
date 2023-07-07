@@ -56,8 +56,8 @@ const handleRouteChange = (url,datas) => {
     selectedSeriesData,
     setSelectedSeriesData,
   } = useContext(ThemeContext);
-  let tag = item?.category;
-  console.log("iski ma ka bharosa", item)
+  let tag = item?.categories;
+  // console.log("iski ma ka bharosa", item)
   tag = typeof tag === 'string' ? [tag] : tag; 
   
   return (
@@ -222,13 +222,14 @@ const handleRouteChange = (url,datas) => {
                         textAlign: "right",
                         whiteSpace: "nowrap",
                         overflow: "hidden",
+                        display:"flex",
                         textOverflow: "ellipsis",
                       }}
                     >
                       {item?.category?.name?.toString()} {`${"00:41:55"}`}
                       {
                           Array.isArray(tag) && tag.map(item => {
-                          return <p style={{margin:"0px 3px"}}>{item.name}</p>
+                          return <> <p style={{margin:"0px 3px"}}>{item.name}&bull; </p></>
                           //console.log(item.name); // replace this with your map function logic
                       })
                       }
