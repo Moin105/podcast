@@ -1,30 +1,21 @@
-.absoluteImage {
+.button-container {
+  display: flex;
+  gap: 20px;
+  left: 20px !important;
+  top: 20px !important;
 }
-
-.marginDiv {
-  margin-top: "-235";
-  width: "100%";
-  top: "140px";
-  display: "flex";
-
-  justify-content: "center";
+.button-container .share {
+  background-color: transparent;
 }
-
-@media only screen and (max-width: 330px) {
-  .marginDiv {
-    margin-top: -70px !important;
-
-    width: "100%";
-    top: "140px";
-    display: "flex";
-
-    justify-content: "center";
-  }
-  .absoluteImage {
-    width: 100 !important;
-    height: "200px" !important;
-  }
-  .absoluteImage img {
-    /* height:100px;  */
-  }
+.button-container .share img {
+  width: 18px;
+  height: 18px;
+  margin: 0px 0px -6px 1px;
 }
+.button-container button {
+  background-color: #0a0a0b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50px;
+}/*# sourceMappingURL=Player.css.map */

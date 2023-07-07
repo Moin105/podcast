@@ -6,7 +6,9 @@ import playSmall from "../images/playSmall.png";
 import plus from "../images/plus.png";
 import plusRed from "../images/plusRed.png";
 import pauseLogo from "../images/pauseLogo.png";
+import kinina from "../images/rightround.png";
 import axios from "axios";
+import './player.css'
 import playLogo from "../images/playLogo.png";
 import  roundArrow from '../../src/images/return.png'
 import { format } from 'date-fns';
@@ -150,6 +152,7 @@ console.log(episodesss)
     cont2: {
       width: isTabletOrMobile ? "95%" : "60%",
       display: "flex",
+      position: "relative",
       flexDirection: "column",
       alignItems: "center",
     },
@@ -365,7 +368,10 @@ useEffect(() => {
         </div>
         <div style={styles.cont1}>
           <div style={styles.cont2}>
-         
+          <div className="button-container" style={{position:"absolute",top:"0px"}}>
+                  <button className="qwe">הושמע</button>
+                  <button className="share">שיתוף <img src={kinina}/></button>
+                 </div>
               <img
               style={{ width: "100%", height: isTabletOrMobile ? 250 : 700 }}
               src={

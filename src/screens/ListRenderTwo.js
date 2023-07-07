@@ -199,7 +199,18 @@ const handleRouteChange = (url,datas) => {
                     >
                       With: {item?.presenter}
                     </div>
-
+                    <div
+                      style={{
+                        marginTop: 3,
+                        fontSize: 12,
+                        color: "#fff",
+                        textAlign: "right",
+                        marginBottom: 3,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >  {item?.about_series}</div>
                     <div
                       style={{
                         marginTop: 2,

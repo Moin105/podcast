@@ -68,7 +68,7 @@ useEffect(() => {
       <div
         style={{
           background: darkMode ? "#000" : "#fff",
-          width:"95%",
+          width:"99%",
           margin:"0 auto"
         }}
         className="footer-main"

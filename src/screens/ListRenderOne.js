@@ -74,7 +74,7 @@ console.log(item)
    }
 
 }, [list])
-console.log("iski ma ka bhossra",item.tags)
+// console.log("iski ma ka bhossra",item.tags)
   return (
     <>
       {item? (
@@ -217,7 +217,7 @@ console.log("iski ma ka bhossra",item.tags)
                       textOverflow: "ellipsis",
                     }}
                   >
-                    :With {item?.guests}
+                    With :{item?.guests}
                   </div>
 
                   <div

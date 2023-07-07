@@ -89,8 +89,12 @@ console.log("")
             className="floating-bottom-container"
             style={{
               width: "100%",
+              position: "fixed",
+              bottom: 0,
               background: "#fff",
               flexDirection: "column",
+              width: "100%",  
+              
               paddingBottom: 15,
             }}
           >
@@ -279,7 +283,7 @@ console.log("")
                   </div>
                   <div
                     onClick={() => {
-                      if (episodesss.episodes.length > 0 &&   currentEp < episodesss.episodes.length   ) {
+                      if (episodesss.episodes.length > 0 &&   currentEp <= episodesss.episodes.length   ) {
                         audioRef?.current?.pause();
                         audioRef.current.currentTime = 0;
                         setCurrentEp(parseInt(currentEp) + 1)
@@ -292,7 +296,7 @@ console.log("")
                         console.log("currentSong", nextSong);
 
                         setTimeout(() => {
-                          dispatch(setPlayingEpisode({song: nextSong?.url, index: nextSong.ep_number}));
+                          dispatch(setPlayingEpisode({song: nextSong?.url, index: nextSong?.ep_number}));
                           dispatch(setPlayingEpisodeData(nextSong))
                       // dispatch(    setPlayingEpisode({
                       //       song:episodesss.episodes[parseInt(episodesss.playingEpisode.index) + parseInt(1)]?.url ,
@@ -523,6 +527,8 @@ console.log("")
             className="floating-bottom-container"
             style={{
               width: "100%",
+              position: "fixed",
+              bottom: 0,
               background: "#fff",
               flexDirection: "column",
             }}

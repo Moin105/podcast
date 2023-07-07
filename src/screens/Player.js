@@ -4,11 +4,13 @@ import "./player.css";
 import playerEp1 from "../images/playerEp1.png";
 import playSmall from "../images/playSmall.png";
 import plus from "../images/plus.png";
+import kinina from "../images/rightround.png";
 import plusRed from "../images/plusRed.png";
 import pauseLogo from "../images/pauseLogo.png";
 import axios from "axios";
 import playLogo from "../images/playLogo.png";
 import  roundArrow from '../../src/images/return.png'
+import './player.css'
 import { format } from 'date-fns';
 import { useLocation } from "react-router-dom";
 import MediaQuery, { useMediaQuery } from "react-responsive";
@@ -127,6 +129,7 @@ console.log(episodesss)
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      position: "relative",
     },
     cont3: {
       display: "flex",
@@ -340,7 +343,10 @@ useEffect(() => {
         </div>
         <div style={styles.cont1}>
           <div style={styles.cont2}>
-         
+                 <div className="button-container" style={{position:"absolute",top:"0px"}}>
+                  <button className="qwe">הושמע</button>
+                  <button className="share">שיתוף<img src={kinina}/></button>
+                 </div>
               <img
               style={{ width: "100%", height: isTabletOrMobile ? 250 : 700 }}
               src={
