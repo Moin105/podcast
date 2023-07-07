@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { setSearch } from "../features/Search";
 const Header = ({ list }) => {
   const [showDropdown, setShowDropdown] = React.useState(false);
+  const [searchShow,setSearchShow] = useState(false)
   const {
     darkMode,
     setDarkMode,
@@ -287,11 +288,26 @@ useEffect(() => {
                   alignItems: "center",
                 }}
               >
-                <img
+       {!searchShow    &&     <img
                   style={{ width: window.innerWidth * 0.04 }}
                   src={search2}
                   alt=""
-                />
+                  onClick={()=>{setSearchShow(true)}}
+                />}
+             {searchShow &&    <input
+                  type="text"
+                  placeholder="חיפוש"
+                  style={{
+                    outline: "none",
+                    background: darkMode ? "#161616" : "#F7F6F9",
+                    color: darkMode ? "#F7F6F9" : "black",
+                    margin:" 0px 0px 0px 65px",
+                    width: "90px"
+                  }}
+                  onBlur={()=>{setSearchShow(false)}}
+                  onChange={handleInputChange}
+                />}
+               
               </div>
             </Link>
             <div className="logo2">
