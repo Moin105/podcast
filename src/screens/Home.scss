@@ -12,3 +12,17 @@
     // justifyContent: "center",
     // marginTop: "50px",
 }
+.sigmeee{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+  white-space: nowrap;
+}
+.row{
+    display: flex;
+    overflow-x: scroll;
+    flex-direction: row-reverse;
+    width: 100%;
+    // justify-content: end;
+}

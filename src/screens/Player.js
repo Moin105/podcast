@@ -314,7 +314,7 @@ useEffect(() => {
 
   return (
     <>
-      <div className="wrapper" style={{}}>
+      <div className="wrapper" style={{background:"white"}}>
         <Header />
 
         <div

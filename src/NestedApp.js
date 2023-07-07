@@ -21,6 +21,7 @@ const NestedApp = () => {
 
   const [lastSong, setLastSong] = useState(episodesss.currentEpisode);
   const togglePlay = () => {
+    
     if (isPlaying) {
       audioRef.current.pause();
     } else {
@@ -31,12 +32,12 @@ const NestedApp = () => {
  const dispatch = useDispatch()
   const handleTimeUpdate = () => {
     setCurrentTime(audioRef.current.currentTime);
-    console.log(audioRef.current.currentTime)
+    // console.log(audioRef.current.currentTime)
   };
 
   const handleLoadedData = () => {
     setDuration(audioRef.current.duration);
-    console.log(audioRef.current.currentTime)
+    // console.log(audioRef.current.currentTime)
   };
 
   const handleSeek = (e) => {
@@ -78,18 +79,18 @@ const NestedApp = () => {
 // console.log("wwwwwwwwwwwwwwwwwwwwwwww222",episodesss.playedSongs)
 //   }, [playingSong, dispatch, lastSong]);
 //    console.log("wwwwwwwwwwwwwwwwwwwwwwww222",playingSong)
+console.log("playingsonger",playingSong)
   return (
     <div className="bodylight">
       <audio
         ref={audioRef}
-        src={playingSong?.song}
+        src={playingSong?.url}
         id="myAudio"
         onTimeUpdate={handleTimeUpdate}
         onLoadedData={handleLoadedData}
         onEnded={() => {
           audioRef.current.currentTime = 0;
           setIsPlaying(false);
-          setLastSong(null);  
         }}
         // controls
       />

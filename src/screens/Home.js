@@ -173,7 +173,7 @@ const Home = ({
             >
               SWITCH MODE
             </button>
-            <div className="row">
+            <div className="">
               {carouselList.map((item, index) => {
                 return (
                   <div className="upper-row" key={index}>

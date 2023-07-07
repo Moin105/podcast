@@ -57,6 +57,7 @@ const FloatingPlayer = ({
     return formattedTime;
   }
   const navigate = useNavigate();
+  const playingSong = useSelector((state) => state.seriesEpisodes.currentEpisode);
   const {
     darkMode,
     setDarkMode,
@@ -78,6 +79,7 @@ const  episodesss = useSelector((state) => state.seriesEpisodes);
 console.log("sharjeeel",episodesss)
 const dispatch = useDispatch();
 const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number);
+console.log("")
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
     <>
@@ -509,7 +511,7 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                   }}
                   src={
                     "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                    selectedSeries[selectedEpisodeIndex]?.image
+                    episodesss?.currentEpisode?.image
                   }
                   alt=""
                 />
@@ -904,7 +906,7 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                       }}
                       src={
                         "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                        selectedSeries[selectedEpisodeIndex]?.image
+                        episodesss?.currentEpisode?.image
                       }
                       alt=""
                     />

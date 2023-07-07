@@ -135,12 +135,13 @@ useEffect(() => {
 
   return (
     <>
-      <Draggable>
+      {/* <Draggable> */}
       {filteredEpisodes && filteredEpisodes.length > 0
           ? filteredEpisodes.map((epos, index) => {
         // console.log("epos",epos);
               return (
                 <>
+                 <Draggable>
                 <ListRenderOne
                         item={epos}
                         index={index}
@@ -150,6 +151,7 @@ useEffect(() => {
                         volume={volume}
                         setIsPlaying={setIsPlaying}
                       />
+                 </Draggable>
                 </>
 
               );
@@ -178,6 +180,7 @@ useEffect(() => {
           ? filteredSeries.map((serie, index) => {
               return (
                 <>
+                <Draggable>
                    <ListRenderTwo
                      item={serie}
                      index={index}
@@ -187,6 +190,7 @@ useEffect(() => {
                         volume={volume}
                         setIsPlaying={setIsPlaying}
                       />
+                </Draggable>
                 </>
               
               );
@@ -196,6 +200,7 @@ useEffect(() => {
           ? filteredTagEpisodes.map((epos, index) => {
             return (
                 <>
+                <Draggable>
                 <ListRenderOne
                         item={epos}
                         index={index}
@@ -205,16 +210,17 @@ useEffect(() => {
                         volume={volume}
                         setIsPlaying={setIsPlaying}
                       />
+                </Draggable>
                 </>
            
               );
             })
           : ""}
             {filteredCategorySeries && filteredCategorySeries.length > 0
-          ? filteredCategorySeries.map((series, index) => {
+          ? categorySeries.map((series, index) => {
           return  series.map((serie,index)=>{
                     return (
-                        <>
+                        <><Draggable>
                               <ListRenderTwo
                      item={serie}
                      index={index}
@@ -224,6 +230,7 @@ useEffect(() => {
                         volume={volume}
                         setIsPlaying={setIsPlaying}
                       />
+                        </Draggable>
                         </>
     
               );
@@ -236,7 +243,7 @@ useEffect(() => {
           </>: ""
 
           }
-      </Draggable>
+      {/* </Draggable> */}
    
     </>
   );

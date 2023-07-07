@@ -339,7 +339,7 @@ useEffect(() => {
 
   return (
     <>
-      <div className="wrapper" style={{}}>
+      <div className="wrapper" style={{background:"white"}}>
         <Header />
 
         <div
@@ -429,14 +429,14 @@ useEffect(() => {
                     <div
                       style={styles.btn2}
                       onClick={() => {
-                        if (!audioRef?.current?.paused) {
+                        if (!audioRef.current.paused) {
                           setIsPlaying(false);
-                          audioRef?.current?.pause();
+                          audioRef.current.pause();
 
                           setShowPlayer(false);
                         } else {
                           setIsPlaying(true);
-                          audioRef?.current?.play();
+                          audioRef.current.play();
                           setShowPlayer(true);
                         }
                       }}
@@ -579,11 +579,11 @@ useEffect(() => {
                     onClick={() => {
                       if (!audioRef?.current?.paused) {
                         setIsPlaying(false);
-                        audioRef?.current?.pause();
+                        audioRef.current.pause();
                         setShowPlayer(false);
                       } else {
                         setIsPlaying(true);
-                        audioRef?.current?.play();
+                        audioRef.current.play();
                         setShowPlayer(true);
                       }
                     }}
