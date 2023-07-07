@@ -213,9 +213,9 @@ const Home = ({
                       }}
                     >{item.carousel.short_description}</div>
                     <div
-                      style={{
-                        marginRight: customDivMargin,
-                      }}
+                      // style={{
+                      //   marginRight: customDivMargin,
+                      // }}
                       className="row"
                     >
                       <Card item={item}
