@@ -294,6 +294,14 @@ useEffect(() => {
                   alt=""
                   onClick={()=>{setSearchShow(true)}}
                 />}
+                {/* outline: none;
+    background: rgb(247, 246, 249);
+    color: black;
+    padding: 5px;
+    margin: 40px 0px 0px 90px;
+    border: 1px solid black;
+    width: 110px;
+    border-radius: 30px; */}
              {searchShow &&    <input
                   type="text"
                   placeholder="חיפוש"
@@ -301,8 +309,11 @@ useEffect(() => {
                     outline: "none",
                     background: darkMode ? "#161616" : "#F7F6F9",
                     color: darkMode ? "#F7F6F9" : "black",
-                    margin:" 0px 0px 0px 65px",
-                    width: "90px"
+                    margin:"0px 0px 0px 90px",
+                    border:"1px solid black",
+                    width: "110px",
+                    borderRadius:"30px",
+                    padding: "5px"
                   }}
                   onBlur={()=>{setSearchShow(false)}}
                   onChange={handleInputChange}
