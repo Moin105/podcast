@@ -350,7 +350,7 @@ const Player = ({
             src={
               "https://podcasts.cucurico.co.il/podcast/public/images/" +
               // selectedSeriesData?.cover_image;
-              episodesss?.currentEpisode?.image
+              episodesss?.currentEpisode?.series?.cover_image
             }
             alt=""
           />
