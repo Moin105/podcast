@@ -294,14 +294,7 @@ useEffect(() => {
                   alt=""
                   onClick={()=>{setSearchShow(true)}}
                 />}
-                {/* outline: none;
-    background: rgb(247, 246, 249);
-    color: black;
-    padding: 5px;
-    margin: 40px 0px 0px 90px;
-    border: 1px solid black;
-    width: 110px;
-    border-radius: 30px; */}
+              
              {searchShow &&    <input
                   type="text"
                   placeholder="חיפוש"

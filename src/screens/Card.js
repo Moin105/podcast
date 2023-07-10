@@ -119,6 +119,20 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
     }
 }
 const searchings = useSelector((state) => state);
+const unfinishedSongs = useSelector((state) => state.seriesEpisodes.playedSongs);
+// let uniqueArray = [];
+// if (unfinishedSongs && unfinishedSongs.length) {
+//    uniqueArray = unfinishedSongs.filter((obj, index, self) =>
+//     index === self.findIndex((t) => (
+//       t.id === obj.id && t.name === obj.name
+//     ))
+//   );
+
+//   console.log("werwerwer",uniqueArray); // Output: [{ id: 1, name: 'Object 1' }, { id: 2, name: 'Object 2' }]
+// }
+// useEffect(() => {
+//   console.log("werwerwer",uniqueArray)
+// }, [unfinishedSongs])
 
 const fetchResponses = async () => {
     const responses = await Promise.all(idArray.map(id => postSeries(id.id)));
@@ -127,6 +141,7 @@ const fetchResponses = async () => {
 useEffect(() => {
       postData();   
       fetchResponses();
+      // console.log("werwerwer",uniqueArray);
 }, [tags])
 const filteredSerie = serie?.filter(ser => ser.status=='published');
 const filteredEpisode = episode?.filter(ep => ep.status=='published');
@@ -134,6 +149,7 @@ const filteredEpisode = episode?.filter(ep => ep.status=='published');
 const filteredEpisodes = filteredEpisode?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredSeries = filteredSerie?.filter(ser => ser.name.includes(searchings.search.search));
 const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name.includes(searchings.search.search));
+const filteredUnfinishedEpisodes = unfinishedSongs?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name.includes(searchings.search.search)));
 useEffect(() => {
   // console.log("filteredEpisodes",filteredEpisodes,filteredSeries,tagEpisode,filteredCategorySeries)
@@ -245,9 +261,26 @@ useEffect(() => {
         
             })
           : ""}
-          {item.carousel.name == "Continue Listening" ? <>
-          wqwqe
-          </>: ""
+          {item.carousel.name == "Continue Listening" && filteredUnfinishedEpisodes && filteredUnfinishedEpisodes.length>0 ? 
+           filteredUnfinishedEpisodes.map((epos, index) => {
+            // //console.log("epos",epos);
+                  return (
+                    <>
+                     <Draggable>
+                    <ListRenderOne
+                            item={epos}
+                            index={index}
+                            audioRef={audioRef}
+                            setVolume={setVolume}
+                            list={epos?.subData}
+                            volume={volume}
+                            setIsPlaying={setIsPlaying}
+                          />
+                     </Draggable>
+                    </>
+    
+                  );
+                }):<p style={{margin:"0 auto",padding:"50px 0px"}}> No Songs Played Yet</p>
 
           }
       {/* </Draggable> */}

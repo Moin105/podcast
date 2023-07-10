@@ -26,7 +26,10 @@ export const playingEpisodeSlice = createSlice({
         addSong: (state, action) => {
             state?.playedSongs?.push(action.payload);
           },
+          removeSong: (state, action) => {
+            state.playedSongs = state.playedSongs.filter(song => song.id !== action.payload);
+          }
     }
 })
-export const {setSeriesEpisodes,setPlayingEpisode,setPlayingEpisodeData,addSong} = playingEpisodeSlice.actions
+export const {setSeriesEpisodes,setPlayingEpisode,setPlayingEpisodeData,addSong,removeSong} = playingEpisodeSlice.actions
 export default playingEpisodeSlice.reducer

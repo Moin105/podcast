@@ -6,7 +6,7 @@ import Player from "./screens/Player";
 import { useSelector,useDispatch } from "react-redux";
 import { ThemeContext, ThemeProvider } from "./components/ThemeContext";
 import Players from "./screens/Players";
-import {addSong} from './features/playingEpisode'
+import {addSong, removeSong} from './features/playingEpisode'
 
 const NestedApp = () => {
   const audioRef = useRef();
@@ -37,7 +37,8 @@ const NestedApp = () => {
 
   const handleLoadedData = () => {
     setDuration(audioRef.current.duration);
-    // //console.log(audioRef.current.currentTime)
+
+    console.log("duration gee",audioRef.current.duration)
   };
 
   const handleSeek = (e) => {
@@ -67,7 +68,26 @@ const NestedApp = () => {
       document.body.style.backgroundColor = "#fff";
     };
   }, [darkMode]);
-   const playingSong = useSelector((state) => state.seriesEpisodes.currentEpisode);
+  const [prevSong, setPrevSong] = useState(null);
+const playingSong = useSelector((state) => state.seriesEpisodes.currentEpisode);
+const playedSongs = useSelector((state) => state.seriesEpisodes);
+const unfinishedSongs = useSelector((state) => state.seriesEpisodes.playedSongs);
+
+useEffect(() => {
+  if (prevSong && playingSong !== prevSong && isPlaying) {
+    // dispatch the action to add the unfinished song to the state
+    const isAlreadyInUnfinishedSongs = unfinishedSongs.some(song => song.id === prevSong.id);
+   if(!isAlreadyInUnfinishedSongs){
+     dispatch(addSong(prevSong));
+   }
+  }
+
+  setPrevSong(playingSong);
+  // console.log("mitraz",playedSongs)
+  // console.log("mitrazs",playingSong)
+
+}, [playingSong, isPlaying, prevSong, dispatch]);
+   
 //   useEffect(() => {
 //     if (lastSong) {
 //       // Push the last song into the array in redux store if it hasn't ended
@@ -90,6 +110,7 @@ const NestedApp = () => {
         onLoadedData={handleLoadedData}
         onEnded={() => {
           audioRef.current.currentTime = 0;
+          dispatch(removeSong(playingSong.id))
           setIsPlaying(false);
         }}
         // controls
