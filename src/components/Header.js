@@ -72,7 +72,7 @@ useEffect(() => {
           width:"99%",
           margin:"0 auto"
         }}
-        className="footer-main"
+        className="footer-main sifeee"
       >
         <MediaQuery minWidth={430}>
           <div className="footer2">
@@ -144,13 +144,13 @@ useEffect(() => {
                   position: "fixed",
                   top: 0,
                   right: 0,
-                  width: "94%",
+                  width: "40%",
                   // background: "#050718",
                   background: "#071330",
 
                   // border: "1px solid #FFFFFF",
                   // borderRadius: "10px",
-                  height: "669px",
+                  height: "100%",
                   display: "flex",
                   flexDirection: "column",
                   textAlign: "left",
@@ -327,9 +327,142 @@ useEffect(() => {
                 }}
                 src={darkMode ? menu2 : menu}
                 alt=""
+                onClick={() => setShowDropdown(!showDropdown)}
               />
             </div>
           </div>
+          {showDropdown && (
+              <div
+                style={{
+                  position: "fixed",
+                  top: 0,
+                  right: 0,
+                  width: "94%",
+                  // background: "#050718",
+                  background: "#071330",
+
+                  // border: "1px solid #FFFFFF",
+                  // borderRadius: "10px",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "left",
+                  zIndex: "999999",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                  }}
+                >
+                  <img
+                    style={{
+                      padding: "10px 0px 10px 10px",
+                      width: "60%",
+                      marginLeft: "50px",
+                    }}
+                    src={logo}
+                    alt=""
+                  />
+                  <div
+                    style={{
+                      width: "100%",
+                      background: "white",
+                      height: "1px",
+                    }}
+                  ></div>
+                </div>
+
+                <div
+                  style={{
+                    padding: "10px 5px 10px 10px",
+                    color: "white",
+                    // WebkitBackgroundClip: "text",
+                    // WebkitTextFillColor: "transparent",
+                    marginTop: "150px",
+                    marginLeft: "20px",
+                  }}
+                >
+                  Home
+                </div>
+                {/* <div
+              style={{
+                height: 1,
+                backgroundColor: "white",
+                margin: "2px 0px 2px 0px",
+              }}
+            ></div> */}
+                <div
+                  style={{
+                    color: "white",
+                    padding: "10px 5px 10px 10px",
+                    marginLeft: "20px",
+                  }}
+                >
+                  How It Works?
+                </div>
+                {/* <div
+              style={{
+                height: 1,
+                backgroundColor: "white",
+                margin: "2px 0px 2px 0px",
+              }}
+            ></div> */}
+                <div
+                  style={{
+                    color: "white",
+                    padding: "10px 5px 10px 10px",
+                    marginLeft: "20px",
+                  }}
+                >
+                  API Integration
+                </div>
+                {/* <div
+              style={{
+                height: 1,
+                backgroundColor: "white",
+                margin: "2px 0px 2px 0px",
+              }}
+            ></div> */}
+                <div
+                  style={{
+                    color: "white",
+                    padding: "10px 5px 10px 10px",
+                    marginLeft: "20px",
+                  }}
+                >
+                  FAQ
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 340,
+                    left: -16,
+                    width: "35px",
+                    height: "35px",
+                    borderRadius: "999px",
+                    background: "#071330",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    style={{
+                      width: "30%",
+                      cursor: "pointer",
+                      transform: "rotate(90deg)",
+                    }}
+                    src={expandup}
+                    alt=""
+                    onClick={() => {
+                      setShowDropdown(!showDropdown);
+                    }}
+                  />
+                </div>
+              </div>
+            )}
         </MediaQuery>
 
         {/* <MediaQuery minWidth={430}></MediaQuery> */}
