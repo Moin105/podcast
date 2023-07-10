@@ -896,9 +896,13 @@ const Player = ({
                               fontSize: 12,
                               marginTop: "6px",
                               color: darkMode ? "#777777" : "#484848",
+                              display:"flex",
+                              
                             }}
                           >
-                            {format(new Date(item?.created_at), "dd.MM.yyyy")}
+                          <p>  {item?.hebrew_date}   </p><p>|</p> <p>  {format(new Date(item?.created_at), "dd.MM.yyyy")} </p>
+
+                           
                             {/* {item?.created_at} */}
                           </div>
                           <div

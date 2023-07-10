@@ -6,16 +6,19 @@ import search from "../images/search.png";
 import search2 from "../images/search2.png";
 import menu2 from "../images/menu2.png";
 import MediaQuery from "react-responsive";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import expandup from "../images/expandup.png";
 import { useSelector } from "react-redux";
+import axios from "axios";
 import "./header.css";
 import { ThemeContext } from "./ThemeContext";
 import { useDispatch } from "react-redux";
 import { setSearch } from "../features/Search";
+import { Link } from "react-router-dom";
+
 const Header = ({ list }) => {
   const [showDropdown, setShowDropdown] = React.useState(false);
-  const [searchShow,setSearchShow] = useState(false)
+  const [searchShow, setSearchShow] = useState(false);
   const {
     darkMode,
     setDarkMode,
@@ -27,7 +30,25 @@ const Header = ({ list }) => {
   useEffect(() => {
     ////console.log("lister", list);
   }, []);
-
+  const [dynamicUrl, setDynamicUrl] = useState("");
+  const [logoss, setLogoss] = useState(logo);
+  async function getData(url) {
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error(`Error occurred while fetching data from ${url}: `, error);
+    }
+  }
+  useEffect(() => {
+    getData("https://podcasts.cucurico.co.il/podcast/public/api/appmanagement")
+      .then((data) => {
+        console.log(data);
+        setDynamicUrl(data.data.url);
+        setLogoss(data.data.logo);
+      })
+      .catch((error) => console.error(error));
+  }, []);
   function filterCarouselsByName(completeCarousels, desiredName) {
     const filteredCarousels = completeCarousels.map((carousel) => {
       // Assuming each carousel object has a "subData" field
@@ -48,52 +69,77 @@ const Header = ({ list }) => {
 
     return filteredCarousels;
   }
-  const dispatch = useDispatch()
-  const searchings = useSelector((state) => state); 
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (newWindow) newWindow.opener = null;
+  };
+
+  const dispatch = useDispatch();
+  const searchings = useSelector((state) => state);
   const handleInputChange = (event) => {
     const searchText = event.target.value;
-      dispatch(setSearch(searchText))
+    dispatch(setSearch(searchText));
 
     setSearchText(searchText);
     let filteredData = filterCarouselsByName(completeCarousels, searchText);
     ////console.log("FILTERED DATA ==============", filteredData);
     setFilteredCarousels(filteredData);
   };
-useEffect(() => {
-  //console.log("miseeeeee",searchings.search.search)
-}, [handleInputChange])
+
+  useEffect(() => {
+    //console.log("miseeeeee",searchings.search.search)
+  }, [handleInputChange]);
   const [searchText, setSearchText] = useState("");
- 
+
   return (
     <>
       <div
         style={{
           background: darkMode ? "#000" : "#fff",
-          width:"99%",
-          margin:"0 auto"
+          width: "99%",
+          margin: "0 auto",
         }}
         className="footer-main sifeee"
       >
         <MediaQuery minWidth={430}>
           <div className="footer2">
-            <div
-              className="logo"
-              style={{
-                background: "#fff",
+            <Link
+              to="/"
+              onClick={(event) => {
+                event.preventDefault();
+                openInNewTab(dynamicUrl);
               }}
+              style={{textDecoration:"none"}}
             >
-              <img src={logo} alt="" />
+              {" "}
               <div
+                className="logo"
                 style={{
-                  color: "#000",
-                  fontSize:
-                    ((window.innerHeight + window.innerWidth) / 10) * 0.055,
-                  marginLeft: window.innerWidth * 0.005,
+                  background: "#fff",
                 }}
               >
-                אתר
+                <img
+                  style={{
+                    width: "50px",
+                    objectFit: "contain",
+                    height: "34px",
+                  }}
+                  src={logo}
+                  alt=""
+                />
+                <div
+                  style={{
+                    color: "#000",
+                    fontSize:
+                      ((window.innerHeight + window.innerWidth) / 10) * 0.055,
+                    marginLeft: window.innerWidth * 0.005,
+textDecoration:"none"
+                  }}
+                >
+                 <p style={{textDecoration:"none"}}> אתר</p>
+                </div>
               </div>
-            </div>
+            </Link>
 
             <div
               className="input-main"
@@ -120,9 +166,11 @@ useEffect(() => {
             </div>
           </div>
           <div className="footer3">
-            <div className="logo2">
+            <div className="logo2" >
               <Link to="/">
-                <img src={logo2} alt="" />
+                <img style={{width: "90px",
+    objectFit: "cover",
+    height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" />
               </Link>
             </div>
 
@@ -288,36 +336,47 @@ useEffect(() => {
                   alignItems: "center",
                 }}
               >
-       {!searchShow    &&     <img
-                  style={{ width: window.innerWidth * 0.04 }}
-                  src={search2}
-                  alt=""
-                  onClick={()=>{setSearchShow(true)}}
-                />}
-              
-             {searchShow &&    <input
-                  type="text"
-                  placeholder="חיפוש"
-                  style={{
-                    outline: "none",
-                    background: darkMode ? "#161616" : "#F7F6F9",
-                    color: darkMode ? "#F7F6F9" : "black",
-                    margin:"0px 0px 0px 90px",
-                    border:"1px solid black",
-                    width: "110px",
-                    borderRadius:"30px",
-                    padding: "5px"
-                  }}
-                  onBlur={()=>{setSearchShow(false)}}
-                  onChange={handleInputChange}
-                />}
-               
+                {!searchShow && (
+                  <img
+                    style={{ width: window.innerWidth * 0.04 }}
+                    src={search2}
+                    alt=""
+                    onClick={() => {
+                      setSearchShow(true);
+                    }}
+                  />
+                )}
+
+                {searchShow && (
+                  <input
+                    type="text"
+                    placeholder="חיפוש"
+                    style={{
+                      outline: "none",
+                      background: darkMode ? "#161616" : "#F7F6F9",
+                      color: darkMode ? "#F7F6F9" : "black",
+                      margin: "0px 0px 0px 90px",
+                      border: "1px solid black",
+                      width: "110px",
+                      borderRadius: "30px",
+                      padding: "5px",
+                    }}
+                    onBlur={() => {
+                      setSearchShow(false);
+                    }}
+                    onChange={handleInputChange}
+                  />
+                )}
               </div>
             </Link>
             <div className="logo2">
+              
               <Link to="/">
-                <img src={logo2} alt="" />
+                <img style={{width: "90px",
+    objectFit: "cover",
+    height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" />
               </Link>
+           
             </div>
 
             <div className="menu">
@@ -332,137 +391,137 @@ useEffect(() => {
             </div>
           </div>
           {showDropdown && (
+            <div
+              style={{
+                position: "fixed",
+                top: 0,
+                right: 0,
+                width: "94%",
+                // background: "#050718",
+                background: "#071330",
+
+                // border: "1px solid #FFFFFF",
+                // borderRadius: "10px",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                textAlign: "left",
+                zIndex: "999999",
+              }}
+            >
               <div
                 style={{
-                  position: "fixed",
+                  position: "absolute",
                   top: 0,
-                  right: 0,
-                  width: "94%",
-                  // background: "#050718",
-                  background: "#071330",
-
-                  // border: "1px solid #FFFFFF",
-                  // borderRadius: "10px",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  textAlign: "left",
-                  zIndex: "999999",
                 }}
               >
+                <img
+                  style={{
+                    padding: "10px 0px 10px 10px",
+                    width: "60%",
+                    marginLeft: "50px",
+                  }}
+                  src={logo}
+                  alt=""
+                />
                 <div
                   style={{
-                    position: "absolute",
-                    top: 0,
+                    width: "100%",
+                    background: "white",
+                    height: "1px",
                   }}
-                >
-                  <img
-                    style={{
-                      padding: "10px 0px 10px 10px",
-                      width: "60%",
-                      marginLeft: "50px",
-                    }}
-                    src={logo}
-                    alt=""
-                  />
-                  <div
-                    style={{
-                      width: "100%",
-                      background: "white",
-                      height: "1px",
-                    }}
-                  ></div>
-                </div>
-
-                <div
-                  style={{
-                    padding: "10px 5px 10px 10px",
-                    color: "white",
-                    // WebkitBackgroundClip: "text",
-                    // WebkitTextFillColor: "transparent",
-                    marginTop: "150px",
-                    marginLeft: "20px",
-                  }}
-                >
-                  Home
-                </div>
-                {/* <div
-              style={{
-                height: 1,
-                backgroundColor: "white",
-                margin: "2px 0px 2px 0px",
-              }}
-            ></div> */}
-                <div
-                  style={{
-                    color: "white",
-                    padding: "10px 5px 10px 10px",
-                    marginLeft: "20px",
-                  }}
-                >
-                  How It Works?
-                </div>
-                {/* <div
-              style={{
-                height: 1,
-                backgroundColor: "white",
-                margin: "2px 0px 2px 0px",
-              }}
-            ></div> */}
-                <div
-                  style={{
-                    color: "white",
-                    padding: "10px 5px 10px 10px",
-                    marginLeft: "20px",
-                  }}
-                >
-                  API Integration
-                </div>
-                {/* <div
-              style={{
-                height: 1,
-                backgroundColor: "white",
-                margin: "2px 0px 2px 0px",
-              }}
-            ></div> */}
-                <div
-                  style={{
-                    color: "white",
-                    padding: "10px 5px 10px 10px",
-                    marginLeft: "20px",
-                  }}
-                >
-                  FAQ
-                </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 340,
-                    left: -16,
-                    width: "35px",
-                    height: "35px",
-                    borderRadius: "999px",
-                    background: "#071330",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <img
-                    style={{
-                      width: "30%",
-                      cursor: "pointer",
-                      transform: "rotate(90deg)",
-                    }}
-                    src={expandup}
-                    alt=""
-                    onClick={() => {
-                      setShowDropdown(!showDropdown);
-                    }}
-                  />
-                </div>
+                ></div>
               </div>
-            )}
+
+              <div
+                style={{
+                  padding: "10px 5px 10px 10px",
+                  color: "white",
+                  // WebkitBackgroundClip: "text",
+                  // WebkitTextFillColor: "transparent",
+                  marginTop: "150px",
+                  marginLeft: "20px",
+                }}
+              >
+                Home
+              </div>
+              {/* <div
+              style={{
+                height: 1,
+                backgroundColor: "white",
+                margin: "2px 0px 2px 0px",
+              }}
+            ></div> */}
+              <div
+                style={{
+                  color: "white",
+                  padding: "10px 5px 10px 10px",
+                  marginLeft: "20px",
+                }}
+              >
+                How It Works?
+              </div>
+              {/* <div
+              style={{
+                height: 1,
+                backgroundColor: "white",
+                margin: "2px 0px 2px 0px",
+              }}
+            ></div> */}
+              <div
+                style={{
+                  color: "white",
+                  padding: "10px 5px 10px 10px",
+                  marginLeft: "20px",
+                }}
+              >
+                API Integration
+              </div>
+              {/* <div
+              style={{
+                height: 1,
+                backgroundColor: "white",
+                margin: "2px 0px 2px 0px",
+              }}
+            ></div> */}
+              <div
+                style={{
+                  color: "white",
+                  padding: "10px 5px 10px 10px",
+                  marginLeft: "20px",
+                }}
+              >
+                FAQ
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  top: 340,
+                  left: -16,
+                  width: "35px",
+                  height: "35px",
+                  borderRadius: "999px",
+                  background: "#071330",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  style={{
+                    width: "30%",
+                    cursor: "pointer",
+                    transform: "rotate(90deg)",
+                  }}
+                  src={expandup}
+                  alt=""
+                  onClick={() => {
+                    setShowDropdown(!showDropdown);
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </MediaQuery>
 
         {/* <MediaQuery minWidth={430}></MediaQuery> */}
