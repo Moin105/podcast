@@ -168,7 +168,7 @@ textDecoration:"none"
           <div className="footer3">
             <div className="logo2" >
               <Link to="/">
-                <img style={{width: "90px",
+                <img style={{width: "160px",
     objectFit: "contain",
     height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" />
               </Link>
