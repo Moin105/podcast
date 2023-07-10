@@ -75,10 +75,22 @@ const unfinishedSongs = useSelector((state) => state.seriesEpisodes.playedSongs)
 
 useEffect(() => {
   if (prevSong && playingSong !== prevSong && isPlaying) {
+
     // dispatch the action to add the unfinished song to the state
     const isAlreadyInUnfinishedSongs = unfinishedSongs.some(song => song.id === prevSong.id);
    if(!isAlreadyInUnfinishedSongs){
      dispatch(addSong(prevSong));
+     const handleBeforeUnload = () => {
+        dispatch(addSong(playingSong));
+    };
+  
+    // Set up the event listener
+    window.addEventListener('beforeunload', handleBeforeUnload);
+  
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
    }
   }
 
