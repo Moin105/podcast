@@ -280,7 +280,7 @@ useEffect(() => {
                     </>
     
                   );
-                }):<p style={{margin:"0 auto",padding:"50px 0px"}}> No Songs Played Yet</p>
+                }):<p style={{margin:"0 auto",padding:"50px 0px"}}>  {item.carousel.name == "Continue Listening"&&"No Songs Played Yet"} </p>
 
           }
       {/* </Draggable> */}
