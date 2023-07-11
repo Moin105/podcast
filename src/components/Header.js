@@ -98,10 +98,10 @@ const Header = ({ list }) => {
       <div
         style={{
           background: darkMode ? "#000" : "#fff",
-          width: "99%",
+          width: "100%",
           margin: "0 auto",
         }}
-        className="footer-main sifeee"
+        className="footer-main "
       >
         <MediaQuery minWidth={430}>
           <div className="footer2">
@@ -111,7 +111,7 @@ const Header = ({ list }) => {
                 event.preventDefault();
                 openInNewTab(dynamicUrl);
               }}
-              style={{textDecoration:"none"}}
+              style={{textDecoration:"none",margin:"0px 0px 0px 15px"}}
             >
               {" "}
               <div
@@ -181,7 +181,9 @@ textDecoration:"none"
                 style={{
                   marginLeft: window.innerWidth * 0.006,
                   cursor: "pointer",
+                  margin:"0px 15px 0px 0px"
                 }}
+                
                 src={darkMode ? menu2 : menu}
                 alt=""
                 onClick={() => setShowDropdown(!showDropdown)}
@@ -332,6 +334,7 @@ textDecoration:"none"
                   width: window.innerWidth * 0.09,
                   height: window.innerWidth * 0.09,
                   borderRadius: 1000,
+                  margin:"0px 0px 0px 15px",
                   background: "#161616",
                   display: "flex",
                   justifyContent: "center",
@@ -385,6 +388,7 @@ textDecoration:"none"
               <img
                 style={{
                   marginLeft: window.innerWidth * 0.006,
+                  margin:"0px 15px 0px 15px"
                 }}
                 src={darkMode ? menu2 : menu}
                 alt=""
