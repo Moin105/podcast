@@ -16,7 +16,7 @@ const NestedApp = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0);
-  const { currentSong, darkMode ,setDarkMode} = useContext(ThemeContext);
+  const { currentSong, darkMode } = useContext(ThemeContext);
   const theme = useTheme()
   // const   
   const  episodesss = useSelector((state) => state.seriesEpisodes);
@@ -59,11 +59,9 @@ const NestedApp = () => {
 
   useEffect(() => {
     console.log("wwwwwwwwwwwwwwww",theme)
-    if (theme == "dark") {
-      setDarkMode(true);
+    if (theme) {
       document.body.style.backgroundColor = "#161616";
     } else {
-      setDarkMode(false);
       document.body.style.backgroundColor = "#fff";
     }
 
@@ -71,7 +69,7 @@ const NestedApp = () => {
     return () => {
       document.body.style.backgroundColor = "#fff";
     };
-  }, [darkMode,theme]);
+  }, [darkMode]);
   const [prevSong, setPrevSong] = useState(null);
 const playingSong = useSelector((state) => state.seriesEpisodes.currentEpisode);
 const playedSongs = useSelector((state) => state.seriesEpisodes);

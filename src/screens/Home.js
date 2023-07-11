@@ -141,7 +141,7 @@ const Home = ({
           }}
         >
           <Header list={finalArray} />
-          <button
+          {/* <button
             onClick={() => {
               setDarkMode(!darkMode);
             }}
@@ -150,7 +150,7 @@ const Home = ({
             }}
           >
             SWITCH MODE
-          </button>
+          </button> */}
           <div style={{ marginTop: 250 }}>
             <ActivityIndicator isLoading={loading} />
           </div>
@@ -164,7 +164,7 @@ const Home = ({
             }}
           >
             <Header />
-            <button
+            {/* <button
               onClick={() => {
                 setDarkMode(!darkMode);
               }}
@@ -173,7 +173,7 @@ const Home = ({
               }}
             >
               SWITCH MODE
-            </button>
+            </button> */}
             <div className="">
               {carouselList.map((item, index) => {
                 return (

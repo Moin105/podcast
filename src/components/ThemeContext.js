@@ -19,13 +19,21 @@ const ThemeProvider = ({ children }) => {
   const [selectedEpisodeIndex, setSelectedEpisodeIndex] = useState(0);
   const [theme, setTheme] = useState('light');
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    if (mediaQuery.matches) setTheme('dark');
+  // useEffect(() => {
+  //   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  //   if (mediaQuery.matches) setTheme('dark');
 
-    const handler = () => setTheme(mediaQuery.matches ? 'dark' : 'light');
-    mediaQuery.addEventListener('change', handler);
-    return () => mediaQuery.removeEventListener('change', handler);
+  //   const handler = () => setTheme(mediaQuery.matches ? 'dark' : 'light');
+  //   mediaQuery.addEventListener('change', handler);
+  //   return () => mediaQuery.removeEventListener('change', handler);
+  // }, []);
+  useEffect(() => {
+    // This condition will return true if the system is in dark mode
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme("dark");
+      setDarkMode(true)
+      console.log("wwwwwwwwwwwwwwwwwwww",theme)
+    }
   }, []);
   return (
     <ThemeContext.Provider
