@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState ,useContext,useEffect} from "react";
 import Matafaka from "../matafaka.mp3";
 
 const ThemeContext = createContext();
@@ -17,7 +17,16 @@ const ThemeProvider = ({ children }) => {
   const [selectedSeries, setSelectedSeries] = useState([]);
   const [selectedSeriesData, setSelectedSeriesData] = useState({});
   const [selectedEpisodeIndex, setSelectedEpisodeIndex] = useState(0);
+  const [theme, setTheme] = useState('light');
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    if (mediaQuery.matches) setTheme('dark');
+
+    const handler = () => setTheme(mediaQuery.matches ? 'dark' : 'light');
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
   return (
     <ThemeContext.Provider
       value={{
@@ -41,6 +50,7 @@ const ThemeProvider = ({ children }) => {
         setSelectedSeriesData,
         filteredCarousels,
         setFilteredCarousels,
+        theme
       }}
     >
       {children}
@@ -49,3 +59,4 @@ const ThemeProvider = ({ children }) => {
 };
 
 export { ThemeContext, ThemeProvider };
+export const useTheme = () => useContext(ThemeContext);

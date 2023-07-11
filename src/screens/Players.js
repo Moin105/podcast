@@ -17,6 +17,7 @@ import MediaQuery, { useMediaQuery } from "react-responsive";
 import { useState } from "react";
 import "./Episode.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useTheme } from "../components/ThemeContext";
 import {
   setSeriesEpisodes,
   setPlayingEpisode,
@@ -36,6 +37,7 @@ const Players = ({
   setVolume,
 }) => {
   const disptach = useDispatch();
+  const theme = useTheme()
   useEffect(() => {
     window.scrollTo({
       top: 0,

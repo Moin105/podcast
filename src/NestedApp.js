@@ -4,9 +4,10 @@ import "./App.css";
 import Home from "./screens/Home";
 import Player from "./screens/Player";
 import { useSelector,useDispatch } from "react-redux";
-import { ThemeContext, ThemeProvider } from "./components/ThemeContext";
+import { ThemeContext, ThemeProvider, useTheme } from "./components/ThemeContext";
 import Players from "./screens/Players";
 import {addSong, removeSong} from './features/playingEpisode'
+// import { useTheme } from "./components/ThemeContext";
 
 const NestedApp = () => {
   const audioRef = useRef();
@@ -15,7 +16,8 @@ const NestedApp = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0);
-  const { currentSong, darkMode } = useContext(ThemeContext);
+  const { currentSong, darkMode ,setDarkMode} = useContext(ThemeContext);
+  const theme = useTheme()
   // const   
   const  episodesss = useSelector((state) => state.seriesEpisodes);
 
@@ -56,10 +58,12 @@ const NestedApp = () => {
   };
 
   useEffect(() => {
-    //console.log("wwwwwwwwwwwwwwww")
-    if (darkMode) {
+    console.log("wwwwwwwwwwwwwwww",theme)
+    if (theme == "dark") {
+      setDarkMode(true);
       document.body.style.backgroundColor = "#161616";
     } else {
+      setDarkMode(false);
       document.body.style.backgroundColor = "#fff";
     }
 
@@ -67,7 +71,7 @@ const NestedApp = () => {
     return () => {
       document.body.style.backgroundColor = "#fff";
     };
-  }, [darkMode]);
+  }, [darkMode,theme]);
   const [prevSong, setPrevSong] = useState(null);
 const playingSong = useSelector((state) => state.seriesEpisodes.currentEpisode);
 const playedSongs = useSelector((state) => state.seriesEpisodes);

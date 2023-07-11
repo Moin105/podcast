@@ -25,6 +25,7 @@ import backward from "../images/backward.png";
 import playerRightImg from "../images/playerRightImg.png";
 import { useMediaQuery } from "react-responsive";
 import { setPlayingEpisode ,setPlayingEpisodeData} from "../features/playingEpisode";
+import { useTheme } from "../components/ThemeContext";
 
 const FloatingPlayer = ({
   audioRef,
@@ -74,7 +75,7 @@ const FloatingPlayer = ({
     audioRef.current.volume = event.target.value / 100;
     setVolume(event.target.value);
   };
-  
+  const theme = useTheme()
 const  episodesss = useSelector((state) => state.seriesEpisodes);
 //console.log("sharjeeel",episodesss)
 const dispatch = useDispatch();

@@ -22,6 +22,7 @@ import {
   setPlayingEpisode,
   setPlayingEpisodeData,
 } from "../features/playingEpisode";
+import { useTheme } from "../components/ThemeContext";
 import Header from "../components/Header";
 import { ThemeContext } from "../components/ThemeContext";
 const Player = ({
@@ -45,6 +46,7 @@ const Player = ({
   const location = useLocation();
   const [show, setShow] = useState(false);
   const [episodeList, setEpisodeList] = useState([]);
+  const theme = useTheme()
   const data = location.state ? location.state.data : null;
   const postData = async (series_id) => {
     // Define the data body

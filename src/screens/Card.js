@@ -9,7 +9,7 @@ import ListRenderOne from "./ListRenderOne";
 import hoverImg from "../images/hoverImg.png";
 import ListRenderTwo from "./ListRenderTwo";
 import { useSelector } from "react-redux";
-
+import { useTheme } from "../components/ThemeContext";
 function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
   const { categories, episodes, series, tags,id } = item;
 
@@ -52,7 +52,7 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
     selectedSeriesData,
     setSelectedSeriesData,
   } = useContext(ThemeContext);
- 
+  const theme = useTheme()
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const customWidth = isTabletOrMobile ? 215 : 248;
   const customHeight = isTabletOrMobile ? 135 : 160;

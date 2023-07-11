@@ -11,8 +11,7 @@ import { useMediaQuery } from "react-responsive";
 import { useDispatch } from "react-redux";
 import {setPlayingEpisodeData,setSeriesEpisodes} from '../features/playingEpisode'  
 import axios from "axios";
-
-
+import { useTheme } from "../components/ThemeContext";
 const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,item }) => {
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -22,6 +21,7 @@ const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,i
   ////console.log(series)
   ////console.log(tags)
   const navigate = useNavigate()
+  const theme = useTheme()
   const dispatch = useDispatch()
   const handleRouteChange = (url,datas) => {
     navigate(url, { state: { data: datas } });

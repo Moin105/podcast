@@ -14,6 +14,7 @@ import "./header.css";
 import { ThemeContext } from "./ThemeContext";
 import { useDispatch } from "react-redux";
 import { setSearch } from "../features/Search";
+import { useTheme } from "./ThemeContext";
 import { Link } from "react-router-dom";
 
 const Header = ({ list }) => {
@@ -27,6 +28,7 @@ const Header = ({ list }) => {
     filteredCarousels,
     setFilteredCarousels,
   } = useContext(ThemeContext);
+  const theme = useTheme()
   useEffect(() => {
     ////console.log("lister", list);
   }, []);

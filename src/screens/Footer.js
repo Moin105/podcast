@@ -3,9 +3,11 @@ import "./home.css";
 import { ThemeContext } from "../components/ThemeContext";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useTheme } from "../components/ThemeContext";
 import { useMediaQuery } from "react-responsive";
 const Footer = ({}) => {
   const { showPlayer } = useContext(ThemeContext);
+  const theme = useTheme()
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
   });

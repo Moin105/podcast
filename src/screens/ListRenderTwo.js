@@ -10,7 +10,7 @@ import axios from "axios";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch } from "react-redux";
 import {setPlayingEpisodeData,setSeriesEpisodes} from '../features/playingEpisode'
-
+import { useTheme } from "../components/ThemeContext";
 const ListRenderTwo = ({ audioRef, setVolume,index, list,item, volume, setIsPlaying }) => {
   ////console.log("LIST IN 2 ===============", list);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
@@ -19,6 +19,7 @@ const handleRouteChange = (url,datas) => {
   navigate(url, { state: { data: datas } });
 };
   const width = window.innerWidth;
+  const theme = useTheme()
   const height = window.innerHeight;
   function formatTime(timeInSeconds) {
     const minutes = Math.floor(timeInSeconds / 60);

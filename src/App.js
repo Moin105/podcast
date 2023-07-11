@@ -4,6 +4,7 @@ import "./App.css";
 import { ThemeContext, ThemeProvider } from "./components/ThemeContext";
 import NestedApp from "./NestedApp";
 import axios from 'axios';
+import { useTheme } from "./components/ThemeContext";
 import { set } from "date-fns";
 
 async function getData(url) {
@@ -16,6 +17,7 @@ async function getData(url) {
 }
 
 const App = () => {
+  const theme = useTheme()
   function setFavicon(iconUrl) {
     let link =
       document.querySelector("link[rel*='icon']") ||
@@ -38,6 +40,7 @@ const App = () => {
   useEffect(() => {
     setFavicon(`https://podcasts.cucurico.co.il/podcast/public/images/${icon}`);
   }, [icon]);
+  
   return (
     <>
       <ThemeProvider>

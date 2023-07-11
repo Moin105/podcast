@@ -19,7 +19,7 @@ import ListRenderTwo from "./ListRenderTwo";
 import axios from "axios";
 import ActivityIndicator from "./ActivityIndicator";
 import Card from "./Card";
-
+import { useTheme } from "../components/ThemeContext";
 const Home = ({
   audioRef,
   currentTime,
@@ -48,6 +48,7 @@ const Home = ({
     filteredCarousels,
     setFilteredCarousels,
   } = useContext(ThemeContext);
+  const theme = useTheme()
   const [loading, setLoading] = useState(false);
   const [carouselList, setCarouselList] = useState([]);
   function mergeSeriesIntoCarousel(carouselList, seriesList) {
