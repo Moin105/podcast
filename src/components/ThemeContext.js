@@ -33,7 +33,11 @@ const ThemeProvider = ({ children }) => {
       setTheme("dark");
       setDarkMode(true)
       console.log("wwwwwwwwwwwwwwwwwwww",theme)
+    }else{
+      setTheme("light");
+      setDarkMode(false)
     }
+    
   }, []);
   return (
     <ThemeContext.Provider
