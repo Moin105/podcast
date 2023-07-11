@@ -395,7 +395,7 @@ const Player = ({
               >
                 <div style={styles.txt1}>{selectedSeriesData?.name}</div>
                 <div style={styles.txt2}>
-                  {episodesss?.currentEpisode?.name}
+                  {episodesss?.currentEpisode?.name}:{episodesss?.currentEpisode?.ep_number}פרק
                 </div>
                 {isTabletOrMobile && (
                   <div style={styles.txt3}>עם: אריה ארליך, מוישה ויסברג</div>
