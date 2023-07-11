@@ -94,7 +94,7 @@ const Player = ({
     //console.log(episodesss);
   }, [episodesss?.episodes]);
   const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1020px)" });
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
   const [active, setActive] = useState(0);
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
@@ -138,8 +138,10 @@ const Player = ({
       flexDirection: "column",
       width: "100%",
       alignItems: "center",
-      position: "absolute",
-      top: 100,
+      // position: "absolute",
+      // top: 100,
+      marginTop:"-220px",
+      background:darkMode? "#1A1A1A":"#FFFFFF",
     },
     cont2: {
       width: isTabletOrMobile ? "95%" : "60%",
@@ -852,7 +854,7 @@ const Player = ({
                               alignItems: "center",
                             }}
                           >
-                            <div
+                            {/* <div
                               style={{
                                 fontSize: 12,
                                 width: "20%",
@@ -863,10 +865,10 @@ const Player = ({
                               }}
                             >
                               {item?.duration}
-                            </div>
+                            </div> */}
                             <div
                               style={{
-                                width: "80%",
+                                width: "100%",
                                 fontSize: 17,
                                 fontWeight: "",
                                 color: darkMode ? "#FFFFFF" : "#212121",
@@ -878,13 +880,15 @@ const Player = ({
 
                           <div
                             style={{
+                              width:"90%",
                               fontSize: 12,
                               color: darkMode ? "#FFFFFF" : "#212121",
+                            
                             }}
                           >
                             {item?.description}
                           </div>
-                          <div
+                          {/* <div
                             style={{
                               fontSize: 12,
                               marginTop: "6px",
@@ -892,14 +896,14 @@ const Player = ({
                             }}
                           >
                             {item?.author_name}
-                          </div>
+                          </div> */}
                           <div
                             style={{
                               fontSize: 12,
                               marginTop: "6px",
                               color: darkMode ? "#777777" : "#484848",
                               display:"flex",
-                              
+                              marginTop: "-5px",
                             }}
                           >
                           <p>  {item?.hebrew_date}   </p><p>|</p> <p>  {format(new Date(item?.created_at), "dd.MM.yyyy")} </p>
@@ -914,7 +918,7 @@ const Player = ({
                               justifyContent: "center",
                               alignItems: "center",
                               fontSize: 11,
-                              marginTop: "2px",
+                              marginTop: "-10px",
                             }}
                             onClick={() => {
                               setShow(true);
@@ -940,10 +944,11 @@ const Player = ({
                         </div>
                         <img
                           style={{
-                            width: isTabletOrMobile ? 60 : 200,
+                            width: isTabletOrMobile ? 80 : 200,
                             display: "flex",
                             justifyContent: "flex-end",
-                            height: isTabletOrMobile ? 60 : 170,
+                            height: isTabletOrMobile ? 65 : 170,
+                            borderRadius:"5px"
                           }}
                           src={
                             "https://podcasts.cucurico.co.il/podcast/public/images/" +

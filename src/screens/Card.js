@@ -90,8 +90,8 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
         }else{
           const response = await axios.post('https://podcasts.cucurico.co.il/podcast/public/api/episodetag', data);
           if( response.data.data !== null){
-            console.log("response.data.data",response.data.data)
-              setTagEpisode(...tagEpisode, response.data.data);
+            // console.log("response.data.data",response.data.data)
+              setTagEpisode([ response.data.data]);
 
           } else if(response.data.data.length == [] || response.data.data == null){
    
@@ -148,7 +148,6 @@ const filteredEpisode = episode?.filter(ep => ep.status=='published');
 
 const filteredEpisodes = filteredEpisode?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredSeries = filteredSerie?.filter(ser => ser.name.includes(searchings.search.search));
-console.log("tagepisodes",tagEpisode)
 const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredUnfinishedEpisodes = unfinishedSongs?.filter(ep => ep.name.includes(searchings.search.search));
 const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name.includes(searchings.search.search)));
@@ -224,7 +223,6 @@ useEffect(() => {
           ? filteredTagEpisodes?.map((epos, index) => {
             return (
                 <>
-                "eefef"
                 <Draggable>
                 <ListRenderOne
                         item={epos}
@@ -265,7 +263,7 @@ useEffect(() => {
         
             })
           : ""}
-          {item.carousel.data_source == "continue" && filteredUnfinishedEpisodes && filteredUnfinishedEpisodes.length>0 ? 
+          {item.carousel.name == "Continue Listening" && filteredUnfinishedEpisodes && filteredUnfinishedEpisodes.length>0 ? 
            filteredUnfinishedEpisodes.map((epos, index) => {
             // //console.log("epos",epos);
                   return (
@@ -284,7 +282,7 @@ useEffect(() => {
                     </>
     
                   );
-                }):<p style={{margin:"0 auto",padding:"50px 0px"}}>  {item.carousel.data_source == "continue"&&"No Songs Played Yet"} </p>
+                }):<p style={{margin:"0 auto",padding:"50px 0px"}}>  {item.carousel.name == "Continue Listening"&&"No Songs Played Yet"} </p>
 
           }
       {/* </Draggable> */}

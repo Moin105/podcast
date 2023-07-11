@@ -7,6 +7,7 @@ import plus from "../images/plus.png";
 import plusRed from "../images/plusRed.png";
 import pauseLogo from "../images/pauseLogo.png";
 import kinina from "../images/rightround.png";
+import showMore from "../images/showMore.png";
 import axios from "axios";
 import "./player.css";
 import playLogo from "../images/playLogo.png";
@@ -37,7 +38,7 @@ const Players = ({
   setVolume,
 }) => {
   const disptach = useDispatch();
-  const theme = useTheme()
+  const theme = useTheme();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -118,11 +119,12 @@ const Players = ({
     //console.log(episodesss);
   }, [episodesss?.episodes]);
   const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1020px)" });
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
   const [active, setActive] = useState(0);
   const [show, setShow] = useState(false);
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+  const [more, setMore] = useState(false);
   const {
     darkMode,
     selectedSeries,
@@ -147,6 +149,8 @@ const Players = ({
   const width = window.innerWidth;
   const height = window.innerHeight;
 
+
+  const truncatedDescription = episodesss?.currentEpisode?.description.split('\n').slice(0, 2).join('\n');
   // STYLES >>>>>>>>
 
   const styles = {
@@ -155,7 +159,7 @@ const Players = ({
       color: "white",
       fontSize: 14,
       cursor: "pointer",
-      margin:"0px 10px 0px 0px",
+      margin: "0px 10px 0px 0px",
       paddingRight: 3,
     },
     cont1: {
@@ -163,15 +167,20 @@ const Players = ({
       flexDirection: "column",
       width: "100%",
       alignItems: "center",
-      position: "absolute",
-      top: 100,
+      // position: "absolute",
+      // top: 130,
+      background: darkMode ? "#1A1A1A" : "#FFFFFF",
     },
     cont2: {
-      width: isTabletOrMobile ? "95%" : "60%",
+      width: isTabletOrMobile ? "95%" : "58%",
+      objectFit: "contain",
       display: "flex",
       position: "relative",
       flexDirection: "column",
       alignItems: "center",
+      // height:"1000px"
+      background: darkMode ? "#1A1A1A" : "#FFFFFF",
+      marginTop: isTabletOrMobile ? "-220px" : "-350px",
     },
     cont3: {
       display: "flex",
@@ -245,6 +254,7 @@ const Players = ({
     cont5: {
       // height: "25px",
       // widtth: "40px",
+
       background: darkMode ? "#E50914" : "#E97B65",
       display: "flex",
       justifyContent: "center",
@@ -357,6 +367,9 @@ const Players = ({
 
   // STYLES <<<<<<<<<<
 
+  const Show = () => {
+    setMore(!more);
+  };
   return (
     <>
       <div className="wrapper" style={{ background: "white" }}>
@@ -392,14 +405,15 @@ const Players = ({
               <button
                 className="share"
                 onClick={() => {
-                  setShow(true);
+                  Show();
                 }}
               >
                 שיתוף <img src={kinina} />
               </button>
             </div>
             <img
-              style={{ width: "100%", height: isTabletOrMobile ? 250 : 700 }}
+              // height: isTabletOrMobile ? 250 : 500
+              style={{ width: "100%" }}
               src={
                 "https://podcasts.cucurico.co.il/podcast/public/images/" +
                 // selectedSeriesData?.profile_image
@@ -421,7 +435,8 @@ const Players = ({
                   {episodesss?.currentEpisode?.series?.name}
                 </div>
                 <div style={styles.txt2}>
-                  {episodesss?.currentEpisode?.name}:{episodesss?.currentEpisode?.ep_number}פרק
+                  {episodesss?.currentEpisode?.name}:
+                  {episodesss?.currentEpisode?.ep_number}פרק
                 </div>
                 {isTabletOrMobile && (
                   <div style={styles.txt3}>עם: אריה ארליך, מוישה ויסברג</div>
@@ -560,17 +575,74 @@ const Players = ({
                       <div
                         style={{
                           color: "white",
+                          width:"45%",
+                          textAlign: "right",
+                          fontSize: 12,
+                          marginRight:"5%",
+                          // marginTop:"-1%",
+                          // lineHeight:"0.1",
+                        }}
+                      >
+                        <div>עם: אריה ארליך, מוישה ויסברג</div>
+                        <div
+                        style={{
+                          color:"#9B9A9A"
+                        }}
+                        >חסידות • הסטוריה • יהדות | 4 פרקים</div> 
+                      </div>
+                      <div
+                        style={{
+                          color: "white",
+                          // lineHeight:"1.2",
                           // display: "flex",
                           // justifyContent: "center",
                           // alignItems: "flex-end",
                           textAlign: "right",
-                          fontSize: 13,
-                          width: "100%",
+                          fontSize: 12,
+                          width: isTabletOrMobile ? "100%" : "65%",
+                          display: "flex",
+                          flexDirection: "column",
+                          // maxHeight: more ? "50px" : "50px",
+
+                          // overflow: more ? "hidden" : null,
+                          // textOverflow: more ? "ellipsis" : null,
+                          // whiteSpace:"nowrap",
                         }}
                       >
-                        {active == 1
+                        {active == 1 
+                        
                           ? episodesss?.currentEpisode?.series?.about_series
-                          : episodesss?.currentEpisode?.description}
+                          :(more ?  episodesss?.currentEpisode?.description : truncatedDescription)}
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "1%",
+                            textAlign: "right",
+                            justifyContent: "flex-end",
+                            color: "#9B9A9A",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            //   const str = JSON.stringify(episodesss?.currentEpisode?.description);
+                            //   const leng = str.length;
+                            // console.log("aa gaya", leng)
+                            setMore(!more);
+                          }}
+                        >
+                          {" "}
+                          read more
+                          <img
+                            style={{
+                              width: "3%",
+                              objectFit: "contain",
+                              // transform:rotate(more?"180deg":null),
+
+                              // height:"5%",
+                            }}
+                            src={showMore}
+                            alt=""
+                          />
+                        </div>
 
                         {/* מסע מרתק וייחודי אל סודות האדמו"רים וחצרות החסידות. מסע
                         מרתק וייחודי אל סודות האדמו"רים וחצרות החסידות מסע מרתק */}
@@ -585,7 +657,7 @@ const Players = ({
             {isTabletOrMobile && (
               <div
                 style={{
-                  background: "#161616",
+                  background: darkMode ? "#161616" : "#FFFFFF",
                   // paddingRight: 15,
                   // paddingLeft: 15,
                   display: "flex",
@@ -647,7 +719,7 @@ const Players = ({
                       display: "flex",
                       justifyContent: "flex-end",
                       alignItems: "right",
-                      color: "white",
+                      color: darkMode ? "white" : "black",
                       fontSize: "15px",
                       marginTop: "20px",
                       marginBottom: "8px",
@@ -680,10 +752,10 @@ const Players = ({
                       <div
                         style={{
                           textAlign: "center",
-                          color: "white",
+                          color: darkMode ? "white" : "black",
                           fontSize: 12,
                           cursor: "pointer",
-                          margin:"0px 10px 0px 0px",
+                          margin: "0px 10px 0px 0px",
                           paddingRight: 3,
                         }}
                       >
@@ -736,14 +808,15 @@ const Players = ({
                   >
                     <div
                       style={{
-                        color: "white",
+                        color: darkMode ? "#FFFFFF" : "#161616",
+
                         // display: "flex",
                         // justifyContent: "center",
                         // alignItems: "flex-end",
                         textAlign: "right",
                         fontSize: 10,
                         width: "80%",
-                        margin:"0px 10px 0px 0px",
+                        margin: "0px 10px 0px 0px",
                         marginBottom: 30,
                       }}
                     >
@@ -844,12 +917,12 @@ const Players = ({
 
                           backgroundColor:
                             darkMode && index == selectedEpisodeIndex
-                              ? "#1a1a1a"
+                              ? "#1A1A1A"
                               : !darkMode && index == selectedEpisodeIndex
-                              ? "#f9f3f2"
+                              ? "#F9F3F2"
                               : darkMode
                               ? "#252525"
-                              : "#fff",
+                              : "#FFFFFF",
                           margin: "0% 2%",
                           padding: "2%",
                           padding: "0px 8px",
@@ -874,11 +947,11 @@ const Players = ({
                             style={{
                               width: "100%",
                               display: "flex",
-                              justifyContent: "center",
+                              justifyContent: "flex-end",
                               alignItems: "center",
                             }}
                           >
-                            <div
+                            {/* <div
                               style={{
                                 fontSize: 12,
                                 width: "20%",
@@ -886,16 +959,18 @@ const Players = ({
                                 justifyContent: "flex-start",
                                 alignItems: "center",
                                 color: darkMode ? "#777777" : "#484848",
+                                
                               }}
                             >
                               {item?.duration}
-                            </div>
+                            </div> */}
                             <div
                               style={{
-                                width: "80%",
-                                fontSize: 17,
+                                width: isTabletOrMobile ? "100%" : "80%",
+                                fontSize: isTabletOrMobile ? "14px" : "17px",
                                 fontWeight: "",
                                 color: darkMode ? "#FFFFFF" : "#212121",
+                                textAlign: "right",
                               }}
                             >
                               {item?.name}
@@ -906,11 +981,16 @@ const Players = ({
                             style={{
                               fontSize: 12,
                               color: darkMode ? "#FFFFFF" : "#212121",
+                              width: "80%",
+                              marginTop: isTabletOrMobile ? "8px" : "5px",
+                              textOverflow: "ellipsis",
+                              maxHeight: isTabletOrMobile ? "30px" : "55px",
+                              overflow: isTabletOrMobile ? "hidden" : "hidden",
                             }}
                           >
                             {item?.description}
                           </div>
-                          <div
+                          {/* <div
                             style={{
                               fontSize: 12,
                               marginTop: "6px",
@@ -918,18 +998,24 @@ const Players = ({
                             }}
                           >
                             {item?.author_name}
-                          </div>
+                          </div> */}
                           <div
                             style={{
                               fontSize: 12,
-                              marginTop: "6px",
+                              marginTop: "-1px",
                               color: darkMode ? "#777777" : "#484848",
-                              display:"flex",
-                             
+                              display: "flex",
                             }}
                           >
-                       <p>  {item?.hebrew_date}   </p><p>|</p> <p>  {format(new Date(item?.created_at), "dd.MM.yyyy")} </p>
-
+                            <p> {item?.hebrew_date} </p>
+                            <p>|</p>{" "}
+                            <p>
+                              {" "}
+                              {format(
+                                new Date(item?.created_at),
+                                "dd.MM.yyyy"
+                              )}{" "}
+                            </p>
                             {/* {item?.created_at} */}
                           </div>
                           <div
@@ -939,17 +1025,17 @@ const Players = ({
                               justifyContent: "center",
                               alignItems: "center",
                               fontSize: 11,
-                              marginTop: "2px",
+                              marginTop: "-10px",
                             }}
-                            onClick={()=>{
-                              setShow(true)
+                            onClick={() => {
+                              setShow(true);
                             }}
                           >
                             שיתוף
                             <div>
                               <img
-                                onClick={()=>{
-                                  setShow(true)
+                                onClick={() => {
+                                  setShow(true);
                                 }}
                                 style={{
                                   width: "16px",
@@ -965,10 +1051,11 @@ const Players = ({
                         </div>
                         <img
                           style={{
-                            width: isTabletOrMobile ? 60 : 200,
+                            width: isTabletOrMobile ? 105 : 170,
                             display: "flex",
                             justifyContent: "flex-end",
-                            height: isTabletOrMobile ? 60 : 170,
+                            height: isTabletOrMobile ? 85 : 120,
+                            borderRadius: "8px",
                           }}
                           src={
                             "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -1063,9 +1150,16 @@ const Players = ({
           }}
         ></div> */}
       </div>
-{show &&         <div className="overlay" onClick={()=>{setShow(false)}}>
-      <div className="modal">share</div>
-    </div>}
+      {show && (
+        <div
+          className="overlay"
+          onClick={() => {
+            setShow(false);
+          }}
+        >
+          <div className="modal">share</div>
+        </div>
+      )}
     </>
   );
 };
