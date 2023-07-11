@@ -241,7 +241,7 @@ useEffect(() => {
           : ""}
             {filteredCategorySeries && filteredCategorySeries.length > 0
           ? categorySeries.map((series, index) => {
-          return  series.map((serie,index)=>{
+          return  series?.map((serie,index)=>{
                     return (
                         <><Draggable>
                               <ListRenderTwo
