@@ -9,10 +9,21 @@ import "slick-carousel/slick/slick-theme.css";
 import Draggable from "../components/Draggable";
 import { useMediaQuery } from "react-responsive";
 import { useDispatch } from "react-redux";
-import {setPlayingEpisodeData,setSeriesEpisodes} from '../features/playingEpisode'  
+import {
+  setPlayingEpisodeData,
+  setSeriesEpisodes,
+} from "../features/playingEpisode";
 import axios from "axios";
 import { useTheme } from "../components/ThemeContext";
-const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,item }) => {
+const ListRenderOne = ({
+  audioRef,
+  setVolume,
+  list,
+  index,
+  volume,
+  setIsPlaying,
+  item,
+}) => {
   const width = window.innerWidth;
   const height = window.innerHeight;
   // const {categories,episodes,series,tags} = item;
@@ -20,10 +31,10 @@ const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,i
   ////console.log(episodes)
   ////console.log(series)
   ////console.log(tags)
-  const navigate = useNavigate()
-  const theme = useTheme()
-  const dispatch = useDispatch()
-  const handleRouteChange = (url,datas) => {
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const dispatch = useDispatch();
+  const handleRouteChange = (url, datas) => {
     navigate(url, { state: { data: datas } });
   };
   function formatTime(timeInSeconds) {
@@ -33,7 +44,7 @@ const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,i
       seconds
     ).padStart(2, "0")}`;
     return formattedTime;
-  };
+  }
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
@@ -61,200 +72,217 @@ const ListRenderOne = ({ audioRef, setVolume, list,index, volume, setIsPlaying,i
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   const customWidth = isTabletOrMobile ? 215 : 248;
   const customHeight = isTabletOrMobile ? 135 : 160;
-   const [episode,setEpisodes]= useState(null);
+  const [episode, setEpisodes] = useState(null);
 
-useEffect(() => {
-//console.log("THE LIST ========wakawaka==",  list)
-//console.log(item)
-   if(list !== undefined){     
-     ////console.log("THE LIST ========wakawaka==",  list);
-    ////console.log(list[0]?.episodes)
-     setEpisodes(list[0]?.episodes)
-     ////console.log("THE EPISODES ========wakawaka==",  episode)
-   }
+  useEffect(() => {
+    //console.log("THE LIST ========wakawaka==",  list)
+    //console.log(item)
+    if (list !== undefined) {
+      ////console.log("THE LIST ========wakawaka==",  list);
+      ////console.log(list[0]?.episodes)
+      setEpisodes(list[0]?.episodes);
+      ////console.log("THE EPISODES ========wakawaka==",  episode)
+    }
+  }, [list]);
+  let tag = item?.tags;
+  // console.log("iski ma ka bhossra", item)
+  tag = typeof tag === "string" ? [tag] : tag;
 
-}, [list])
-let tag = item?.tags;
-// console.log("iski ma ka bhossra", item)
-tag = typeof tag === 'string' ? [tag] : tag; 
-
-// Array.isArray(tag) && tag.map(item => {
-//     //console.log(item.name); // replace this with your map function logic
-// });
+  // Array.isArray(tag) && tag.map(item => {
+  //     //console.log(item.name); // replace this with your map function logic
+  // });
   return (
     <>
-      {item? (
+      {item ? (
         <Draggable>
           {/* {episode.map((item, index) => {
             return ( */}
-              <>
+          <>
+            <div
+              style={{
+                width: customWidth,
+                marginLeft: 10,
+              }}
+            >
+              <div
+                style={{
+                  marginTop: 10,
+                  color: "#000",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: customWidth,
+                  height: customHeight,
+                }}
+              >
                 <div
-                
                   style={{
+                    position: "absolute",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    display: "flex",
                     width: customWidth,
-                    marginLeft: 10,
+                    height: customHeight,
                   }}
                 >
                   <div
-                    style={{
-                      marginTop: 10,
-                      color: "#000",
-                    }}
-                  ></div>
-                  <div
-                    style={{
-                      width: customWidth,
-                      height: customHeight,
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        display: "flex",
-                        width: customWidth,
-                        height: customHeight,
-                      }}
-                    >
-                      <div
-                        onClick={() => {
-                          //console.log(item.series_id)
-                          //console.log(item.id)
-                          dispatch(setPlayingEpisodeData(null))
-                          dispatch(setSeriesEpisodes([])) 
-                          handleRouteChange(`/players/${item.series_id}`,item)
-                          // setCurrentSong({
-                          //   song: item?.url,
-                          //   index: 0,
-                          // });
-                          // if (index == selectedEpisodeIndex) {
-                          //   setSelectedSeries(item?.episodes);
-                          //   setSelectedEpisodeIndex(0);
-                          //   const { episodes, ...selectedSeriesData } = item;
-                          //   setSelectedSeriesData(selectedSeriesData);
-                          // } else {
-                          //   audioRef.current.pause();
-                          //   audioRef.current.currentTime = 0;
-                          //   setSelectedSeries(item?.episodes);
-                          //   setSelectedEpisodeIndex(0);
-                          //   const { episodes, ...selectedSeriesData } = item;
-                          //   setSelectedSeriesData(selectedSeriesData);
-                          // }
+                    onClick={() => {
+                      //console.log(item.series_id)
+                      //console.log(item.id)
+                      dispatch(setPlayingEpisodeData(null));
+                      dispatch(setSeriesEpisodes([]));
+                      handleRouteChange(`/players/${item.series_id}`, item);
+                      // setCurrentSong({
+                      //   song: item?.url,
+                      //   index: 0,
+                      // });
+                      // if (index == selectedEpisodeIndex) {
+                      //   setSelectedSeries(item?.episodes);
+                      //   setSelectedEpisodeIndex(0);
+                      //   const { episodes, ...selectedSeriesData } = item;
+                      //   setSelectedSeriesData(selectedSeriesData);
+                      // } else {
+                      //   audioRef.current.pause();
+                      //   audioRef.current.currentTime = 0;
+                      //   setSelectedSeries(item?.episodes);
+                      //   setSelectedEpisodeIndex(0);
+                      //   const { episodes, ...selectedSeriesData } = item;
+                      //   setSelectedSeriesData(selectedSeriesData);
+                      // }
 
-                          // setTimeout(() => {
-                          //   navigate("/player");
-                          //   // setShowPlayer(true);
-                          // }, 500);
-                        }}
-                        onMouseEnter={() => handleMouseEnter(index)}
-                        onMouseLeave={handleMouseLeave}
-                        style={{
-                          width: 75,
-                          height: 75,
-                          position: "absolute",
-                          cursor: "pointer",
-                        }}
-                      />
-                      {hoveredIndex === index && (
-                        <img
-                          src={hoverImg}
-                          style={{
-                            width: customWidth,
-                            height: customHeight,
-                            borderRadius: 10,
-                          }}
-                        />
-                      )}
-                    </div>
-
+                      // setTimeout(() => {
+                      //   navigate("/player");
+                      //   // setShowPlayer(true);
+                      // }, 500);
+                    }}
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={handleMouseLeave}
+                    style={{
+                      width: 75,
+                      height: 75,
+                      position: "absolute",
+                      cursor: "pointer",
+                    }}
+                  />
+                  {hoveredIndex === index && (
                     <img
-                      src={
-                        "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                        item?.image
-                      }
+                      src={hoverImg}
                       style={{
                         width: customWidth,
                         height: customHeight,
-                        borderRadius: 15,
-                        // background:"red",
-                        objectFit: "cover",
+                        borderRadius: 10,
                       }}
                     />
-                  </div>
-                  <div
-                    style={{
-                      fontSize: "15px",
-                      fontWeight: "bold",
-                      marginTop: 5,
-                      color: darkMode ? "#fff" : "#212121",
-                      textAlign: "right",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {item?.name}
-                  </div>
+                  )}
+                </div>
 
-                  <div
-                    style={{
-                      marginTop: 2,
-                      fontSize: "11px",
-                      color: darkMode ? "#fff" : "#E97B65",
-                      textAlign: "right",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {item?.description}
-                  </div>
+                <img
+                  src={
+                    "https://podcasts.cucurico.co.il/podcast/public/images/" +
+                    item?.image
+                  }
+                  style={{
+                    width: customWidth,
+                    height: customHeight,
+                    borderRadius: 15,
+                    // background:"red",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+              <div
+                style={{
+                  fontSize: "15px",
+                  fontWeight: "bold",
+                  marginTop: 5,
+                  color: darkMode ? "#fff" : "#212121",
+                  textAlign: "right",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item?.name}
+              </div>
 
-                  <div
-                    style={{
-                      marginTop: 2,
-                      color: darkMode ? "#777777" : "#000",
-                      fontSize: 12,
+              <div
+                style={{
+                  marginTop: 2,
+                  fontSize: "11px",
+                  color: darkMode ? "#fff" : "#E97B65",
+                  textAlign: "right",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {item?.description}
+              </div>
 
-                      textAlign: "right",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    With :{item?.guests}
-                  </div>
+              <div
+                style={{
+                  marginTop: 2,
+                  color: darkMode ? "#777777" : "#000",
+                  fontSize: 12,
 
-                  <div
-                    style={{
-                      marginTop: 2,
-                      color: "#777777",
-                      textAlign: "right",
-                      display: "flex",
-                      fontSize: 12,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  > 
-                  {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
-                   {item?.duration} |   { Array.isArray(tag) && tag.map(item => {
-                      return <p style={{margin:"0px 3px"}}>{item.name} &bull;</p>
-                      //console.log(item.name); // replace this with your map function logic
+                  textAlign: "right",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                With: {item?.guests}
+              </div>
+
+              <div
+                style={{
+                  marginTop: 2,
+                  color: "#777777",
+                  textAlign: "right",
+                  display: "flex",
+                  fontSize: 12,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  flexDirection: "row-reverse",
+                  justifyContent: "flex-end",
+                }}
+              >
+                {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
+                <p>{item?.duration}</p>
+                {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px 5px",display:"flex",alignItems:"center"}}>|</p>}{" "}
+                {Array.isArray(tag) && 
+                  tag.map((item) => {
+                    return (
+                      <p
+                        style={{
+                          margin: "0px 3px",
+                          display: "flex",
+                          alignItems: "center",
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          // width:"120px",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {item.name} &bull;
+                      </p>
+                    );
+                    //console.log(item.name); // replace this with your map function logic
                   })}
-                  {/* {
+                {/* {
                     Array.isArray(tag) && tag.map(item => {
                       return <p>{item.name}</p>
                       //console.log(item.name); // replace this with your map function logic
                   })
                   } */}
-                   {/* {item?.tags.map((item,index)=>{return <span key={index}>{item.name} </span>})} */}
-                    {/* {`${"00:41:55"}`} */}
-                  </div>
-                </div>
-              </>
-            {/* );
+                {/* {item?.tags.map((item,index)=>{return <span key={index}>{item.name} </span>})} */}
+                {/* {`${"00:41:55"}`} */}
+              </div>
+            </div>
+          </>
+          {/* );
           })} */}
         </Draggable>
       ) : (

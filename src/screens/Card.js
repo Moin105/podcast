@@ -240,10 +240,12 @@ useEffect(() => {
             })
           : ""}
             {filteredCategorySeries && filteredCategorySeries.length > 0
-          ? categorySeries.map((series, index) => {
+          ? filteredCategorySeries.map((series, index) => {
           return  series?.map((serie,index)=>{
                     return (
-                        <><Draggable>
+                      
+                        <>
+                        <Draggable>
                               <ListRenderTwo
                      item={serie}
                      index={index}
