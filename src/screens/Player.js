@@ -145,7 +145,7 @@ const Player = ({
       // position: "absolute",
       // top: 100,
       marginTop:"-220px",
-      background:darkMode? "#1A1A1A":"#FFFFFF",
+      background:darkMode ?  isTabletOrMobile ? "#161616":"#FFFFFF" : !isTabletOrMobile ? "#1A1A1A":"#FFFFFF",
     },
     cont2: {
       width: isTabletOrMobile ? "95%" : "60%",

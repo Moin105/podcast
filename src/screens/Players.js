@@ -8,6 +8,8 @@ import plusRed from "../images/plusRed.png";
 import pauseLogo from "../images/pauseLogo.png";
 import kinina from "../images/rightround.png";
 import showMore from "../images/showMore.png";
+import sharePhoneWhite from "../images/sharePhoneWhite.png";
+
 import axios from "axios";
 import "./player.css";
 import playLogo from "../images/playLogo.png";
@@ -1028,7 +1030,7 @@ useEffect(() => {
                           </div>
                           <div
                             style={{
-                              color: "#E97B65",
+                              color:isTabletOrMobile? "#FFFFFF" :"#E97B65",
                               display: "flex",
                               justifyContent: "center",
                               alignItems: "center",
@@ -1046,12 +1048,12 @@ useEffect(() => {
                                   setShow(true);
                                 }}
                                 style={{
-                                  width: "16px",
-                                  height: "16px",
+                                  width:isTabletOrMobile?"12px": "16px",
+                                  height:isTabletOrMobile?"12px":"16px",
                                   objectFit: "contain",
                                   marginLeft: "4px",
                                 }}
-                                src={roundArrow}
+                                src={isTabletOrMobile ? sharePhoneWhite : roundArrow}
                                 alt=""
                               />
                             </div>

@@ -471,7 +471,7 @@ const FloatingPlayer = ({
                       background: `linear-gradient(to right, #E97B65 0%, #E97B65 ${volume}%, #eaeaea ${volume}%, #eaeaea 100%)`,
                       cursor: "pointer",
                     }}
-                    className="custom-range"
+          
                   />
                 </div>
               )}
@@ -543,7 +543,7 @@ const FloatingPlayer = ({
                     <div
                       style={{
                         marginTop: 2,
-                        color: darkMode ? "#777777" : "#E97B65",
+                        color: "#E97B65",
                         fontSize: 12,
 
                         textAlign: "right",
@@ -705,8 +705,9 @@ const FloatingPlayer = ({
                         appearance: "none",
                         borderRadius: "5px",
                         background: `linear-gradient(to right, #E97B65 0%, #E97B65 ${volume}%, #eaeaea ${volume}%, #eaeaea 100%)`,
+                        
                       }}
-                      className="custom-range"
+                     
                     />
                   </div>
                 </div>
@@ -933,8 +934,10 @@ const FloatingPlayer = ({
                         marginLeft: 20,
                         marginRight: 20,
                         cursor: "pointer",
+                    
                       }}
-                      className="custom-range"
+                    
+
                     />
                     <div
                       style={{
@@ -973,6 +976,7 @@ const FloatingPlayer = ({
                         style={{
                           color: "#E97B65",
                           marginTop: 5,
+                          
                           marginBottom: 5,
                         }}
                       >

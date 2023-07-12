@@ -1,10 +1,1 @@
-.custom-range::-webkit-slider-thumb {
-
-  background-color: red;
-  width: 6px; /* Set the width of the slider thumb */
-  height: 6px; /* Set the height of the slider thumb */
-  cursor: pointer; /* Set the cursor style on hover */
-  border-radius: 50%;
-  color:red;
-}
 
