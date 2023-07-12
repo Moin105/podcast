@@ -183,7 +183,7 @@ const FloatingPlayer = ({
                         // //console.log("currentSong", episodesss.playingEpisode);
                         setCurrentEp(parseInt(currentEp) - 1);
                         //console.log("currentSong", episodesss.currentEpisode.ep_number);
-                        var currentSong = episodesss.currentEpisode.ep_number;
+                        var currentSong = episodesss.currentEpisode?.ep_number;
                         //console.log("currentSong", currentEp);
                         currentSong++;
                         //console.log("currentSong", episodesss.episodes);
@@ -306,7 +306,7 @@ const FloatingPlayer = ({
                         audioRef.current.currentTime = 0;
                         setCurrentEp(parseInt(currentEp) + 1);
                         //console.log("currentSong", episodesss.currentEpisode.ep_number);
-                        var currentSong = episodesss.currentEpisode.ep_number;
+                        var currentSong = episodesss.currentEpisode?.ep_number;
                         //console.log("currentSong", currentEp);
                         currentSong++;
                         //console.log("currentSong", episodesss.episodes);
@@ -538,7 +538,7 @@ const FloatingPlayer = ({
                         textOverflow: "ellipsis",
                       }}
                     >
-                      {episodesss?.currentEpisode.series?.description}
+                      {episodesss?.currentEpisode?.series?.description}
                     </div>
                     <div
                       style={{
@@ -552,7 +552,7 @@ const FloatingPlayer = ({
                         textOverflow: "ellipsis",
                       }}
                     >
-                      With :{episodesss?.currentEpisode.series?.presenter}
+                      With :{episodesss?.currentEpisode?.series?.presenter}
                     </div>
                  
                   <div
@@ -967,7 +967,7 @@ const FloatingPlayer = ({
                         {/* {selectedSeries[selectedEpisodeIndex]?.name} */}
 
                         {/* {selectedSeriesData?.name} */}
-                        {episodesss?.currentEpisode.series?.name}
+                        {episodesss?.currentEpisode?.series?.name}
                       </div>
                       <div
                         style={{
@@ -979,7 +979,7 @@ const FloatingPlayer = ({
                         {/* קורת רוח | פרק 17 */}
                         {/* {selectedSeries[selectedEpisodeIndex]?.name} */}
                         {/* {episodesss?.currentEpisode.series?.description} */}
-                        With :{episodesss?.currentEpisode.series?.presenter}
+                        With :{episodesss?.currentEpisode?.series?.presenter}
                       </div>
                       <div
                         style={{
