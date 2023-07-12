@@ -423,7 +423,7 @@ useEffect(() => {
             </div>
             <img
               // height: isTabletOrMobile ? 250 : 500
-              style={{ width: "100%" }}
+              style={{ width: "100%", objectFit:"contain",height: isTabletOrMobile ? 250 : 550,background:"#313131"  }}
               src={
                 "https://podcasts.cucurico.co.il/podcast/public/images/" +
                 // selectedSeriesData?.profile_image

@@ -144,7 +144,7 @@ const Player = ({
       alignItems: "center",
       // position: "absolute",
       // top: 100,
-      marginTop:"-220px",
+      marginTop:"-350px",
       background:darkMode ?   "#161616":"#FFFFFF" 
     },
     cont2: {
@@ -381,7 +381,7 @@ const Player = ({
               </button>
             </div>
             <img
-              style={{ width: "100%", height: isTabletOrMobile ? 250 : 700 }}
+              style={{ width: "100%", objectFit:"contain",height: isTabletOrMobile ? 250 : 550,background:"#313131" }}
               src={
                 "https://podcasts.cucurico.co.il/podcast/public/images/" +
                 // selectedSeriesData?.profile_image
