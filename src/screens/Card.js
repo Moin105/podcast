@@ -15,7 +15,7 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
 
     // console.log("wfewewwefewfebitches",item);
   ////console.log("datta",item.categories);
-  const idArray = categories.map(category => ({ id: category.id }));
+  const idArray = categories ? categories.map(category => ({ id: category.id })) : [];
   ////console.log("juni",idArray);
   //   ////console.log(series);
   //   ////console.log(tags);
@@ -146,11 +146,11 @@ useEffect(() => {
 const filteredSerie = serie?.filter(ser => ser.status=='published');
 const filteredEpisode = episode?.filter(ep => ep.status=='published');
 
-const filteredEpisodes = filteredEpisode?.filter(ep => ep.name.includes(searchings.search.search));
-const filteredSeries = filteredSerie?.filter(ser => ser.name.includes(searchings.search.search));
-const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name.includes(searchings.search.search));
-const filteredUnfinishedEpisodes = unfinishedSongs?.filter(ep => ep.name.includes(searchings.search.search));
-const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name.includes(searchings.search.search)));
+const filteredEpisodes = episode?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+const filteredSeries = filteredSerie?.filter(ser => ser.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+const filteredUnfinishedEpisodes = unfinishedSongs?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name?.toLowerCase().includes(searchings.search.search.toLowerCase())));
 useEffect(() => {
   // console.log("filteredEpisodes",filteredEpisodes,filteredSeries,tagEpisode,filteredCategorySeries)
   //console.log("miseeeeee",filteredSeries)

@@ -8,8 +8,10 @@ export const searchSlice = createSlice({
     reducers:{
         setSearch:(state,action)=>{
             state.search = action.payload
+        },clearSearch:(state,action)=>{
+            state.search= ''
         }
     }
 })
-export const {setSearch} = searchSlice.actions
+export const {setSearch,clearSearch} = searchSlice.actions
 export default searchSlice.reducer

@@ -12,12 +12,18 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import "./header.css";
 import { ThemeContext } from "./ThemeContext";
+import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setSearch } from "../features/Search";
+import { clearSearch, setSearch } from "../features/Search";
 import { useTheme } from "./ThemeContext";
 import { Link } from "react-router-dom";
+import FallbackImage from "./Fallback";
+import FallbackImagea from "./Fallbacks";
+
 
 const Header = ({ list }) => {
+
+ 
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [searchShow, setSearchShow] = useState(false);
   const {
@@ -42,6 +48,7 @@ const Header = ({ list }) => {
       console.error(`Error occurred while fetching data from ${url}: `, error);
     }
   }
+  const location = useLocation()
   useEffect(() => {
     getData("https://podcasts.cucurico.co.il/podcast/public/api/appmanagement")
       .then((data) => {
@@ -75,6 +82,11 @@ const Header = ({ list }) => {
     const newWindow = window.open(url, "_blank", "noopener,noreferrer");
     if (newWindow) newWindow.opener = null;
   };
+useEffect(() => { 
+  console.log("search",searchings.search)
+  dispatch(setSearch(''));
+ 
+}, [location.pathname])
 
   const dispatch = useDispatch();
   const searchings = useSelector((state) => state);
@@ -170,9 +182,11 @@ textDecoration:"none"
           <div className="footer3">
             <div className="logo2" >
               <Link to="/">
-                <img style={{width: "160px",
+                {/* <img style={{width: "160px",
     objectFit: "contain",
-    height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" />
+    height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" /> */}
+        <FallbackImage src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt=""/>
+
               </Link>
             </div>
 
@@ -234,10 +248,12 @@ textDecoration:"none"
                   ></div>
                 </div>
 
+                <Link to="/">
                 <div
                   style={{
                     padding: "10px 5px 10px 10px",
                     color: "white",
+                    
                     // WebkitBackgroundClip: "text",
                     // WebkitTextFillColor: "transparent",
                     marginTop: "150px",
@@ -246,6 +262,7 @@ textDecoration:"none"
                 >
                   Home
                 </div>
+                </Link>
                 {/* <div
               style={{
                 height: 1,
@@ -328,7 +345,7 @@ textDecoration:"none"
 
         <MediaQuery maxWidth={430}>
           <div className="footer3">
-            <Link href="/">
+            <Link href="/" style={{textDecoration:"none"}}>
               <div
                 style={{
                   width: window.innerWidth * 0.09,
@@ -341,16 +358,16 @@ textDecoration:"none"
                   alignItems: "center",
                 }}
               >
-                {!searchShow && (
+               
                   <img
                     style={{ width: window.innerWidth * 0.04 }}
                     src={search2}
                     alt=""
                     onClick={() => {
-                      setSearchShow(true);
+                      setSearchShow(!searchShow);
                     }}
                   />
-                )}
+            
 
                 {searchShow && (
                   <input
@@ -360,14 +377,18 @@ textDecoration:"none"
                       outline: "none",
                       background: darkMode ? "#161616" : "#F7F6F9",
                       color: darkMode ? "#F7F6F9" : "black",
-                      margin: "0px 0px 0px 90px",
+                      margin: "90px 0px 0px 90px",
                       border: "1px solid black",
                       width: "110px",
+                      textDecoration:"none",
                       borderRadius: "30px",
                       padding: "5px",
                     }}
                     onBlur={() => {
-                      setSearchShow(false);
+                      setSearchShow(!searchShow);
+                    }}
+                    onMouseLeave={() => {
+                      setSearchShow(!searchShow);
                     }}
                     onChange={handleInputChange}
                   />
@@ -377,9 +398,10 @@ textDecoration:"none"
             <div className="logo2">
               
               <Link to="/">
-                <img style={{width: "90px",
+                {/* <img style={{width: "90px",
     objectFit: "contain",
-    height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" />
+    height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" /> */}
+    <FallbackImagea src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt=""/>
               </Link>
            
             </div>
@@ -435,10 +457,11 @@ textDecoration:"none"
                     width: "100%",
                     background: "white",
                     height: "1px",
+                    textDecoration:"none",
                   }}
                 ></div>
               </div>
-
+              <Link to="/">
               <div
                 style={{
                   padding: "10px 5px 10px 10px",
@@ -447,10 +470,12 @@ textDecoration:"none"
                   // WebkitTextFillColor: "transparent",
                   marginTop: "150px",
                   marginLeft: "20px",
+                  
                 }}
               >
                 Home
               </div>
+              </Link>
               {/* <div
               style={{
                 height: 1,

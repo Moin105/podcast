@@ -81,7 +81,11 @@ const Player = ({
     //console.log("laila", data);
     postData(data);
   }, []);
+  const searchings = useSelector((state) => state);
   const episodesss = useSelector((state) => state.seriesEpisodes);
+  const filteredEpisodes = episodesss?.episodes?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+
+ 
   useEffect(() => {
     //console.log("laila", episodesss);
     //console.log("laila", episodesss.currentEpisode);
@@ -775,7 +779,7 @@ const Player = ({
               >
                 <div>כל הפרקים</div>
               </div>
-              {episodesss?.episodes?.map((item, index) => {
+               { filteredEpisodes.length > 0 ? filteredEpisodes?.map((item, index) => {
                 return (
                   <>
                     <div
@@ -880,10 +884,15 @@ const Player = ({
 
                           <div
                             style={{
-                              width:"90%",
+                              // width:"90%",
                               fontSize: 12,
                               color: darkMode ? "#FFFFFF" : "#212121",
-                            
+
+                              width: "80%",
+                              marginTop: isTabletOrMobile ? "8px" : "5px",
+                              textOverflow: "ellipsis",
+                              maxHeight: isTabletOrMobile ? "30px" : "55px",
+                              overflow: isTabletOrMobile ? "hidden" : "hidden",
                             }}
                           >
                             {item?.description}
@@ -980,7 +989,8 @@ const Player = ({
                     </div>
                   </>
                 );
-              })}
+              }):  <p> Search Item Does Not Exist</p>}
+             
             </div>
           </div>
           <div

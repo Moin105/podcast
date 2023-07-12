@@ -15,6 +15,7 @@ body {
 div::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -20,13 +20,16 @@ import prev from "../images/prev.png";
 import soundIcon from "../images/soundIcon.png";
 import speedicon from "../images/speed.png";
 import forward from "../images/forward.png";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import backward from "../images/backward.png";
 import playerRightImg from "../images/playerRightImg.png";
 import { useMediaQuery } from "react-responsive";
-import { setPlayingEpisode ,setPlayingEpisodeData} from "../features/playingEpisode";
+import {
+  setPlayingEpisode,
+  setPlayingEpisodeData,
+} from "../features/playingEpisode";
 import { useTheme } from "../components/ThemeContext";
-
+import "./floatingPlayer.css";
 const FloatingPlayer = ({
   audioRef,
   currentTime,
@@ -58,7 +61,9 @@ const FloatingPlayer = ({
     return formattedTime;
   }
   const navigate = useNavigate();
-  const playingSong = useSelector((state) => state.seriesEpisodes.currentEpisode);
+  const playingSong = useSelector(
+    (state) => state.seriesEpisodes.currentEpisode
+  );
   const {
     darkMode,
     setDarkMode,
@@ -75,12 +80,14 @@ const FloatingPlayer = ({
     audioRef.current.volume = event.target.value / 100;
     setVolume(event.target.value);
   };
-  const theme = useTheme()
-const  episodesss = useSelector((state) => state.seriesEpisodes);
-//console.log("sharjeeel",episodesss)
-const dispatch = useDispatch();
-const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number);
-//console.log("")
+  const theme = useTheme();
+  const episodesss = useSelector((state) => state.seriesEpisodes);
+  //console.log("sharjeeel",episodesss)
+  const dispatch = useDispatch();
+  const [currentEp, setCurrentEp] = useState(
+    episodesss?.currentEpisode?.ep_number
+  );
+  //console.log("")
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
   return (
     <>
@@ -94,8 +101,8 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
               bottom: 0,
               background: "#fff",
               flexDirection: "column",
-              width: "100%",  
-              
+              width: "100%",
+
               paddingBottom: 15,
             }}
           >
@@ -168,27 +175,34 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                     onClick={() => {
                       //console.log("wwqqeqwewqeqwe")
                       // if (episodesss?.playingEpisode.index >= 0 ) {
-                        if(episodesss.episodes.length > 0 && currentEp >= 1){
+                      if (episodesss.episodes.length > 0 && currentEp >= 1) {
                         //console.log("wwqqeqwewqeqwe")
                         audioRef?.current?.pause();
                         audioRef.current.currentTime = 0;
                         //console.log("currentSong", episodesss?.playingEpisode.index);
                         // //console.log("currentSong", episodesss.playingEpisode);
-                        setCurrentEp(parseInt(currentEp) - 1)
+                        setCurrentEp(parseInt(currentEp) - 1);
                         //console.log("currentSong", episodesss.currentEpisode.ep_number);
                         var currentSong = episodesss.currentEpisode.ep_number;
                         //console.log("currentSong", currentEp);
                         currentSong++;
                         //console.log("currentSong", episodesss.episodes);
-                        const nextSong = episodesss.episodes.find(obj=>obj.ep_number == currentEp);
+                        const nextSong = episodesss.episodes.find(
+                          (obj) => obj.ep_number == currentEp
+                        );
                         //console.log("currentSong", nextSong);
                         setTimeout(() => {
-                          dispatch(setPlayingEpisode({song: nextSong?.url, index: nextSong.ep_number}));
-                          dispatch(setPlayingEpisodeData(nextSong))
-                      //  dispatch( setPlayingEpisode({
-                      //       song:episodesss.episodes[episodesss.playingEpisode.index - 1]?.url ,
-                      //       index: episodesss.playingEpisode.index - 1,
-                      //     }))
+                          dispatch(
+                            setPlayingEpisode({
+                              song: nextSong?.url,
+                              index: nextSong.ep_number,
+                            })
+                          );
+                          dispatch(setPlayingEpisodeData(nextSong));
+                          //  dispatch( setPlayingEpisode({
+                          //       song:episodesss.episodes[episodesss.playingEpisode.index - 1]?.url ,
+                          //       index: episodesss.playingEpisode.index - 1,
+                          //     }))
 
                           // setCurrentSong({
                           //   song: selectedSeries[currentSong.index - 1]?.url,
@@ -196,7 +210,7 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                           // });
                         }, 100);
                         //console.log("qwqwewqewqeqwewqewqewqewqeqwqweqweqwe",episodesss.playingEpisode,episodesss.episodes.length )
-                       
+
                         setTimeout(() => {
                           audioRef.current.play();
                           setIsPlaying(true);
@@ -284,25 +298,35 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                   </div>
                   <div
                     onClick={() => {
-                      if (episodesss.episodes.length > 0 &&   currentEp <= episodesss.episodes.length   ) {
+                      if (
+                        episodesss.episodes.length > 0 &&
+                        currentEp <= episodesss.episodes.length
+                      ) {
                         audioRef?.current?.pause();
                         audioRef.current.currentTime = 0;
-                        setCurrentEp(parseInt(currentEp) + 1)
+                        setCurrentEp(parseInt(currentEp) + 1);
                         //console.log("currentSong", episodesss.currentEpisode.ep_number);
                         var currentSong = episodesss.currentEpisode.ep_number;
                         //console.log("currentSong", currentEp);
                         currentSong++;
                         //console.log("currentSong", episodesss.episodes);
-                        const nextSong = episodesss.episodes.find(obj=>obj.ep_number == currentEp);
+                        const nextSong = episodesss.episodes.find(
+                          (obj) => obj.ep_number == currentEp
+                        );
                         //console.log("currentSong", nextSong);
 
                         setTimeout(() => {
-                          dispatch(setPlayingEpisode({song: nextSong?.url, index: nextSong?.ep_number}));
-                          dispatch(setPlayingEpisodeData(nextSong))
-                      // dispatch(    setPlayingEpisode({
-                      //       song:episodesss.episodes[parseInt(episodesss.playingEpisode.index) + parseInt(1)]?.url ,
-                      //       index: parseInt(episodesss.playingEpisode.index ) + parseInt(1),
-                      //     }))
+                          dispatch(
+                            setPlayingEpisode({
+                              song: nextSong?.url,
+                              index: nextSong?.ep_number,
+                            })
+                          );
+                          dispatch(setPlayingEpisodeData(nextSong));
+                          // dispatch(    setPlayingEpisode({
+                          //       song:episodesss.episodes[parseInt(episodesss.playingEpisode.index) + parseInt(1)]?.url ,
+                          //       index: parseInt(episodesss.playingEpisode.index ) + parseInt(1),
+                          //     }))
                           //console.log("qwqwewqewqeqwewqewqewqewqeqwqweqweqwe",episodesss.playingEpisode,episodesss.episodes.length )
                           // setCurrentSong({
                           //   song: selectedSeries[currentSong.index + 1]?.url,
@@ -371,6 +395,7 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
 
                 <input
                   type="range"
+                  
                   min={0}
                   max={duration}
                   value={currentTime}
@@ -388,8 +413,9 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                     marginLeft: "4%",
                     marginRight: "4%",
                     cursor: "pointer",
+                    alignItems:"flex-end"
                   }}
-                  className="custom-range"
+                  className="other-range"
                 />
                 <div
                   style={{
@@ -397,7 +423,7 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                     color: "#212121",
                   }}
                 >
-                  {formatTime(duration)}
+                  {formatTime(duration - currentTime)}
                 </div>
               </div>
             </div>
@@ -406,8 +432,8 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                alignItems: "center",
-                marginTop: 30,
+                alignItems: "flex-end",
+                marginTop: 5,
               }}
             >
               {isIOS() ? (
@@ -457,6 +483,7 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                   marginRight: 7,
                   width: "70%",
                   justifyContent: "flex-end",
+                  alignItems: "flex-end",
                 }}
               >
                 <div
@@ -487,11 +514,55 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                     {selectedSeries[selectedEpisodeIndex]?.name}
                   </div>
                   <div
+                      style={{
+                        fontSize: "15px",
+                        fontWeight: "bold",
+                        marginTop: 5,
+                        color: darkMode ? "#fff" : "#212121",
+                        textAlign: "right",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {episodesss?.currentEpisode.series?.name}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: 2,
+                        fontSize: "11px",
+                        color: darkMode ? "#fff" : "#E97B65",
+                        textAlign: "right",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {episodesss?.currentEpisode.series?.description}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: 2,
+                        color: darkMode ? "#777777" : "#E97B65",
+                        fontSize: 12,
+
+                        textAlign: "right",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      With :{episodesss?.currentEpisode.series?.presenter}
+                    </div>
+                 
+                  <div
                     style={{
                       display: "flex",
                       textAlign: "end",
                       justifyContent: "flex-end",
                       gap: "5px",
+                      marginTop:10,
+                      marginBottom:5,
                     }}
                   >
                     <img
@@ -506,76 +577,36 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                       alt=""
                     />
                   </div>
-                 <div>  <div
-                    style={{
-                      fontSize: "15px",
-                      fontWeight: "bold",
-                      marginTop: 5,
-                      color: darkMode ? "#fff" : "#212121",
-                      textAlign: "right",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {episodesss?.currentEpisode.series?.name}
+                  <div>
+                    {" "}
+                  
+           
+                    {/* <div
+                      style={{
+                        marginTop: 2,
+                        color: "#777777",
+                        textAlign: "right",
+
+                        fontSize: 12,
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                  
+                      {episodesss?.currentEpisode.series?.duration}
+                  
+                    </div> */}
                   </div>
-
-                  <div
-                    style={{
-                      marginTop: 2,
-                      fontSize: "11px",
-                      color: darkMode ? "#fff" : "#E97B65",
-                      textAlign: "right",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {episodesss?.currentEpisode.series?.description}
-                  </div>
-
-                  <div
-                    style={{
-                      marginTop: 2,
-                      color: darkMode ? "#777777" : "#000",
-                      fontSize: 12,
-
-                      textAlign: "right",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    With :{episodesss?.currentEpisode.series?.presenter}
-                  </div>
-
-                  <div
-                    style={{
-                      marginTop: 2,
-                      color: "#777777",
-                      textAlign: "right",
-
-                      fontSize: 12,
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  > 
-                  {/* {episodesss?.currentEpisode.series?.tags[0].name} */}
-                   | {episodesss?.currentEpisode.series?.duration}
-                 
-                   {/* {item?.tags.map((item,index)=>{return <span key={index}>{item.name} </span>})} */}
-                    {/* {`${"00:41:55"}`} */}
-                  </div>
-                </div> 
-                </div>
+                </div>    {/* {item?.tags.map((item,index)=>{return <span key={index}>{item.name} </span>})} */}
+                      {/* {`${"00:41:55"}`} */}    {/* {episodesss?.currentEpisode.series?.tags[0].name} */}{" "}
                 <img
                   style={{
                     width: 100,
-                    height: 80,
+                    height: 65,
                     borderRadius: 6,
                     cursor: "pointer",
+                  
                   }}
                   src={
                     "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -934,7 +965,9 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                       <div>
                         {/* צמרמורת אוחזת בבשרי */}
                         {/* {selectedSeries[selectedEpisodeIndex]?.name} */}
-                        {selectedSeriesData?.name}
+
+                        {/* {selectedSeriesData?.name} */}
+                        {episodesss?.currentEpisode.series?.name}
                       </div>
                       <div
                         style={{
@@ -944,7 +977,9 @@ const [currentEp, setCurrentEp] = useState(episodesss?.currentEpisode?.ep_number
                         }}
                       >
                         {/* קורת רוח | פרק 17 */}
-                        {selectedSeries[selectedEpisodeIndex]?.name}
+                        {/* {selectedSeries[selectedEpisodeIndex]?.name} */}
+                        {/* {episodesss?.currentEpisode.series?.description} */}
+                        With :{episodesss?.currentEpisode.series?.presenter}
                       </div>
                       <div
                         style={{

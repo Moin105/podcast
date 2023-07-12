@@ -118,7 +118,7 @@ const Players = ({
     }
     //console.log(episodesss);
   }, [episodesss?.episodes]);
-  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1400)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1020px)" });
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
   const [active, setActive] = useState(0);
@@ -149,6 +149,11 @@ const Players = ({
   const width = window.innerWidth;
   const height = window.innerHeight;
 
+  const searchings = useSelector((state) => state);
+  const filteredEpisodes = episodesss?.episodes?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+useEffect(() => {
+  console.log("fahad ",filteredEpisodes)
+}, [searchings.search.search])
 
   const truncatedDescription = episodesss?.currentEpisode?.description.split('\n').slice(0, 2).join('\n');
   // STYLES >>>>>>>>
@@ -193,17 +198,18 @@ const Players = ({
       display: "flex",
       justifyContent: "flex-end",
       alignItems: "right",
-      textAlign: "",
+      textAlign: "right",
       color: "white",
-      fontSize: isTabletOrMobile ? 35 : 50,
+      fontSize: isTabletOrMobile ? 34 : 45,
+      marginBottom:isTabletOrMobile?null:"-3px",
     },
     txt2: {
       display: "flex",
       justifyContent: "flex-end",
       alignItems: "right",
       color: "white",
-      fontSize: isTabletOrMobile ? 12 : 16,
-      marginBottom: isTabletOrMobile ? 7 : 15,
+      fontSize: isTabletOrMobile ? 12 : 15,
+      marginBottom: isTabletOrMobile ? 7 : 6,
     },
     txt3: {
       display: "flex",
@@ -278,10 +284,12 @@ const Players = ({
       justifyContent: "space-between",
       marginLeft: "2px",
       marginTop: isTabletOrMobile ? 6 : 0,
+      marginBottom:isTabletOrMobile ? -8 : -10,
     },
     rangetxt: {
-      fontSize: isTabletOrMobile ? 11 : 13,
+      fontSize: isTabletOrMobile ? 10 : 13,
       color: "#767676",
+      
     },
     btn2: {
       background: darkMode ? "#E50914" : "#E97B65",
@@ -349,8 +357,8 @@ const Players = ({
       alignItems: "center",
       color: "white",
       fontSize: "15px",
-      marginTop: "20px",
-      marginBottom: "8px",
+      marginTop: "10px",
+      marginBottom: "7px",
     },
     tcont2: {
       display: "flex",
@@ -449,7 +457,7 @@ const Players = ({
 
                 <div style={styles.rangecont}>
                   <div style={styles.rangetxt}>{formatTime(currentTime)}</div>
-                  <div style={styles.rangetxt}>{formatTime(duration)}</div>
+                  <div style={styles.rangetxt}>{formatTime(duration-currentTime)}</div>
                 </div>
                 <input
                   type="range"
@@ -538,7 +546,7 @@ const Players = ({
                     >
                       <div
                         style={{
-                          width: "35%",
+                          width: "40%",
                           height: active == 1 ? 2.5 : 1.5,
 
                           background:
@@ -551,7 +559,7 @@ const Players = ({
                       />
                       <div
                         style={{
-                          width: "10%",
+                          width: "20%",
                           height: active == 0 ? 2.5 : 1.5,
 
                           background:
@@ -569,7 +577,7 @@ const Players = ({
                         display: "flex",
                         justifyContent: "flex-end",
                         width: "100%",
-                        marginTop: 17,
+                        marginTop: 6,
                       }}
                     >
                       <div
@@ -785,7 +793,7 @@ const Players = ({
                     />
                     <div
                       style={{
-                        width: "25%",
+                        width: "28%",
                         height: active == 0 ? 2.5 : 1.5,
 
                         background:
@@ -841,7 +849,7 @@ const Players = ({
                 background: darkMode ? "#252525" : "none",
                 // background: "red",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-                marginBottom: 100,
+                marginBottom:isTabletOrMobile? 20:100,
               }}
             >
               <div
@@ -872,7 +880,7 @@ const Players = ({
               >
                 <div>כל הפרקים</div>
               </div>
-              {episodesss?.episodes?.map((item, index) => {
+              { filteredEpisodes.length > 0 ? filteredEpisodes?.map((item, index) => {
                 return (
                   <>
                     <div
@@ -1087,7 +1095,8 @@ const Players = ({
                     </div>
                   </>
                 );
-              })}
+              }):  <p> Search Item Does Not Exist</p> }
+               {/* {filteredEpisodes === [] && <>"qweqwe"</>} */}
             </div>
           </div>
           <div
