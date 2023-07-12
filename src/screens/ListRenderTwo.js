@@ -230,7 +230,7 @@ const handleRouteChange = (url,datas) => {
                       {item?.category?.name?.toString()} {`${"00:41:55"}`}
                       {
                           Array.isArray(tag) && tag.map(item => {
-                          return <> <p style={{margin:"0px 3px"}}>{item.name}&bull; </p></>
+                          return <> <p style={{margin:"0px"}}>{item.name}&bull; </p></>
                           //console.log(item.name); // replace this with your map function logic
                       })
                       }

@@ -250,8 +250,8 @@ const ListRenderOne = ({
                 }}
               >
                 {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
-                <p>{item?.duration}</p>
-                {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px 5px",display:"flex",alignItems:"center"}}>|</p>}{" "}
+                <p style={{margin:"0"}}>{item?.duration}</p>
+                {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                 {Array.isArray(tag) && 
                   tag.map((item) => {
                     return (
