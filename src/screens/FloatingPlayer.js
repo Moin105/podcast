@@ -525,7 +525,7 @@ const FloatingPlayer = ({
                         textOverflow: "ellipsis",
                       }}
                     >
-                      {episodesss?.currentEpisode.series?.name}
+                      {episodesss?.currentEpisode?.series?.name}
                     </div>
                     <div
                       style={{
