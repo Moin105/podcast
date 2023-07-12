@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
-  const [showPlayer, setShowPlayer] = useState(true);
+  const [showPlayer, setShowPlayer] = useState(false);
   const [currentSong, setCurrentSong] = useState({
     song: Matafaka,
     index: 0,
