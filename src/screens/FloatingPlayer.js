@@ -413,7 +413,7 @@ const FloatingPlayer = ({
                     marginLeft: "4%",
                     marginRight: "4%",
                     cursor: "pointer",
-                    alignItems:"flex-end"
+                    // alignItems:"flex-end"
                   }}
                   className="other-range"
                 />
