@@ -145,7 +145,7 @@ const Player = ({
       // position: "absolute",
       // top: 100,
       marginTop:"-220px",
-      background:darkMode ?  isTabletOrMobile ? "#161616":"#FFFFFF" : !isTabletOrMobile ? "#1A1A1A":"#FFFFFF",
+      background:darkMode ?   "#161616":"#FFFFFF" 
     },
     cont2: {
       width: isTabletOrMobile ? "95%" : "60%",
@@ -566,10 +566,12 @@ const Player = ({
             {isTabletOrMobile && (
               <div
                 style={{
-                  background: "#161616",
+                  background:darkMode ?   "#161616":"#FFFFFF" ,
+                  // background: "#161616",
                   // paddingRight: 15,
                   // paddingLeft: 15,
                   display: "flex",
+                  color:darkMode ?   "#FFFFFF":"#161616" ,
                   alignSelf: "center",
                   flexDirection: "column",
                   width: "100%",
@@ -647,6 +649,7 @@ const Player = ({
                           alignItems: "center",
                           fontSize: 12,
                           cursor: "pointer",
+                          color:darkMode ?   "#FFFFFF":"#161616" ,
                           paddingRight: 30,
                         }}
                       >
@@ -661,7 +664,7 @@ const Player = ({
                       <div
                         style={{
                           textAlign: "center",
-                          color: "white",
+                          color:darkMode ?   "#FFFFFF":"#161616" ,
                           fontSize: 12,
                           cursor: "pointer",
                           margin:"0px 10px 0px 0px",
@@ -682,6 +685,7 @@ const Player = ({
                     <div
                       style={{
                         width: "75%",
+                        color:darkMode ?   "#FFFFFF":"#161616" ,
                         height: active == 1 ? 2.5 : 1.5,
 
                         background:
@@ -696,7 +700,7 @@ const Player = ({
                       style={{
                         width: "25%",
                         height: active == 0 ? 2.5 : 1.5,
-
+                        color:darkMode ?   "#FFFFFF":"#161616" ,
                         background:
                           active == 0 && darkMode
                             ? "#E50914"
@@ -717,7 +721,7 @@ const Player = ({
                   >
                     <div
                       style={{
-                        color: "white",
+                        color:darkMode ?   "#FFFFFF":"#161616" ,
                         // display: "flex",
                         // justifyContent: "center",
                         // alignItems: "flex-end",
