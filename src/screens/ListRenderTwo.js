@@ -203,7 +203,7 @@ const handleRouteChange = (url,datas) => {
                     >
                       With: {item?.presenter}
                     </div>
-                    <div
+                    {/* <div
                       style={{
                         marginTop: 3,
                         fontSize: 12,
@@ -214,7 +214,7 @@ const handleRouteChange = (url,datas) => {
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                       }}
-                    >  {item?.about_series}</div>
+                    >  {item?.about_series}</div> */}
                     <div
                       style={{
                         marginTop: 2,
@@ -224,13 +224,17 @@ const handleRouteChange = (url,datas) => {
                         whiteSpace: "nowrap",
                         overflow: "hidden",
                         display:"flex",
+                        flexDirection: "row-reverse",
                         textOverflow: "ellipsis",
+                        justifyContent: "flex-end",
                       }}
                     >
+                      {/* <p style={{margin:"0px 4px 0px 0px"}}>{item?.duration}</p> */}
                       {item?.category?.name?.toString()} {`${"00:41:55"}`}
+                      {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px 4px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                       {
                           Array.isArray(tag) && tag.map(item => {
-                          return <> <p style={{margin:"0px"}}>{item.name}&bull; </p></>
+                          return <> <p style={{margin:"0px", display:"flex"}}>{item.name} {tag? <div style={{marginTop:"1px", marginRight:"4px"}}>&bull;</div> : null}   </p></>
                           //console.log(item.name); // replace this with your map function logic
                       })
                       }

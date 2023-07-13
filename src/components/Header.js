@@ -378,7 +378,7 @@ textDecoration:"none"
                       background: darkMode ? "#161616" : "#F7F6F9",
                       color: darkMode ? "#F7F6F9" : "black",
                       margin: "90px 0px 0px 90px",
-                      border: "1px solid black",
+                      // border: "1px solid black",
                       width: "110px",
                       textDecoration:"none",
                       borderRadius: "30px",

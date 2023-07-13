@@ -247,10 +247,11 @@ const ListRenderOne = ({
                   textOverflow: "ellipsis",
                   flexDirection: "row-reverse",
                   justifyContent: "flex-end",
+                  alignItems:"center",
                 }}
               >
                 {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
-                <p style={{margin:"0"}}>{item?.duration}</p>
+                <p style={{margin:"1px 4px 0px 0px", display:"flex", alignItems:"center"}}>{item?.duration}</p>
                 {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                 {Array.isArray(tag) && 
                   tag.map((item) => {
@@ -263,10 +264,12 @@ const ListRenderOne = ({
                           whiteSpace: "nowrap",
                           overflow: "hidden",
                           // width:"120px",
+                          textAlign:"left",
                           textOverflow: "ellipsis",
+                          alignItems:"center",
                         }}
                       >
-                        {item.name} &bull;
+                        {item.name} {tag? <div style={{marginTop:"1px", marginRight:"4px"}}>&bull;</div> : null}  
                       </p>
                     );
                     //console.log(item.name); // replace this with your map function logic

@@ -75,7 +75,7 @@ const Home = ({
         setLoading(false);
         getSeries(response?.data?.data);
         setCarouselList(response?.data?.data);
-        ////console.log("THE CAROUSELS -------------", response?.data?.data);
+        console.log("THE CAROUSELS -------------", response?.data?.data);
         ////console.log("THE CAROUSELS -------------", carouselList);
       })
       .catch((error) => {
