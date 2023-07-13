@@ -145,7 +145,7 @@ const Player = ({
       // position: "absolute",
       // top: 100,
       marginTop:"-220px",
-      background:darkMode ?  isTabletOrMobile ? "#161616":"#FFFFFF" : !isTabletOrMobile ? "#1A1A1A":"#FFFFFF",
+      background:darkMode ?  "#1A1A1A":"#FFFFFF",
     },
     cont2: {
       width: isTabletOrMobile ? "95%" : "60%",
@@ -566,7 +566,7 @@ const Player = ({
             {isTabletOrMobile && (
               <div
                 style={{
-                  background: "#161616",
+                  background: "#FFFFFF",
                   // paddingRight: 15,
                   // paddingLeft: 15,
                   display: "flex",
@@ -628,7 +628,7 @@ const Player = ({
                       display: "flex",
                       justifyContent: "flex-end",
                       alignItems: "right",
-                      color: "white",
+                      color:darkMode?"white": "black",
                       fontSize: "15px",
                       marginTop: "20px",
                       marginBottom: "8px",
@@ -661,7 +661,7 @@ const Player = ({
                       <div
                         style={{
                           textAlign: "center",
-                          color: "white",
+                          color: darkMode ? "white" : "black",
                           fontSize: 12,
                           cursor: "pointer",
                           margin:"0px 10px 0px 0px",
@@ -717,7 +717,7 @@ const Player = ({
                   >
                     <div
                       style={{
-                        color: "white",
+                        color: darkMode ? "#FFFFFF" : "#161616",
                         // display: "flex",
                         // justifyContent: "center",
                         // alignItems: "flex-end",
