@@ -160,12 +160,15 @@ textDecoration:"none"
               style={{
                 background: darkMode ? "#161616" : "#F7F6F9",
                 color: darkMode ? "#DDDDDD" : "#484848",
+                border:darkMode?"0.5px solid #FFFFFF" : null,
               }}
             >
               <div className="search">
                 <img src={darkMode ? search2 : search} alt="" />
               </div>
-              <div>
+              <div
+             className={darkMode ? "white-placeholder" : "black-placeholder"}
+              >
                 <input
                   type="text"
                   placeholder="חיפוש"
@@ -195,7 +198,7 @@ textDecoration:"none"
                 style={{
                   marginLeft: window.innerWidth * 0.006,
                   cursor: "pointer",
-                  margin:"0px 15px 0px 0px"
+                  margin:"0px 15px 0px 8px"
                 }}
                 
                 src={darkMode ? menu2 : menu}

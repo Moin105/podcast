@@ -254,7 +254,7 @@ const ListRenderOne = ({
                 <p style={{margin:"1px 4px 0px 0px", display:"flex", alignItems:"center"}}>{item?.duration}</p>
                 {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                 {Array.isArray(tag) && 
-                  tag.map((item) => {
+                  tag.map((item,index) => {
                     return (
                       <p
                         style={{
@@ -269,7 +269,8 @@ const ListRenderOne = ({
                           alignItems:"center",
                         }}
                       >
-                        {item.name} {tag? <div style={{marginTop:"1px", marginRight:"4px"}}>&bull;</div> : null}  
+                        {item.name}
+                        {index != 0 && <div style={{marginTop:"1px", marginRight:"4px", marginLeft:"1px"}}>&bull;</div>}  
                       </p>
                     );
                     //console.log(item.name); // replace this with your map function logic

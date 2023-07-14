@@ -602,7 +602,7 @@ const FloatingPlayer = ({
                       {/* {`${"00:41:55"}`} */}    {/* {episodesss?.currentEpisode.series?.tags[0].name} */}{" "}
                 <img
                   style={{
-                    width: 100,
+                    width: 95,
                     height: 65,
                     borderRadius: 6,
                     cursor: "pointer",
@@ -1008,9 +1008,9 @@ const FloatingPlayer = ({
                     </div>
                     <img
                       style={{
-                        width: 150,
+                        width: 135,
                         borderRadius: 8,
-                        height: 115,
+                        height: 90,
                         cursor: "pointer",
                       }}
                       src={

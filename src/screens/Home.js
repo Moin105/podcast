@@ -5,6 +5,7 @@ import img11 from "../images/img11.png";
 import img12 from "../images/img12.png";
 import img13 from "../images/img13.png";
 import img21 from "../images/img21.png";
+import rectDark from "../images/rectDark.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./home.css";
 import img22 from "../images/img22.png";
@@ -177,8 +178,11 @@ const Home = ({
             <div className="">
               {carouselList.map((item, index) => {
                 return (
-                  <div className="upper-row" key={index}>
-                  
+                  <div className="upper-row" key={index}
+                  style={{
+                    marginBottom:window.innerWidth < 1020 ? "40px":null,
+                  }}
+                  >  
                     <div
                       className="dots-heading"
                       style={{
@@ -186,9 +190,11 @@ const Home = ({
                         justifyContent: "center",
                         alignItems: "center",
                         gap: "5px",
+                        marginTop:window.innerWidth < 1020 ? "35px":"65px",
+                      
                       }}
                     >
-                      <img src={dot} alt="" style={{width:"9px",height:"9px"}}/>
+                      <img src={darkMode ? rectDark : dot} alt="" style={{width:"9px",height:"9px"}}/>
                       <div
                         className="figee"
                         style={{
@@ -197,7 +203,8 @@ const Home = ({
                           color: darkMode ? "#fff" : "#212121",
                         }}
                       >  {item.carousel.name}</div>
-                      <img src={dot} alt="" style={{width:"9px",height:"9px"}}/>
+                      
+                      <img src={darkMode ? rectDark : dot} alt="" style={{width:"9px",height:"9px"}}/>
                     </div>
                     <div
                       style={{
@@ -206,7 +213,7 @@ const Home = ({
                         fontWeight: "400",
                         marginTop: height * 0.005,
                         color: darkMode ? "#dddddd" : "#212121",
-                        width: "300px", 
+                        width: "90%", 
                         textAlign:"end",
                         overflow: "hidden",
                         textOverflow: "ellipsis",

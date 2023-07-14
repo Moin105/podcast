@@ -45,7 +45,7 @@ const Player = ({
     });
   }, []);
   const location = useLocation();
-  const [show, setShow] = useState(false);
+ 
   const [episodeList, setEpisodeList] = useState([]);
   const theme = useTheme();
   const data = location.state ? location.state.data : null;
@@ -99,12 +99,14 @@ const Player = ({
     }
     //console.log(episodesss);
   }, [episodesss?.episodes]);
-  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1150px)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1020px)" });
+
   const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
   const [active, setActive] = useState(0);
   const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
-  const [more, setMore] = useState(false);
+  const [show, setShow] = useState(false);
+  const [more, setMore] = useState(true);
   const {
     darkMode,
     selectedSeries,
@@ -147,7 +149,7 @@ const Player = ({
       alignItems: "center",
       // position: "absolute",
       // top: 100,
-      marginTop: "-350px",
+      marginTop:isTabletOrMobile? "-235px": "-350px",
       background: darkMode ? "#161616" : "#FFFFFF",
     },
     cont2: {
@@ -187,6 +189,7 @@ const Player = ({
       alignItems: "right",
       color: "white",
       fontSize: 9.4,
+      
     },
     txt4: {
       display: "flex",
@@ -342,7 +345,13 @@ const Player = ({
   }, []);
 
   // STYLES <<<<<<<<<<
+  const share = () => {
+    setShow(!show);
+  };
 
+  const Show  = () => {
+    setMore(!more);
+  };
   return (
     <>
       <div className="wrapper" style={{ background: "white" }}>
@@ -378,7 +387,7 @@ const Player = ({
               <button
                 className="share"
                 onClick={() => {
-                  setShow(true);
+                  share();
                 }}
               >
                 שיתוף
@@ -386,12 +395,13 @@ const Player = ({
               </button>
             </div>
             <img
-              style={{
-                width: "100%",
-                objectFit: "contain",
-                height: isTabletOrMobile ? 250 : 550,
-                background: "#313131",
-              }}
+            className="imageHeight"
+              // style={{
+              //   width: "100%",
+             
+              //   height: isTabletOrMobile ? 250 : !isBigScreen? 396 : 550 ,
+                
+              // }}
               src={
                 "https://podcasts.cucurico.co.il/podcast/public/images/" +
                 // selectedSeriesData?.profile_image
@@ -527,7 +537,7 @@ const Player = ({
                       />
                       <div
                         style={{
-                          width: "20%",
+                          width:isBigScreen?"15%": "20%",
                           height: active == 0 ? 2.5 : 1.5,
 
                           background:
@@ -554,7 +564,7 @@ const Player = ({
                           width: "45%",
                           textAlign: "right",
                           fontSize: 12,
-                          marginRight: "5%",
+                          marginRight: "12%",
                           // marginTop:"-1%",
                           // lineHeight:"0.1",
                         }}
@@ -568,55 +578,118 @@ const Player = ({
                           חסידות • הסטוריה • יהדות | 4 פרקים
                         </div>
                       </div>
-                      <div
-                        style={{
-                          color: "white",
-                          // display: "flex",
-                          // justifyContent: "center",
-                          // alignItems: "flex-end",
-                          textAlign: "right",
-                          fontSize: 12,
-                          width: isTabletOrMobile ? "100%" : "65%",
-                          display: "flex",
-                          flexDirection: "column",
-                        }}
-                      >
-                        {active == 1
-                          ? episodesss?.currentEpisode?.series?.about_series
-                          : episodesss?.currentEpisode?.description}
+                      {more ? (
                         <div
                           style={{
-                            display: "flex",
-                            gap: "1%",
+                            color: "white",
+                            // lineHeight:"1.2",
+                            // display: "flex",
+                            // justifyContent: "center",
+                            // alignItems: "flex-end",
                             textAlign: "right",
-                            justifyContent: "flex-end",
-                            color: "#9B9A9A",
-                            cursor: "pointer",
-                          }}
-                          onClick={() => {
-                            //   const str = JSON.stringify(episodesss?.currentEpisode?.description);
-                            //   const leng = str.length;
-                            // console.log("aa gaya", leng)
-                            setMore(!more);
+                            fontSize: 12,
+                            width: isTabletOrMobile ? "100%" : "65%",
+                            display: "flex",
+                            flexDirection: "column",
+                            height: "70px",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+
+                            // maxHeight: more ? "50px" : "50px",
+
+                            // overflow: more ? "hidden" : null,
+                            // textOverflow: more ? "ellipsis" : null,
+                            // whiteSpace:"nowrap",
                           }}
                         >
-                          {" "}
-                          read more
-                          <img
+                          <p>
+                            {" "}
+                            {active == 1
+                              ? episodesss?.currentEpisode?.series?.about_series
+                              : episodesss?.currentEpisode?.description}
+                          </p>
+                          <div
                             style={{
-                              width: "3%",
-                              objectFit: "contain",
-                              // transform:rotate(more?"180deg":null),
-
-                              // height:"5%",
+                              display: "flex",
+                              gap: "1%",
+                              textAlign: "right",
+                              justifyContent: "flex-end",
+                              color: "#9B9A9A",
+                              cursor: "pointer",
                             }}
-                            src={showMore}
-                            alt=""
-                          />
+                            onClick={() => {
+                              setMore(!more);
+                            }}
+                          >
+                            {" "}
+                            read more
+                            <img
+                              style={{
+                                width: "3%",
+                                objectFit: "contain",
+                              }}
+                              src={showMore}
+                              alt=""
+                            />
+                          </div>
                         </div>
-                        {/* מסע מרתק וייחודי אל סודות האדמו"רים וחצרות החסידות. מסע
-                        מרתק וייחודי אל סודות האדמו"רים וחצרות החסידות מסע מרתק */}
-                      </div>
+                      ) : (
+                        <div
+                          style={{
+                            color: "white",
+                            // lineHeight:"1.2",
+                            // display: "flex",
+                            // justifyContent: "center",
+                            // alignItems: "flex-end",
+                            textAlign: "right",
+                            fontSize: 12,
+                            width: isTabletOrMobile ? "100%" : "65%",
+                            display: "flex",
+                            flexDirection: "column",
+                            height: "70px",
+                            overflow: "scroll",
+
+                            // maxHeight: more ? "50px" : "50px",
+
+                            // overflow: more ? "hidden" : null,
+                            // textOverflow: more ? "ellipsis" : null,
+                            // whiteSpace:"nowrap",
+                          }}
+                        >
+                          <p>
+                            {" "}
+                            {active == 1
+                              ? episodesss?.currentEpisode?.series?.about_series
+                              : episodesss?.currentEpisode?.description}
+                          </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: "1%",
+                              textAlign: "right",
+                              justifyContent: "flex-end",
+                              color: "#9B9A9A",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => {
+                              setMore(!more);
+                            }}
+                          >
+                            {" "}
+                            read less
+                            <img
+                              style={{
+                                width: "3%",
+                                objectFit: "contain",
+                                transform: "rotate(180deg)",
+                              }}
+                              src={showMore}
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </>
                 ) : (
@@ -771,6 +844,7 @@ const Player = ({
                       }}
                     />
                   </div>
+                  
 
                   <div
                     style={{
@@ -780,25 +854,116 @@ const Player = ({
                       marginTop: 12,
                     }}
                   >
-                    <div
-                      style={{
-                        color: darkMode ? "#FFFFFF" : "#161616",
-                        // display: "flex",
-                        // justifyContent: "center",
-                        // alignItems: "flex-end",
-                        textAlign: "right",
-                        fontSize: 10,
-                        width: "80%",
-                        marginBottom: 30,
-                      }}
-                    >
-                      {active == 1
-                        ? episodesss?.currentEpisode?.series?.about_series
-                        : episodesss?.currentEpisode?.description}
+                    {more ? (
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-end",
+                        }}
+                      >
+                        <div
+                          style={{
+                            color: darkMode ? "#FFFFFF" : "#161616",
 
-                      {/* מסע מרתק וייחודי אל סודות האדמו"רים וחצרות החסידות. מסע
-                        מרתק וייחודי אל סודות האדמו"רים וחצרות החסידות מסע מרתק */}
-                    </div>
+                            textAlign: "right",
+                            fontSize: 10,
+                            width: "80%",
+
+                            height: 25,
+                            overflow: "scroll",
+                          }}
+                        >
+                          {active == 1
+                            ? episodesss?.currentEpisode?.series?.about_series
+                            : episodesss?.currentEpisode?.description}
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "4%",
+                            textAlign: "right",
+                            justifyContent: "flex-end",
+                            color: "#9B9A9A",
+                            cursor: "pointer",
+                            fontSize: "11px",
+                            height:"48px",
+                            alignItems:"flex-start",
+                            marginBottom:"10px",
+                          }}
+                          onClick={() => {
+                            setMore(!more);
+                          }}
+                        >
+                          {" "}
+                          read more
+                          <img
+                            style={{
+                              width: "8%",
+                              objectFit: "contain",
+                              marginTop:"4px"
+                            }}
+                            src={showMore}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-end",
+                        }}
+                      >
+                        <div
+                          style={{
+                            color: darkMode ? "#FFFFFF" : "#161616",
+
+                            textAlign: "right",
+                            fontSize: 10,
+                            width: "80%",
+                            // margin: "0px 10px 0px 0px",
+
+                            height: 60,
+                            overflow: "scroll",
+                          }}
+                        >
+                          {active == 1
+                            ? episodesss?.currentEpisode?.series?.about_series
+                            : episodesss?.currentEpisode?.description}
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: "4%",
+                            textAlign: "right",
+                            justifyContent: "flex-end",
+                            color: "#9B9A9A",
+                            cursor: "pointer",
+                            fontSize: "11px",
+                            marginBottom:"10px",
+                          }}
+                          onClick={() => {
+                            setMore(!more);
+                          }}
+                        >
+                          {" "}
+                          read less
+                          <img
+                            style={{
+                              width: "8%",
+                              objectFit: "contain",
+                              transform: "rotate(180deg)",
+                            }}
+                            src={showMore}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </>
               </div>
@@ -821,7 +986,7 @@ const Player = ({
                   marginTop: "35px",
                   marginBottom: "15px",
                   width: "80%",
-                  height: "80px",
+                  height:isTabletOrMobile?"80px": "105px",
                   backgroundColor: "#F9F3F2",
                   color: darkMode ? "#FFFFFF" : "#E4B1B1",
                   display: "flex",
@@ -835,7 +1000,8 @@ const Player = ({
 
               <div
                 style={{
-                  marginBottom: "8px",
+                  marginTop:"5px",
+                  marginBottom: "-5px",
                   width: "96%",
                   display: "flex",
                   justifyContent: "flex-end",
@@ -924,18 +1090,18 @@ const Player = ({
                                 alignItems: "center",
                               }}
                             >
-                              {/* <div
+                              <div
                               style={{
                                 fontSize: 12,
                                 width: "20%",
-                                display: "flex",
+                                display:isTabletOrMobile?"none" : "flex",
                                 justifyContent: "flex-start",
                                 alignItems: "center",
                                 color: darkMode ? "#777777" : "#484848",
                               }}
                             >
                               {item?.duration}
-                            </div> */}
+                            </div>
                               <div
                                 style={{
                                   width: "100%",
@@ -981,6 +1147,7 @@ const Player = ({
                                 color: darkMode ? "#777777" : "#484848",
                                 display: "flex",
                                 marginTop: "-5px",
+                                gap:"4px",
                               }}
                             >
                               <p> {item?.hebrew_date} </p>
@@ -1046,12 +1213,14 @@ const Player = ({
                         src={playerLine}
                         alt=""
                       /> */}
+
+                      {/* {index == item.length?( */}
                         <div
                           style={{
                             width: "96%",
                             marginLeft: "2%",
                             background:
-                              index == selectedSeries.length - 1
+                              index == filteredEpisodes.length - 1 
                                 ? "transparent"
                                 : darkMode
                                 ? "#424242"
@@ -1061,11 +1230,12 @@ const Player = ({
                           }}
                         />
                       </div>
+                     
                     </>
                   );
                 })
               ) : (
-                <p> Search Item Does Not Exist</p>
+                <p>Item Does Not Exist</p>
               )}
             </div>
           </div>

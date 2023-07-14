@@ -233,8 +233,8 @@ const handleRouteChange = (url,datas) => {
                       {item?.category?.name?.toString()} {`${"00:41:55"}`}
                       {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px 4px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                       {
-                          Array.isArray(tag) && tag.map(item => {
-                          return <> <p style={{margin:"0px", display:"flex"}}>{item.name} {tag? <div style={{marginTop:"1px", marginRight:"4px"}}>&bull;</div> : null}   </p></>
+                          Array.isArray(tag) && tag.map((item,index) => {
+                          return <> <p style={{margin:"0px", display:"flex"}}>{item.name} {index != 0 && <div style={{marginTop:"1px", marginRight:"4px", marginLeft:"4px"}}>&bull;</div>}   </p></>
                           //console.log(item.name); // replace this with your map function logic
                       })
                       }

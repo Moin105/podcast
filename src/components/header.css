@@ -33,6 +33,16 @@ align-items: center;
     text-align: right;
     align-items: center;
 }
+
+
+.white-placeholder input::placeholder {
+    color: #DDDDDD;
+  }
+  
+  .black-placeholder input::placeholder {
+    color: #484848;
+  }
+
 .logo{
     width: 100%;
     border: 1px solid #DDDDDD;
@@ -65,8 +75,8 @@ align-items: center;
 }
 
 .menu img{
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 17px;
 }
 
 @media only screen and (max-width: 430px) {

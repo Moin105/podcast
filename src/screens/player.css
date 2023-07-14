@@ -1,9 +1,19 @@
+.imageHeight{
+  width:100%;
+  object-fit: cover;
+  height: 100%;
+max-height: 490px;
+min-height: 450px;
+}
+
 .button-container {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   left: 20px !important;
   top: 20px !important;
 }
+
+
 .button-container .share {
   background-color: transparent;
 }
@@ -25,18 +35,24 @@
   top: 50%;
   left: 50%;
   display: block;
-  padding: 2em;
+  padding: 1em 11em 0.5em 0em;
   font-size: 18px;
-  min-width: 16em;
-  max-width: 70%;
   z-index: 111111111111111100000000000000;
   color: white;
   text-align: center;
   background-color: black;
   border: 1px solid white;
-  border-radius: 1em;
+  border-radius: 10px;
   transform: translate(-50%, -50%);
   outline: transparent;
+  width: 12%;
+}
+
+.modalP{
+  width: 170%;
+  font-size: 12px;
+  margin-left: 10px;
+  text-decoration: underline;
 }
 
 .overlay {
@@ -50,7 +66,7 @@
 }
 
 @media only screen and (max-width: 550px) {
-  .modal {
+  /* .modal {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,5 +82,102 @@
     border-radius: 1em;
     transform: translate(-50%, -50%);
     outline: transparent;
+  } */
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    padding: 1em 11em 0.5em 0em;
+    font-size: 18px;
+    z-index: 111111111111111100000000000000;
+    color: white;
+    text-align: center;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    outline: transparent;
+    width: 24%;
   }
+  
+  .modalP{
+    width: 280%;
+    font-size: 12px;
+    margin-left: -28px;
+    text-decoration: underline;
+  }
+
 }/*# sourceMappingURL=Player.css.map */
+
+
+
+
+ @media screen and (min-width: 374px) and (max-width: 425px) {
+  .imageHeight{
+    width:100%;
+  object-fit: cover;
+  height: 100%;
+max-height: 265px;
+min-height: 236px;
+  }
+}
+
+
+/*
+
+@media (min-width: 425px) and (max-width: 450px) {
+  .imageHeight{
+    width:100%;
+    object-fit: cover;
+    height:274px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1020px) {
+  .imageHeight{
+    width:100%;
+    object-fit: contain;
+    height:410px;
+  }
+}
+
+@media screen and (min-width: 1023px) and (max-width: 1100px) {
+  .imageHeight{
+    width:100%;
+    object-fit: contain;
+    height:334px;
+  }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1250px) {
+  .imageHeight{
+    width:100%;
+    object-fit: contain;
+    height:398px;
+  }
+}
+
+@media screen and (min-width: 1250) and (max-width: 1360px) {
+  .imageHeight{
+    width:100%;
+    object-fit: contain;
+    height:398px;
+  }
+} */
+
+
+
+/* @media screen and (min-width: 1023) and (max-width: 1200) {
+  .lineColour{
+    width: 20%;
+  }
+}
+
+
+@media screen and (min-width: 1200) and (max-width: 1500) {
+  .lineColour{
+    width: 16%;
+  }
+} */
