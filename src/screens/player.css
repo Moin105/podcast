@@ -8,6 +8,7 @@ min-height: 450px;
 
 .button-container {
   display: flex;
+
   gap: 10px;
   left: 20px !important;
   top: 20px !important;
@@ -28,6 +29,15 @@ min-height: 450px;
   border: none;
   padding: 5px 10px;
   border-radius: 50px;
+}
+.modalInner{
+display: flex;
+}
+
+.copyImage{
+  width: 35%;
+  margin-left: 25px;
+  margin-bottom: 30px;
 }
 
 .modal {
@@ -51,7 +61,7 @@ min-height: 450px;
 .modalP{
   width: 170%;
   font-size: 12px;
-  margin-left: 10px;
+  margin-left: 8px;
   text-decoration: underline;
 }
 

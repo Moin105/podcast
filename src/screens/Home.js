@@ -21,6 +21,7 @@ import axios from "axios";
 import ActivityIndicator from "./ActivityIndicator";
 import Card from "./Card";
 import { useTheme } from "../components/ThemeContext";
+import Draggable from "../components/Draggable";
 const Home = ({
   audioRef,
   currentTime,
@@ -206,6 +207,7 @@ const Home = ({
                       
                       <img src={darkMode ? rectDark : dot} alt="" style={{width:"9px",height:"9px"}}/>
                     </div>
+                    
                     <div
                       style={{
                         margin: "0px",
@@ -220,6 +222,7 @@ const Home = ({
                         whiteSpace: "nowrap", 
                       }}
                     >{item.carousel.short_description}</div>
+                    
                     <div
                       // style={{
                       //   marginRight: customDivMargin,

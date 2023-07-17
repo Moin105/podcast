@@ -153,7 +153,9 @@ const handleRouteChange = (url,datas) => {
                     <img
                       src={
                         "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                        item?.cover_image
+                        // item?.cover_image
+                        item?.profile_image
+
                       }
                       style={{
                         width: customWidthThird,
@@ -230,7 +232,8 @@ const handleRouteChange = (url,datas) => {
                       }}
                     >
                       {/* <p style={{margin:"0px 4px 0px 0px"}}>{item?.duration}</p> */}
-                      {item?.category?.name?.toString()} {`${"00:41:55"}`}
+                      {/* {item?.category?.name?.toString()} {`${"00:41:55"}`} */}
+                      <p style={{margin:"1px 4px 0px 0px", display:"flex", alignItems:"center"}}>{item?.duration}</p>
                       {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px 4px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                       {
                           Array.isArray(tag) && tag.map((item,index) => {
