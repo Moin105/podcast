@@ -180,8 +180,11 @@ const Players = ({
       alignItems: "center",
       // position: "absolute",
       // top: 130,
-      background: darkMode ? "#1A1A1A" : "#FFFFFF",
+
+      background:isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#1A1A1A" : "#FFFFFF",
     },
+
+
     cont2: {
       width: isTabletOrMobile ? "94%" : "58%",
       objectFit: "contain",
@@ -389,7 +392,7 @@ const Players = ({
   };
 
   // copy
-  const linkRef = useRef();
+
 
   const handleCopyLink = () => {
 
@@ -1029,12 +1032,16 @@ const Players = ({
                 justifyContent: "center",
                 flexDirection: "column",
                 alignItems: "center",
-                background: darkMode ? "#252525" : "none",
+                // background:isTabletOrMobile && darkMode ?  "#161616" : !isTabletOrMobile && darkMode ?   : "#252525" : "none",
+                background: isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#252525" : "none",
+
                 // background: "red",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                 marginBottom: isTabletOrMobile ? 20 : 100,
               }}
             >
+
+
               <div
                 style={{
                   marginTop: isTabletOrMobile ? "5px" : "35px",
@@ -1118,11 +1125,14 @@ const Players = ({
                             flexDirection: "row",
 
                             backgroundColor:
-                              darkMode && index == selectedEpisodeIndex
+                              darkMode && isTabletOrMobile && index == selectedEpisodeIndex
                                 ? "#1A1A1A"
-                                : !darkMode && index == selectedEpisodeIndex
+                                : !darkMode && isTabletOrMobile && index == selectedEpisodeIndex
                                 ? "#F9F3F2"
-                                : darkMode
+                                :  darkMode && isTabletOrMobile
+                                ?
+                                "#1A1A1A"
+                                :  darkMode
                                 ? "#252525"
                                 : "#FFFFFF",
                             margin: "0% 2%",
@@ -1387,7 +1397,7 @@ const Players = ({
                 className="copyImage"
                 src={copyLink}
                 alt=""
-                ref={linkRef}
+              
                 value={window.location.href}
                 readOnly
                 onClick={handleCopyLink}

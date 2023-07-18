@@ -212,6 +212,7 @@ useEffect(() => {
                         list={episode}
                         volume={volume}
                         setIsPlaying={setIsPlaying}
+                       
                       />
                 </Draggable>
                 </>
