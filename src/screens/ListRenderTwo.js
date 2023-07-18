@@ -205,7 +205,7 @@ const handleRouteChange = (url,datas) => {
                         textOverflow: "ellipsis",
                       }}
                     >
-                      With: {item?.presenter}
+                     {item?.presenter}
                     </div>
                     {/* <div
                       style={{

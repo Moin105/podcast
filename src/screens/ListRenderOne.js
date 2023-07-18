@@ -232,7 +232,7 @@ const ListRenderOne = ({
                   textOverflow: "ellipsis",
                 }}
               >
-                With: {item?.guests}
+               {item?.guests}
               </div>
 
               <div
