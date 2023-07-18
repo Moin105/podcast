@@ -235,7 +235,7 @@ const handleRouteChange = (url,datas) => {
                     >
                       {/* <p style={{margin:"0px 4px 0px 0px"}}>{item?.duration}</p> */}
                       {/* {item?.category?.name?.toString()} {`${"00:41:55"}`} */}
-                      <p style={{margin:"1px 4px 0px 0px", display:"flex", alignItems:"center"}}>{item?.episodes[0]?.duration}</p>
+                      <p style={{margin:"1px 4px 0px 0px", display:"flex", alignItems:"center"}}>{item?.episodes[0]? item?.episodes[0]?.duration: '00:22:32'}</p>
                       {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px 4px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                       {
                           Array.isArray(tag) && tag.map((item,index) => {
