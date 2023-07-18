@@ -1,10 +1,21 @@
-
+/* 
 input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; 
+    width: 14px;
+    height: 14px;
+    background-color: #E97B65;
+    border-radius: 50%;
+    cursor: pointer;
+   
+  } */
+
+
+  input[type="range"].floatingPlayer-range::-webkit-slider-thumb {
     -webkit-appearance: none; /* Remove default styling */
     width: 14px;
     height: 14px;
     background-color: #E97B65;
     border-radius: 50%;
     cursor: pointer;
-    /* margin-top: 50px; */
   }
+  

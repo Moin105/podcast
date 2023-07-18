@@ -383,9 +383,13 @@ const Players = ({
 
   // STYLES <<<<<<<<<<
 
-  const share = () => {
+  const share = (event) => {
+    if (event) {
+      event.stopPropagation();
+    }
     setShow(!show);
   };
+  
 
   const Show = () => {
     setMore(!more);
@@ -445,6 +449,7 @@ const Players = ({
               <button className="qwe">הושמע</button>
               <button
                 className="share"
+                alt="Share" 
                 onClick={() => {
                   share();
                 }}
@@ -482,11 +487,11 @@ const Players = ({
                   {episodesss?.currentEpisode?.ep_number}פרק
                 </div>
                 {isTabletOrMobile && (
-                  <div style={styles.txt3}>עם: אריה ארליך, מוישה ויסברג</div>
+                  <div style={styles.txt3}> {episodesss?.currentEpisode?.author_name}</div>
                 )}
                 {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    חסידות • הסטוריה • יהדות | 4 פרקים
+                    {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }
                   </div>
                 )}
 
@@ -631,13 +636,13 @@ const Players = ({
                           marginRight: "12%",
                         }}
                       >
-                        <div>עם: אריה ארליך, מוישה ויסברג</div>
+                        <div>{episodesss?.currentEpisode?.author_name}</div>
                         <div
                           style={{
                             color: "#9B9A9A",
                           }}
                         >
-                          חסידות • הסטוריה • יהדות | 4 פרקים
+                          {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }  
                         </div>
                       </div>
                       {more ? (
@@ -1129,6 +1134,8 @@ const Players = ({
                                 ? "#1A1A1A"
                                 : !darkMode && isTabletOrMobile && index == selectedEpisodeIndex
                                 ? "#F9F3F2"
+                                : !darkMode && !isTabletOrMobile && index == selectedEpisodeIndex
+                                ? "#F9F3F2"
                                 :  darkMode && isTabletOrMobile
                                 ?
                                 "#1A1A1A"
@@ -1249,6 +1256,7 @@ const Players = ({
                               onClick={() => {
                                 setShow(true);
                               }}
+                              
                             >
                               שיתוף
                               <div>

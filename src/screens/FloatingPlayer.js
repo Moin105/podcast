@@ -415,7 +415,7 @@ const FloatingPlayer = ({
                     cursor: "pointer",
                     // alignItems:"flex-end"
                   }}
-                  className="other-range"
+                  className="floatingPlayer-range"
                 />
                 <div
                   style={{
@@ -456,6 +456,7 @@ const FloatingPlayer = ({
                     }}
                   />
                   <input
+                  className="floatingPlayer-range"
                     type="range"
                     ref={volumeBarRef}
                     value={volume}
@@ -691,6 +692,7 @@ const FloatingPlayer = ({
                       }}
                     />
                     <input
+                    className="floatingPlayer-range"
                       type="range"
                       ref={volumeBarRef}
                       value={volume}

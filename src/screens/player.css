@@ -1,3 +1,17 @@
+
+
+input[type="range"].other-range::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default styling */
+  width: 5px;
+  height: 5px;
+  background-color: #E97B65;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+}
+
+
+
 .imageHeight{
   width:100%;
   object-fit: cover;
@@ -17,6 +31,7 @@ min-height: 450px;
 
 .button-container .share {
   background-color: transparent;
+  cursor: pointer;
 }
 .button-container .share img {
   width: 18px;
