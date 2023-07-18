@@ -9,7 +9,8 @@ import pauseLogo from "../images/pauseLogo.png";
 import kinina from "../images/rightround.png";
 import showMore from "../images/showMore.png";
 import sharePhoneWhite from "../images/sharePhoneWhite.png";
-
+import copyLink from "../images/copyLink.png";
+import { useRef } from "react";
 import axios from "axios";
 import "./player.css";
 import playLogo from "../images/playLogo.png";
@@ -179,10 +180,13 @@ const Players = ({
       alignItems: "center",
       // position: "absolute",
       // top: 130,
-      background: darkMode ? "#1A1A1A" : "#FFFFFF",
+
+      background:isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#1A1A1A" : "#FFFFFF",
     },
+
+
     cont2: {
-      width: isTabletOrMobile ? "95%" : "58%",
+      width: isTabletOrMobile ? "94%" : "58%",
       objectFit: "contain",
       display: "flex",
       position: "relative",
@@ -237,7 +241,7 @@ const Players = ({
       gap: "7px",
       color: "white",
       fontSize: "15px",
-      marginTop: "10px",
+      marginTop: "17px",
     },
     rangestyle: {
       cursor: "pointer",
@@ -292,7 +296,7 @@ const Players = ({
       marginBottom: isTabletOrMobile ? -8 : -10,
     },
     rangetxt: {
-      fontSize: isTabletOrMobile ? 10 : 13,
+      fontSize: isTabletOrMobile ? 9.5 : 13,
       color: "#767676",
     },
     btn2: {
@@ -353,7 +357,7 @@ const Players = ({
       gap: "7px",
       color: "white",
       fontSize: "15px",
-      marginTop: "10px",
+      marginTop: "15px",
     },
     tcont1: {
       display: "flex",
@@ -386,6 +390,23 @@ const Players = ({
   const Show = () => {
     setMore(!more);
   };
+
+  // copy
+
+
+  const handleCopyLink = () => {
+
+  
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => {
+          alert("Link copied to clipboard!");
+        })
+        .catch((error) => {
+          alert("Failed to copy link to clipboard:", error);
+        });
+    
+  };
   return (
     <>
       <div className="wrapper" style={{ background: "white" }}>
@@ -415,7 +436,11 @@ const Players = ({
           <div style={styles.cont2}>
             <div
               className="button-container"
-              style={{ position: "absolute", top: "0px" }}
+              style={{
+                position: "absolute",
+                top: "0px",
+                flexDirection: isTabletOrMobile ? "column" : null,
+              }}
             >
               <button className="qwe">הושמע</button>
               <button
@@ -446,7 +471,7 @@ const Players = ({
                 style={{
                   position: "absolute",
                   width: isTabletOrMobile ? "90%" : "90%",
-                  marginBottom: isTabletOrMobile ? 0 : 17.4,
+                  marginBottom: isTabletOrMobile ? -10 : 17.4,
                 }}
               >
                 <div style={styles.txt1}>
@@ -816,9 +841,9 @@ const Players = ({
                           display: "flex",
                           justifyContent: "flex-end",
                           alignItems: "center",
-                          fontSize: 12,
+                          fontSize: 13,
                           cursor: "pointer",
-                          paddingRight: 30,
+                          paddingRight: 53,
                         }}
                       >
                         אודות הסדרה
@@ -833,10 +858,10 @@ const Players = ({
                         style={{
                           textAlign: "center",
                           color: darkMode ? "white" : "black",
-                          fontSize: 12,
+                          fontSize: 13,
                           cursor: "pointer",
                           margin: "0px 10px 0px 0px",
-                          paddingRight: 3,
+                          paddingRight: 25,
                         }}
                       >
                         תקציר הפרק
@@ -865,7 +890,7 @@ const Players = ({
                     />
                     <div
                       style={{
-                        width: window.innerWidth < 425 ? "28%" : "23%",
+                        width: window.innerWidth < 425 ? "28%" : "36%",
                         height: active == 0 ? 2.5 : 1.5,
 
                         background:
@@ -901,7 +926,7 @@ const Players = ({
 
                             textAlign: "right",
                             fontSize: 10,
-                            width: "80%",
+                            width: isTabletOrMobile ? "90%" : "80%",
 
                             height: 25,
                             overflow: "scroll",
@@ -1007,15 +1032,19 @@ const Players = ({
                 justifyContent: "center",
                 flexDirection: "column",
                 alignItems: "center",
-                background: darkMode ? "#252525" : "none",
+                // background:isTabletOrMobile && darkMode ?  "#161616" : !isTabletOrMobile && darkMode ?   : "#252525" : "none",
+                background: isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#252525" : "none",
+
                 // background: "red",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                 marginBottom: isTabletOrMobile ? 20 : 100,
               }}
             >
+
+
               <div
                 style={{
-                  marginTop: "35px",
+                  marginTop: isTabletOrMobile ? "5px" : "35px",
                   marginBottom: "15px",
                   width: "80%",
                   height: isTabletOrMobile ? "80px" : "105px",
@@ -1024,9 +1053,17 @@ const Players = ({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  background: darkMode ? "#1A1A1A" : "#F9F3F2",
+                  background:
+                    isTabletOrMobile && darkMode
+                      ? "#1A1A1A"
+                      : !isTabletOrMobile && darkMode
+                      ? "#1A1A1A"
+                      : isTabletOrMobile
+                      ? "#F9F3F2"
+                      : "#F9F3F2",
                   borderRadius: "5px",
                 }}
+                // const background = isTabletOrMobile && darkMode ? "#1A1A1A" : !isTabletOrMobile && darkMode ? "#333333" : isTabletOrMobile ? "#F9F3F2" : "#F9F3F2";
               >
                 AD
               </div>
@@ -1088,11 +1125,14 @@ const Players = ({
                             flexDirection: "row",
 
                             backgroundColor:
-                              darkMode && index == selectedEpisodeIndex
+                              darkMode && isTabletOrMobile && index == selectedEpisodeIndex
                                 ? "#1A1A1A"
-                                : !darkMode && index == selectedEpisodeIndex
+                                : !darkMode && isTabletOrMobile && index == selectedEpisodeIndex
                                 ? "#F9F3F2"
-                                : darkMode
+                                :  darkMode && isTabletOrMobile
+                                ?
+                                "#1A1A1A"
+                                :  darkMode
                                 ? "#252525"
                                 : "#FFFFFF",
                             margin: "0% 2%",
@@ -1174,11 +1214,11 @@ const Players = ({
                           </div> */}
                             <div
                               style={{
-                                fontSize: 12,
+                                fontSize: isTabletOrMobile ? 10 : 12,
                                 marginTop: "-1px",
                                 color: darkMode ? "#777777" : "#484848",
                                 display: "flex",
-                                gap:"4px",
+                                gap: "4px",
                               }}
                             >
                               <p> {item?.hebrew_date} </p>
@@ -1186,7 +1226,7 @@ const Players = ({
                               <p>
                                 {" "}
                                 {format(
-                                  new Date(item?.created_at),
+                                  new Date(item?.ep_date),
                                   "dd.MM.yyyy"
                                 )}{" "}
                               </p>
@@ -1223,18 +1263,11 @@ const Players = ({
                                     marginLeft: "4px",
                                   }}
                                   src={
-                                    
-
-                                    (isTabletOrMobile && darkMode)
+                                    isTabletOrMobile && darkMode
                                       ? sharePhoneWhite
-                                      
-                                      : 
-                                      (isTabletOrMobile && !darkMode)
-                                      ?
-
-                                      roundArrow
-                                      :
-                                      roundArrow
+                                      : isTabletOrMobile && !darkMode
+                                      ? roundArrow
+                                      : roundArrow
                                   }
                                   alt=""
                                 />
@@ -1243,12 +1276,14 @@ const Players = ({
                           </div>
                           <img
                             style={{
-                              minWidth: isTabletOrMobile ? 105 : 170,
-                              maxWidth: isTabletOrMobile ? 105 : 170,
+                              minWidth: isTabletOrMobile ? 103 : 170,
+
+                              maxWidth: isTabletOrMobile ? 103 : 170,
                               display: "flex",
                               justifyContent: "flex-end",
-                              height: isTabletOrMobile ? 85 : 120,
+                              height: isTabletOrMobile ? 73 : 120,
                               borderRadius: "8px",
+                              marginBottom: isTabletOrMobile ? "20px" : null,
                             }}
                             src={
                               "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -1356,9 +1391,19 @@ const Players = ({
         >
           <div className="modal">
             Copy Link{" "}
-            <p className="modalP">{window.location.href}</p>
+            <div className="modalInner">
+              <p className="modalP">{window.location.href}</p>
+              <img
+                className="copyImage"
+                src={copyLink}
+                alt=""
+              
+                value={window.location.href}
+                readOnly
+                onClick={handleCopyLink}
+              />
+            </div>
           </div>
-          <div></div>
         </div>
       )}
     </>

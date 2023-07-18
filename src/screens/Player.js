@@ -11,11 +11,13 @@ import pauseLogo from "../images/pauseLogo.png";
 import axios from "axios";
 import playLogo from "../images/playLogo.png";
 import roundArrow from "../../src/images/return.png";
+import copyLink from "../images/copyLink.png";
 import "./player.css";
 import { format } from "date-fns";
 import { useLocation } from "react-router-dom";
 import MediaQuery, { useMediaQuery } from "react-responsive";
 import { useState } from "react";
+import { useRef } from "react";
 import "./Episode.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -45,7 +47,7 @@ const Player = ({
     });
   }, []);
   const location = useLocation();
- 
+
   const [episodeList, setEpisodeList] = useState([]);
   const theme = useTheme();
   const data = location.state ? location.state.data : null;
@@ -149,11 +151,11 @@ const Player = ({
       alignItems: "center",
       // position: "absolute",
       // top: 100,
-      marginTop:isTabletOrMobile? "-235px": "-350px",
-      background: darkMode ? "#161616" : "#FFFFFF",
+      marginTop: isTabletOrMobile ? "-235px" : "-350px",
+      background:isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#1A1A1A" : "#FFFFFF",
     },
     cont2: {
-      width: isTabletOrMobile ? "95%" : "60%",
+      width: isTabletOrMobile ? "94%" : "60%",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -189,7 +191,6 @@ const Player = ({
       alignItems: "right",
       color: "white",
       fontSize: 9.4,
-      
     },
     txt4: {
       display: "flex",
@@ -205,7 +206,7 @@ const Player = ({
       gap: "7px",
       color: "white",
       fontSize: "15px",
-      marginTop: "10px",
+      marginTop: "17px",
     },
     rangestyle: {
       cursor: "pointer",
@@ -259,7 +260,7 @@ const Player = ({
       marginBottom: isTabletOrMobile ? -8 : -10,
     },
     rangetxt: {
-      fontSize: isTabletOrMobile ? 11 : 13,
+      fontSize: isTabletOrMobile ? 9.5 : 13,
       color: "#767676",
     },
     btn2: {
@@ -320,7 +321,7 @@ const Player = ({
       gap: "7px",
       color: "white",
       fontSize: "15px",
-      marginTop: "10px",
+      marginTop: "15px",
     },
     tcont1: {
       display: "flex",
@@ -341,7 +342,7 @@ const Player = ({
     },
   };
   useEffect(() => {
-    ////console.log("sadapay",selectedSeries)
+    console.log("sadapay", episodesss?.currentEpisode?.series.featured_image);
   }, []);
 
   // STYLES <<<<<<<<<<
@@ -349,8 +350,24 @@ const Player = ({
     setShow(!show);
   };
 
-  const Show  = () => {
+  const Show = () => {
     setMore(!more);
+  };
+
+  const linkRef = useRef();
+
+  const handleCopyLink = () => {
+
+  
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => {
+          alert("Link copied to clipboard!");
+        })
+        .catch((error) => {
+          alert("Failed to copy link to clipboard:", error);
+        });
+    
   };
   return (
     <>
@@ -381,7 +398,11 @@ const Player = ({
           <div style={styles.cont2}>
             <div
               className="button-container"
-              style={{ position: "absolute", top: "0px" }}
+              style={{
+                position: "absolute",
+                top: "0px",
+                flexDirection: isTabletOrMobile ? "column" : null,
+              }}
             >
               <button className="qwe">הושמע</button>
               <button
@@ -395,17 +416,18 @@ const Player = ({
               </button>
             </div>
             <img
-            className="imageHeight"
+              className="imageHeight"
               // style={{
               //   width: "100%",
-             
+
               //   height: isTabletOrMobile ? 250 : !isBigScreen? 396 : 550 ,
-                
+
               // }}
               src={
                 "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                // selectedSeriesData?.profile_image
-                episodesss?.currentEpisode?.image
+                episodesss?.currentEpisode?.series.featured_image
+                //selectedSeriesData?.profile_image
+                // episodesss?.currentEpisode?.featured_image
               }
               alt=""
             />
@@ -416,7 +438,7 @@ const Player = ({
                 style={{
                   position: "absolute",
                   width: isTabletOrMobile ? "90%" : "90%",
-                  marginBottom: isTabletOrMobile ? 0 : 17.4,
+                  marginBottom: isTabletOrMobile ? -10 : 17.4,
                 }}
               >
                 <div style={styles.txt1}>{selectedSeriesData?.name}</div>
@@ -537,7 +559,7 @@ const Player = ({
                       />
                       <div
                         style={{
-                          width:isBigScreen?"15%": "20%",
+                          width: isBigScreen ? "15%" : "20%",
                           height: active == 0 ? 2.5 : 1.5,
 
                           background:
@@ -781,10 +803,10 @@ const Player = ({
                           display: "flex",
                           justifyContent: "flex-end",
                           alignItems: "center",
-                          fontSize: 12,
+                          fontSize: 13,
                           cursor: "pointer",
                           color: darkMode ? "#FFFFFF" : "#161616",
-                          paddingRight: 30,
+                          paddingRight: 53,
                         }}
                       >
                         אודות הסדרה
@@ -799,10 +821,10 @@ const Player = ({
                         style={{
                           textAlign: "center",
                           color: darkMode ? "#FFFFFF" : "#161616",
-                          fontSize: 12,
+                          fontSize: 13,
                           cursor: "pointer",
                           margin: "0px 10px 0px 0px",
-                          paddingRight: 3,
+                          paddingRight: 25,
                         }}
                       >
                         תקציר הפרק
@@ -832,7 +854,7 @@ const Player = ({
                     />
                     <div
                       style={{
-                        width: "28%",
+                        width: window.innerWidth < 425 ? "28%" : "36%",
                         height: active == 0 ? 2.5 : 1.5,
                         color: darkMode ? "#FFFFFF" : "#161616",
                         background:
@@ -844,7 +866,6 @@ const Player = ({
                       }}
                     />
                   </div>
-                  
 
                   <div
                     style={{
@@ -869,7 +890,7 @@ const Player = ({
 
                             textAlign: "right",
                             fontSize: 10,
-                            width: "80%",
+                            width: isTabletOrMobile ? "90%" : "80%",
 
                             height: 25,
                             overflow: "scroll",
@@ -888,9 +909,9 @@ const Player = ({
                             color: "#9B9A9A",
                             cursor: "pointer",
                             fontSize: "11px",
-                            height:"48px",
-                            alignItems:"flex-start",
-                            marginBottom:"10px",
+                            height: "48px",
+                            alignItems: "flex-start",
+                            marginBottom: "10px",
                           }}
                           onClick={() => {
                             setMore(!more);
@@ -902,7 +923,7 @@ const Player = ({
                             style={{
                               width: "8%",
                               objectFit: "contain",
-                              marginTop:"4px"
+                              marginTop: "4px",
                             }}
                             src={showMore}
                             alt=""
@@ -944,7 +965,7 @@ const Player = ({
                             color: "#9B9A9A",
                             cursor: "pointer",
                             fontSize: "11px",
-                            marginBottom:"10px",
+                            marginBottom: "10px",
                           }}
                           onClick={() => {
                             setMore(!more);
@@ -975,7 +996,8 @@ const Player = ({
                 justifyContent: "center",
                 flexDirection: "column",
                 alignItems: "center",
-                background: darkMode ? "#252525" : "none",
+                // background: darkMode ? "#252525" : "none",
+                background: isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#252525" : "none",
                 // background: "red",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                 marginBottom: 100,
@@ -983,10 +1005,10 @@ const Player = ({
             >
               <div
                 style={{
-                  marginTop: "35px",
+                  marginTop: isTabletOrMobile ? "5px" : "35px",
                   marginBottom: "15px",
                   width: "80%",
-                  height:isTabletOrMobile?"80px": "105px",
+                  height: isTabletOrMobile ? "80px" : "105px",
                   backgroundColor: "#F9F3F2",
                   color: darkMode ? "#FFFFFF" : "#E4B1B1",
                   display: "flex",
@@ -1000,7 +1022,7 @@ const Player = ({
 
               <div
                 style={{
-                  marginTop:"5px",
+                  marginTop: "5px",
                   marginBottom: "-5px",
                   width: "96%",
                   display: "flex",
@@ -1091,17 +1113,17 @@ const Player = ({
                               }}
                             >
                               <div
-                              style={{
-                                fontSize: 12,
-                                width: "20%",
-                                display:isTabletOrMobile?"none" : "flex",
-                                justifyContent: "flex-start",
-                                alignItems: "center",
-                                color: darkMode ? "#777777" : "#484848",
-                              }}
-                            >
-                              {item?.duration}
-                            </div>
+                                style={{
+                                  fontSize: 12,
+                                  width: "20%",
+                                  display: isTabletOrMobile ? "none" : "flex",
+                                  justifyContent: "flex-start",
+                                  alignItems: "center",
+                                  color: darkMode ? "#777777" : "#484848",
+                                }}
+                              >
+                                {item?.duration}
+                              </div>
                               <div
                                 style={{
                                   width: "100%",
@@ -1142,12 +1164,12 @@ const Player = ({
                           </div> */}
                             <div
                               style={{
-                                fontSize: 12,
+                                fontSize: isTabletOrMobile ? 10 : 12,
                                 marginTop: "6px",
                                 color: darkMode ? "#777777" : "#484848",
                                 display: "flex",
                                 marginTop: "-5px",
-                                gap:"4px",
+                                gap: "4px",
                               }}
                             >
                               <p> {item?.hebrew_date} </p>
@@ -1155,7 +1177,7 @@ const Player = ({
                               <p>
                                 {" "}
                                 {format(
-                                  new Date(item?.created_at),
+                                  new Date(item?.ep_date),
                                   "dd.MM.yyyy"
                                 )}{" "}
                               </p>
@@ -1194,11 +1216,14 @@ const Player = ({
                           </div>
                           <img
                             style={{
-                              width: isTabletOrMobile ? 105 : 170,
+                              minWidth: isTabletOrMobile ? 103 : 170,
+
+                              maxWidth: isTabletOrMobile ? 103 : 170,
                               display: "flex",
                               justifyContent: "flex-end",
-                              height: isTabletOrMobile ? 85 : 120,
+                              height: isTabletOrMobile ? 73 : 120,
                               borderRadius: "8px",
+                              marginBottom: isTabletOrMobile ? "18px" : null,
                             }}
                             src={
                               "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -1214,13 +1239,13 @@ const Player = ({
                         alt=""
                       /> */}
 
-                      {/* {index == item.length?( */}
+                        {/* {index == item.length?( */}
                         <div
                           style={{
                             width: "96%",
                             marginLeft: "2%",
                             background:
-                              index == filteredEpisodes.length - 1 
+                              index == filteredEpisodes.length - 1
                                 ? "transparent"
                                 : darkMode
                                 ? "#424242"
@@ -1230,7 +1255,6 @@ const Player = ({
                           }}
                         />
                       </div>
-                     
                     </>
                   );
                 })
@@ -1293,7 +1317,21 @@ const Player = ({
               setShow(false);
             }}
           >
-            <div className="modal">share</div>
+            <div className="modal">
+              Copy Link{" "}
+              <div className="modalInner">
+              <p className="modalP">{window.location.href}</p>
+              <img
+                className="copyImage"
+                src={copyLink}
+                alt=""
+                ref={linkRef}
+                value={window.location.href}
+                readOnly
+                onClick={handleCopyLink}
+              />
+            </div>
+            </div>
           </div>
         )}
       </div>

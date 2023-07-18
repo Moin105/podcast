@@ -58,8 +58,10 @@ const handleRouteChange = (url,datas) => {
     setSelectedSeriesData,
   } = useContext(ThemeContext);
   let tag = item?.categories;
+  console.log("THE ITEM ===================",item)
+
   // console.log("iski ma ka bharosa", item)
-  tag = typeof tag === 'string' ? [tag] : tag; 
+  tag = typeof tag === 'string' ? [{name:tag}] : tag; 
   
   return (
     <>
@@ -153,7 +155,9 @@ const handleRouteChange = (url,datas) => {
                     <img
                       src={
                         "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                        item?.cover_image
+                        // item?.cover_image
+                        item?.profile_image
+
                       }
                       style={{
                         width: customWidthThird,
@@ -230,11 +234,12 @@ const handleRouteChange = (url,datas) => {
                       }}
                     >
                       {/* <p style={{margin:"0px 4px 0px 0px"}}>{item?.duration}</p> */}
-                      {item?.category?.name?.toString()} {`${"00:41:55"}`}
+                      {/* {item?.category?.name?.toString()} {`${"00:41:55"}`} */}
+                      <p style={{margin:"1px 4px 0px 0px", display:"flex", alignItems:"center"}}>{item?.duration}</p>
                       {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px 4px",display:"flex",alignItems:"center"}}>|</p>}{" "}
                       {
                           Array.isArray(tag) && tag.map((item,index) => {
-                          return <> <p style={{margin:"0px", display:"flex"}}>{item.name} {index != 0 && <div style={{marginTop:"1px", marginRight:"4px", marginLeft:"4px"}}>&bull;</div>}   </p></>
+                          return <> <p style={{margin:"0px", display:"flex"}}>{item.name}{index != 0 && <div style={{marginTop:"1px", marginRight:"4px", marginLeft:"4px"}}>&bull;</div>}   </p></>
                           //console.log(item.name); // replace this with your map function logic
                       })
                       }

@@ -212,6 +212,7 @@ const categorySort = sortByCreatedAt(filteredCategorySeries, item.carousel.sorti
                         list={episode}
                         volume={volume}
                         setIsPlaying={setIsPlaying}
+                       
                       />
                 </Draggable>
                 </>
