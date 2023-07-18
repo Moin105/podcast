@@ -591,6 +591,7 @@ const Player = ({
                           textAlign: "right",
                           fontSize: 12,
                           marginRight: "12%",
+                          
                           // marginTop:"-1%",
                           // lineHeight:"0.1",
                         }}
@@ -629,7 +630,11 @@ const Player = ({
                             // whiteSpace:"nowrap",
                           }}
                         >
-                          <p>
+                          <p
+                            style={{
+                              margin:0,
+                            }}
+                          >
                             {" "}
                             {active == 1
                               ? episodesss?.currentEpisode?.series?.about_series

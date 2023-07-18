@@ -630,10 +630,11 @@ const Players = ({
                           width: "45%",
                           textAlign: "right",
                           fontSize: 12,
-                          marginRight: "5%",
+                         
                           // marginTop:"-1%",
                           // lineHeight:"0.1",
                           marginRight: "12%",
+                         
                         }}
                       >
                         <div>{episodesss?.currentEpisode?.author_name}</div>
@@ -670,7 +671,11 @@ const Players = ({
                             // whiteSpace:"nowrap",
                           }}
                         >
-                          <p>
+                          <p
+                          style={{
+                            margin:0,
+                          }}
+                          >
                             {" "}
                             {active == 1
                               ? episodesss?.currentEpisode?.series?.about_series
