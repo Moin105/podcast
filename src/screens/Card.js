@@ -170,10 +170,21 @@ useEffect(() => {
         throw new Error(`Invalid sort order: ${sortOrder}`);
     }
 }
+function sortByCreatedAtSeries(array, sortOrder) {
+  if (sortOrder === "old_to_new") {
+      return array?.sort((a, b) => new Date(a.updated_at) - new Date(b.updated_at));
+  } else if (sortOrder === "new_to_old") {
+      return array?.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+  }else if(sortOrder === 'random'){
+      return array
+  } else {
+      throw new Error(`Invalid sort order: ${sortOrder}`);
+  }
+}
 const episodeSort = sortByCreatedAt(filteredEpisodes, item.carousel.sorting);
-const seriesSort = sortByCreatedAt(filteredSeries, item.carousel.sorting);
+const seriesSort = sortByCreatedAtSeries(filteredSeries, item.carousel.sorting);
 const tagSort = sortByCreatedAt(filteredTagEpisodes, item.carousel.sorting);
-const categorySort = sortByCreatedAt(filteredCategorySeries, item.carousel.sorting);
+const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel.sorting);
   return (
     <>
       {/* <Draggable> */}
