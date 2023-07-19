@@ -177,6 +177,7 @@ const handleRouteChange = (url,datas) => {
                       borderBottomRightRadius: "10px",
                       paddingRight: 12,
                       paddingLeft: 12,
+                      minHeight:57,
                     }}
                   >
                     <div
