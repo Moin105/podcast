@@ -144,9 +144,9 @@ useEffect(() => {
       // console.log("werwerwer",uniqueArray);
 }, [tags])
 const filteredSerie = serie?.filter(ser => ser.status=='published');
-const filteredEpisode = episode?.filter(ep => ep.status=='published');
+const filteredEpisode = episode?.filter(ep => ep.status == 'published');
 
-const filteredEpisodes = episode?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+const filteredEpisodes = filteredEpisode?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
 const filteredSeries = filteredSerie?.filter(ser => ser.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
 const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
 const filteredUnfinishedEpisodes = unfinishedSongs?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
@@ -154,13 +154,42 @@ const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser 
 useEffect(() => {
   // console.log("filteredEpisodes",filteredEpisodes,filteredSeries,tagEpisode,filteredCategorySeries)
   //console.log("miseeeeee",filteredSeries)
-}, [searchings.search.search])
-
+   console.log("aasing episode",item.carousel.sorting,filteredEpisodes)
+   console.log("aasing series",item.carousel.sorting,filteredSeries)
+   console.log("aasing filtered",item.carousel.sorting,filteredTagEpisodes)
+   console.log("aasing categories",item.carousel.sorting,filteredCategorySeries)
+  }, [])
+  function sortByCreatedAt(array, sortOrder) {
+    if (sortOrder === "old_to_new") {
+        return array?.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    } else if (sortOrder === "new_to_old") {
+        return array?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    }else if(sortOrder === 'random'){
+        return array
+    } else {
+        throw new Error(`Invalid sort order: ${sortOrder}`);
+    }
+}
+function sortByCreatedAtSeries(array, sortOrder) {
+  if (sortOrder === "old_to_new") {
+      return array?.sort((a, b) => new Date(a.updated_at) - new Date(b.updated_at));
+  } else if (sortOrder === "new_to_old") {
+      return array?.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+  }else if(sortOrder === 'random'){
+      return array
+  } else {
+      throw new Error(`Invalid sort order: ${sortOrder}`);
+  }
+}
+const episodeSort = sortByCreatedAt(filteredEpisodes, item.carousel.sorting);
+const seriesSort = sortByCreatedAtSeries(filteredSeries, item.carousel.sorting);
+const tagSort = sortByCreatedAt(filteredTagEpisodes, item.carousel.sorting);
+const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel.sorting);
   return (
     <>
       {/* <Draggable> */}
-      {filteredEpisodes && filteredEpisodes.length > 0
-          ? filteredEpisodes.map((epos, index) => {
+      {episodeSort && episodeSort.length > 0
+          ? episodeSort.map((epos, index) => {
         // //console.log("epos",epos);
               return (
                 <>
@@ -180,27 +209,9 @@ useEffect(() => {
               );
             })
           : ""}
-        {/* {episode && episode.length > 0
-          ? episode.map((epos, index) => {
-        // //console.log("epos",epos);
-              return (
-                <>
-                <ListRenderOne
-                        item={epos}
-                        index={index}
-                        audioRef={audioRef}
-                        setVolume={setVolume}
-                        list={epos?.subData}
-                        volume={volume}
-                        setIsPlaying={setIsPlaying}
-                      />
-                </>
 
-              );
-            })
-          : ""} */}
-              {filteredSeries && filteredSeries.length > 0
-          ? filteredSeries.map((serie, index) => {
+              {seriesSort && seriesSort.length > 0
+          ? seriesSort.map((serie, index) => {
               return (
                 <>
                 <Draggable>
@@ -220,8 +231,8 @@ useEffect(() => {
               );
             })
           : ""}
-             {filteredTagEpisodes && filteredTagEpisodes.length > 0
-          ? filteredTagEpisodes?.map((epos, index) => {
+             {tagSort && tagSort.length > 0
+          ? tagSort?.map((epos, index) => {
             return (
                 <>
                 <Draggable>
@@ -240,8 +251,8 @@ useEffect(() => {
               );
             })
           : ""}
-            {filteredCategorySeries && filteredCategorySeries.length > 0
-          ? filteredCategorySeries.map((series, index) => {
+            {categorySort && categorySort.length > 0
+          ? categorySort.map((series, index) => {
           return  series?.map((serie,index)=>{
                     return (
                       
@@ -264,7 +275,7 @@ useEffect(() => {
         
             })
           : ""}
-          {item.carousel.name == "Continue Listening" && filteredUnfinishedEpisodes && filteredUnfinishedEpisodes.length>0 ? 
+          {item.carousel.name == "Continue Listening" && filteredUnfinishedEpisodes && filteredUnfinishedEpisodes.length > 0 ? 
            filteredUnfinishedEpisodes.map((epos, index) => {
             // //console.log("epos",epos);
                   return (
