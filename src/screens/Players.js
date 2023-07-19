@@ -67,8 +67,8 @@ const Players = ({
         response.data.data !== null
       ) {
         setEpisodeList(response.data.data);
-        disptach(setSeriesEpisodes(response.data.data));
-        //console.log(episodeList);
+        disptach(setSeriesEpisodes(response.data.data)); //moin
+        console.log("tataabyee=====",  response.data.data);
       } else if (
         response.data.data.length == [] ||
         response.data.data == null
@@ -121,6 +121,7 @@ const Players = ({
     }
     //console.log(episodesss);
   }, [episodesss?.episodes]);
+
   const isBigScreen = useMediaQuery({ query: "(min-width: 1150)" });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1020px)" });
   const [active, setActive] = useState(0);
@@ -378,7 +379,10 @@ const Players = ({
     },
   };
   useEffect(() => {
-    ////console.log("sadapay",selectedSeries)
+    console.log("seriesEpisodes",episodesss)
+    console.log("sb series",episodesss)
+    console.log("current episode",episodesss?.episodes)
+    
   }, []);
 
   // STYLES <<<<<<<<<<
@@ -491,7 +495,7 @@ const Players = ({
                 )}
                 {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }
+                    {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }
                   </div>
                 )}
 
@@ -643,7 +647,7 @@ const Players = ({
                             color: "#9B9A9A",
                           }}
                         >
-                          {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }  
+                          {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }  
                         </div>
                       </div>
                       {more ? (
@@ -1136,6 +1140,8 @@ const Players = ({
 
                             backgroundColor:
                               darkMode && isTabletOrMobile && index == selectedEpisodeIndex
+                                ? "#1A1A1A"
+                                : darkMode && !isTabletOrMobile && index == selectedEpisodeIndex
                                 ? "#1A1A1A"
                                 : !darkMode && isTabletOrMobile && index == selectedEpisodeIndex
                                 ? "#F9F3F2"

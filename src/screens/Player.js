@@ -96,7 +96,7 @@ const Player = ({
     if (episodesss.currentEpisode == null) {
       const episodeone = episodesss.episodes[0];
       disptach(setPlayingEpisodeData(episodeone));
-      //console.log("laila", episodesss.currentEpisode);
+      console.log("sadapay", episodesss.episodes);
       // disptach(setPlayingEpisodeData(episodesss.playingEpisode))
     }
     //console.log(episodesss);
@@ -342,7 +342,7 @@ const Player = ({
     },
   };
   useEffect(() => {
-    console.log("sadapay", episodesss?.currentEpisode?.series.featured_image);
+    console.log("current episode jo open hui", episodesss?.currentEpisode);
   }, []);
 
   // STYLES <<<<<<<<<<
@@ -445,7 +445,7 @@ const Player = ({
                   marginBottom: isTabletOrMobile ? -10 : 17.4,
                 }}
               >
-                <div style={styles.txt1}>{selectedSeriesData?.name}</div>
+                <div style={styles.txt1}>{ episodesss?.currentEpisode?.series?.name}</div>
                 <div style={styles.txt2}>
                   {episodesss?.currentEpisode?.name}:
                   {episodesss?.currentEpisode?.ep_number}פרק
@@ -455,7 +455,7 @@ const Player = ({
                 )}
                 {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }  
+                    {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }  
                   </div>
                 )}
 
@@ -602,7 +602,7 @@ const Player = ({
                             color: "#9B9A9A",
                           }}
                         >
-                       {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }  
+                       {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }  
                         </div>
                       </div>
                       {more ? (
@@ -1087,6 +1087,8 @@ const Player = ({
 
                             backgroundColor:
                             darkMode && isTabletOrMobile && index == selectedEpisodeIndex
+                            ? "#1A1A1A"
+                            : darkMode && !isTabletOrMobile && index == selectedEpisodeIndex
                             ? "#1A1A1A"
                             : !darkMode && isTabletOrMobile && index == selectedEpisodeIndex
                             ? "#F9F3F2"

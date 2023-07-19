@@ -209,7 +209,7 @@ const ListRenderOne = ({
               <div
                 style={{
                   marginTop: 2,
-                  fontSize: "11px",
+                  fontSize: "12px",
                   color: darkMode ? "#fff" : "#E97B65",
                   textAlign: "right",
                   whiteSpace: "nowrap",
@@ -232,7 +232,7 @@ const ListRenderOne = ({
                   textOverflow: "ellipsis",
                 }}
               >
-               {item?.guests}
+                {item?.guests}
               </div>
 
               <div
@@ -247,30 +247,58 @@ const ListRenderOne = ({
                   textOverflow: "ellipsis",
                   flexDirection: "row-reverse",
                   justifyContent: "flex-end",
-                  alignItems:"center",
+                  alignItems: "center",
                 }}
               >
                 {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
-                <p style={{margin:"1px 4px 0px 0px", display:"flex", alignItems:"center"}}>{item?.duration}</p>
-                {Array.isArray(tag) &&tag.length>0 && <p style={{margin:"0px",display:"flex",alignItems:"center"}}>|</p>}{" "}
-                {Array.isArray(tag) && 
-                  tag.map((item,index) => {
+                <p
+                  style={{
+                    margin: "1px 4px 0px 0px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  {item?.duration}
+                </p>
+                {Array.isArray(tag) && tag.length > 0 && (
+                  <p
+                    style={{
+                      margin: "0px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    |
+                  </p>
+                )}{" "}
+                {Array.isArray(tag) &&
+                  tag.map((item, index) => {
                     return (
                       <p
                         style={{
                           margin: "0px 3px",
                           display: "flex",
                           alignItems: "center",
-                          whiteSpace: "nowrap",
-                          overflow: "hidden",
+                          // whiteSpace: "nowrap",
+                          // overflow: "hidden",
                           // width:"120px",
-                          textAlign:"left",
+                          textAlign: "left",
                           textOverflow: "ellipsis",
-                          alignItems:"center",
+                          alignItems: "center",
                         }}
                       >
                         {item.name}
-                        {index != 0 && <div style={{marginTop:"1px", marginRight:"4px", marginLeft:"1px"}}>&bull;</div>}  
+                        {index != 0 && (
+                          <div
+                            style={{
+                              marginTop: "1px",
+                              marginRight: "4px",
+                              marginLeft: "1px",
+                            }}
+                          >
+                            &bull;
+                          </div>
+                        )}
                       </p>
                     );
                     //console.log(item.name); // replace this with your map function logic

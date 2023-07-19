@@ -364,7 +364,8 @@ textDecoration:"none"
                
                   <img
                     style={{ width: window.innerWidth * 0.04 }}
-                    src={search2}
+                    src={darkMode ? search2 : search2}
+                    // src={search2}
                     alt=""
                     onClick={() => {
                       setSearchShow(!searchShow);
@@ -401,10 +402,10 @@ textDecoration:"none"
             <div className="logo2">
               
               <Link to="/">
-                {/* <img style={{width: "90px",
+                <img style={{width: "90px",
     objectFit: "contain",
-    height: "50px"}}src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt="" /> */}
-    <FallbackImagea src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt=""/>
+    height: "50px"}}src={logo2} alt="" />
+    {/* <FallbackImagea src={`https://podcasts.cucurico.co.il/podcast/public/images/${logoss}`} alt=""/> */}
               </Link>
            
             </div>
