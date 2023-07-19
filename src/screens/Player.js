@@ -455,7 +455,7 @@ const Player = ({
                 )}
                 {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }  
+                    {/* {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }   */}
                   </div>
                 )}
 
@@ -602,7 +602,7 @@ const Player = ({
                             color: "#9B9A9A",
                           }}
                         >
-                       {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }  
+                       {/* {episodesss?.currentEpisode?.tags} | {filteredEpisodes.length }   */}
                         </div>
                       </div>
                       {more ? (
