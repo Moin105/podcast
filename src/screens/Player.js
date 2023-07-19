@@ -81,7 +81,9 @@ const Player = ({
     }
   };
   useEffect(() => {
-    //console.log("laila", data);
+    console.log("koi data nhi====",  episodesss);
+    
+    console.log("koi data nhi",  filteredEpisodes);
     postData(data);
   }, []);
   const searchings = useSelector((state) => state);

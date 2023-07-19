@@ -61,6 +61,12 @@ const Players = ({
         "https://podcasts.cucurico.co.il/podcast/public/api/seriesEpisode",
         data
       );
+      console.log("tata====",typeof response.data.data);
+      if(typeof response.data.data == 'object'){
+        console.log("helos")
+        setEpisodeList([response.data.data]);
+        disptach(setSeriesEpisodes([response.data.data])); //
+      }
       if (
         response.data.data.length > 0 &&
         response.data.data !== [] &&
@@ -70,9 +76,11 @@ const Players = ({
         disptach(setSeriesEpisodes(response.data.data)); //moin
         console.log("tataabyee=====",  response.data.data);
       } else if (
-        response.data.data.length == [] ||
-        response.data.data == null
+       
+        response.data.data !== [] ||
+        response.data.data !== null
       ) {
+       
       } else {
       }
     } catch (error) {
@@ -152,9 +160,18 @@ const Players = ({
   const height = window.innerHeight;
 
   const searchings = useSelector((state) => state);
-  const filteredEpisodes = episodesss?.episodes?.filter((ep) =>
+  const filteredEpisodes = ()=>{
+    if(episodesss.episodes.length > 0){
+   return    episodesss?.episodes?.filter((ep) =>
     ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase())
   );
+    }else{
+      return episodesss.episodes
+    }
+  
+  }
+  
+  
   useEffect(() => {
     console.log("fahad ", filteredEpisodes);
   }, [searchings.search.search]);
@@ -382,6 +399,10 @@ const Players = ({
     console.log("seriesEpisodes",episodesss)
     console.log("sb series",episodesss)
     console.log("current episode",episodesss?.episodes)
+
+    console.log("koi data nhi====",  episodesss);
+    
+    console.log("koi data nhi",  filteredEpisodes);
     
   }, []);
 
