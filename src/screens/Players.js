@@ -61,9 +61,9 @@ const Players = ({
         "https://podcasts.cucurico.co.il/podcast/public/api/seriesEpisode",
         data
       );
-      console.log("tata====",typeof response.data.data);
-      if(typeof response.data.data == 'object'){
-        console.log("helos")
+      console.log("tata====", typeof response.data.data);
+      if (typeof response.data.data == "object") {
+        console.log("helos");
         setEpisodeList([response.data.data]);
         disptach(setSeriesEpisodes([response.data.data])); //
       }
@@ -74,13 +74,8 @@ const Players = ({
       ) {
         setEpisodeList(response.data.data);
         disptach(setSeriesEpisodes(response.data.data)); //moin
-        console.log("tataabyee=====",  response.data.data);
-      } else if (
-       
-        response.data.data !== [] ||
-        response.data.data !== null
-      ) {
-       
+        console.log("tataabyee=====", response.data.data);
+      } else if (response.data.data !== [] || response.data.data !== null) {
       } else {
       }
     } catch (error) {
@@ -160,18 +155,16 @@ const Players = ({
   const height = window.innerHeight;
 
   const searchings = useSelector((state) => state);
-  const filteredEpisodes = ()=>{
-    if(episodesss.episodes.length > 0){
-   return    episodesss?.episodes?.filter((ep) =>
-    ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase())
-  );
-    }else{
-      return episodesss.episodes
+  const filteredEpisodes = () => {
+    if (episodesss.episodes.length > 0) {
+      return episodesss?.episodes?.filter((ep) =>
+        ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase())
+      );
+    } else {
+      return episodesss.episodes;
     }
-  
-  }
-  
-  
+  };
+
   useEffect(() => {
     console.log("fahad ", filteredEpisodes);
   }, [searchings.search.search]);
@@ -199,9 +192,13 @@ const Players = ({
       // position: "absolute",
       // top: 130,
 
-      background:isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#1A1A1A" : "#FFFFFF",
+      background:
+        isTabletOrMobile && darkMode
+          ? "#161616"
+          : !isTabletOrMobile && darkMode
+          ? "#1A1A1A"
+          : "#FFFFFF",
     },
-
 
     cont2: {
       width: isTabletOrMobile ? "94%" : "58%",
@@ -396,14 +393,13 @@ const Players = ({
     },
   };
   useEffect(() => {
-    console.log("seriesEpisodes",episodesss)
-    console.log("sb series",episodesss)
-    console.log("current episode",episodesss?.episodes)
+    console.log("seriesEpisodes", episodesss);
+    console.log("sb series", episodesss);
+    console.log("current episode", episodesss?.episodes);
 
-    console.log("koi data nhi====",  episodesss);
-    
-    console.log("koi data nhi",  filteredEpisodes);
-    
+    console.log("koi data nhi====", episodesss);
+
+    console.log("koi data nhi", filteredEpisodes);
   }, []);
 
   // STYLES <<<<<<<<<<
@@ -414,7 +410,6 @@ const Players = ({
     }
     setShow(!show);
   };
-  
 
   const Show = () => {
     setMore(!more);
@@ -422,19 +417,15 @@ const Players = ({
 
   // copy
 
-
   const handleCopyLink = () => {
-
-  
-      navigator.clipboard
-        .writeText(window.location.href)
-        .then(() => {
-          alert("Link copied to clipboard!");
-        })
-        .catch((error) => {
-          alert("Failed to copy link to clipboard:", error);
-        });
-    
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        alert("Link copied to clipboard!");
+      })
+      .catch((error) => {
+        alert("Failed to copy link to clipboard:", error);
+      });
   };
   return (
     <>
@@ -474,7 +465,7 @@ const Players = ({
               <button className="qwe">הושמע</button>
               <button
                 className="share"
-                alt="Share" 
+                alt="Share"
                 onClick={() => {
                   share();
                 }}
@@ -512,11 +503,45 @@ const Players = ({
                   {episodesss?.currentEpisode?.ep_number}פרק
                 </div>
                 {isTabletOrMobile && (
-                  <div style={styles.txt3}> {episodesss?.currentEpisode?.author_name}</div>
+                  <div style={styles.txt3}>
+                    {" "}
+                    {episodesss?.currentEpisode?.author_name}
+                  </div>
                 )}
                 {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }
+                    {episodesss?.currentEpisode?.tags.map((item, index) => {
+                      return (
+                        <div
+                          style={{
+                            display: "flex",
+                          }}
+                        >
+                          {index !==
+                            0 && (
+                            <div
+                              style={{
+                                marginTop: "1px",
+                                marginRight: "4px",
+                                marginLeft: "4px",
+                              }}
+                            >
+                              &bull;
+                            </div>
+                          )}
+                          {item.name}
+                        </div>
+                      );
+                    })}
+
+                    <div
+                      style={{
+                        marginLeft: 2,
+                      }}
+                    >
+                      {" "}
+                      | {filteredEpisodes().length}
+                    </div>
                   </div>
                 )}
 
@@ -655,21 +680,58 @@ const Players = ({
                           width: "45%",
                           textAlign: "right",
                           fontSize: 12,
-                         
+
                           // marginTop:"-1%",
                           // lineHeight:"0.1",
                           marginRight: "12%",
-                         
                         }}
                       >
                         <div>{episodesss?.currentEpisode?.author_name}</div>
+                     
                         <div
                           style={{
                             color: "#9B9A9A",
+                            display: "flex",
+                            justifyContent:"flex-end"
                           }}
                         >
-                          {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }  
+                          {episodesss?.currentEpisode?.tags.map((item, index) => {
+                      return (
+                        <div
+                          style={{
+                            display: "flex",
+                           
+                          }}
+                        >
+                          {index !==0 && (
+                            <div
+                              style={{
+                                marginTop: "1.5px",
+                                marginRight: "4px",
+                                marginLeft: "4px",
+                              }}
+                            >
+                              &bull;
+                            </div>
+                          )}
+
+                          {item.name}
+                          
                         </div>
+                        
+                      );
+                    })}
+
+                    <div
+                      style={{
+                        marginLeft: 3,
+                      }}
+                    >
+                      {" "}
+                      | {filteredEpisodes().length}
+                    </div>
+                        </div>
+
                       </div>
                       {more ? (
                         <div
@@ -697,9 +759,9 @@ const Players = ({
                           }}
                         >
                           <p
-                          style={{
-                            margin:0,
-                          }}
+                            style={{
+                              margin: 0,
+                            }}
                           >
                             {" "}
                             {active == 1
@@ -1068,15 +1130,18 @@ const Players = ({
                 flexDirection: "column",
                 alignItems: "center",
                 // background:isTabletOrMobile && darkMode ?  "#161616" : !isTabletOrMobile && darkMode ?   : "#252525" : "none",
-                background: isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#252525" : "none",
+                background:
+                  isTabletOrMobile && darkMode
+                    ? "#161616"
+                    : !isTabletOrMobile && darkMode
+                    ? "#252525"
+                    : "none",
 
                 // background: "red",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                 marginBottom: isTabletOrMobile ? 20 : 100,
               }}
             >
-
-
               <div
                 style={{
                   marginTop: isTabletOrMobile ? "5px" : "35px",
@@ -1115,8 +1180,8 @@ const Players = ({
               >
                 <div>כל הפרקים</div>
               </div>
-              {filteredEpisodes.length > 0 ? (
-                filteredEpisodes?.map((item, index) => {
+              {filteredEpisodes().length > 0 ? (
+                filteredEpisodes()?.map((item, index) => {
                   return (
                     <>
                       <div
@@ -1160,18 +1225,25 @@ const Players = ({
                             flexDirection: "row",
 
                             backgroundColor:
-                              darkMode && isTabletOrMobile && index == selectedEpisodeIndex
+                              darkMode &&
+                              isTabletOrMobile &&
+                              index == selectedEpisodeIndex
                                 ? "#1A1A1A"
-                                : darkMode && !isTabletOrMobile && index == selectedEpisodeIndex
+                                : darkMode &&
+                                  !isTabletOrMobile &&
+                                  index == selectedEpisodeIndex
                                 ? "#1A1A1A"
-                                : !darkMode && isTabletOrMobile && index == selectedEpisodeIndex
+                                : !darkMode &&
+                                  isTabletOrMobile &&
+                                  index == selectedEpisodeIndex
                                 ? "#F9F3F2"
-                                : !darkMode && !isTabletOrMobile && index == selectedEpisodeIndex
+                                : !darkMode &&
+                                  !isTabletOrMobile &&
+                                  index == selectedEpisodeIndex
                                 ? "#F9F3F2"
-                                :  darkMode && isTabletOrMobile
-                                ?
-                                "#1A1A1A"
-                                :  darkMode
+                                : darkMode && isTabletOrMobile
+                                ? "#1A1A1A"
+                                : darkMode
                                 ? "#252525"
                                 : "#FFFFFF",
                             margin: "0% 2%",
@@ -1288,7 +1360,6 @@ const Players = ({
                               onClick={() => {
                                 setShow(true);
                               }}
-                              
                             >
                               שיתוף
                               <div>
@@ -1437,7 +1508,6 @@ const Players = ({
                 className="copyImage"
                 src={copyLink}
                 alt=""
-              
                 value={window.location.href}
                 readOnly
                 onClick={handleCopyLink}

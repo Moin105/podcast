@@ -92,6 +92,8 @@ const Player = ({
     ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase())
   );
 
+
+  
   useEffect(() => {
     //console.log("laila", episodesss);
     //console.log("laila", episodesss.currentEpisode);
@@ -455,9 +457,40 @@ const Player = ({
                 {isTabletOrMobile && (
                   <div style={styles.txt3}>{episodesss?.currentEpisode?.author_name}</div>
                 )}
-                {isTabletOrMobile && (
+                  {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }  
+                    {episodesss?.currentEpisode?.tags.map((item, index) => {
+                      return (
+                        <div
+                          style={{
+                            display: "flex",
+                          }}
+                        >
+                          {index !==
+                            0 && (
+                            <div
+                              style={{
+                                marginTop: "1px",
+                                marginRight: "4px",
+                                marginLeft: "4px",
+                              }}
+                            >
+                              &bull;
+                            </div>
+                          )}
+                          {item.name}
+                        </div>
+                      );
+                    })}
+
+                    <div
+                      style={{
+                        marginLeft: 2,
+                      }}
+                    >
+                      {" "}
+                      | {filteredEpisodes.length}
+                    </div>
                   </div>
                 )}
 
@@ -602,10 +635,47 @@ const Player = ({
                         <div
                           style={{
                             color: "#9B9A9A",
+                            display: "flex",
+                            justifyContent:"flex-end"
                           }}
                         >
-                       {episodesss?.currentEpisode?.tags.map((item)=>{return item.name})} | {filteredEpisodes.length }  
+                          {episodesss?.currentEpisode?.tags.map((item, index) => {
+                      return (
+                        <div
+                          style={{
+                            display: "flex",
+                           
+                          }}
+                        >
+                          {index !==0 && (
+                            <div
+                              style={{
+                                marginTop: "1.5px",
+                                marginRight: "4px",
+                                marginLeft: "4px",
+                              }}
+                            >
+                              &bull;
+                            </div>
+                          )}
+
+                          {item.name}
+                          
                         </div>
+                        
+                      );
+                    })}
+
+                    <div
+                      style={{
+                        marginLeft: 3,
+                      }}
+                    >
+                      {" "}
+                      | {filteredEpisodes.length}
+                    </div>
+                        </div>
+
                       </div>
                       {more ? (
                         <div
