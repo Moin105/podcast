@@ -20,7 +20,10 @@ align-items: center;
     color: #F7F6F9;
     align-items: center;
 }
-
+.search{
+    display: flex;
+    justify-content: center;
+}
 .search img{
     width: 40%;
 }
@@ -78,6 +81,47 @@ align-items: center;
     width: 26px;
     height: 17px;
 }
+
+@media only screen and (min-width: 1619px) {
+    .footer-main {
+        padding: 17.5px 0px;
+    }
+    .logo2 img{
+        height: 60px !important;
+        width: 190px !important;
+    }
+    .menu img{
+        width: 36px !important;
+        height: 24px !important;
+    }
+    .input-main{
+        height: 32px;
+        width: 258px;
+        font-size: 18px !important;
+    }
+    .input-main input{
+        font-size: 18px !important;
+    }
+    .search img {
+        width: 17.49px;
+        height: 17.49px;
+    }
+    .logo{
+        width: 163px;
+        border: 1px solid #DDDDDD;
+        border-radius: 45px;
+        height: 32px;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo img{
+        height: 26px !important;
+        width: 88px !important;
+    }
+    }
 
 @media only screen and (max-width: 430px) {
     .footer3{

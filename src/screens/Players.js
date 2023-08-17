@@ -454,7 +454,53 @@ const Players = ({
         </div>
         <div style={styles.cont1}>
           <div style={styles.cont2}>
-            <div
+          <div className="imageHeightDiv"
+                            style={{
+                              // height: isTabletOrMobile ?  452 :  681 ,
+                            }}
+            >
+              <div className="ImageHeightGradient">
+              <div
+              className="button-container"
+              style={{
+                position: "absolute",
+                top: "0px",
+                flexDirection: isTabletOrMobile ? "column" : null,
+               
+              }}
+            >
+              <button
+              style={{ fontSize: 15,
+                padding:isTabletOrMobile? "8.5px 19.45px" : "7px 14.45px"
+              }}
+              className="qwe">הושמע</button>
+              <button
+                        style={{ fontSize: 17,}}
+                className="share"
+                alt="Share"
+                onClick={() => {
+                  share();
+                }}
+              >
+                שיתוף <img src={kinina} />
+              </button>
+            </div>
+              </div>
+              <img
+                className="imageHeight"
+                style={{
+                  height: isTabletOrMobile ? 250 :  681 ,
+                }}
+                src={
+                  "https://podcasts.cucurico.co.il/podcast/public/images/" +
+                  // selectedSeriesData?.profile_image
+                  episodesss?.currentEpisode?.series?.featured_image
+                }
+                alt=""
+              />
+
+            </div>
+            {/* <div
               className="button-container"
               style={{
                 position: "absolute",
@@ -484,7 +530,7 @@ const Players = ({
                 episodesss?.currentEpisode?.series?.featured_image
               }
               alt=""
-            />
+            /> */}
 
             <div className="absoluteImage" style={styles.cont3}>
               <div
@@ -499,13 +545,13 @@ const Players = ({
                   {episodesss?.currentEpisode?.series?.name}
                 </div>
                 <div style={styles.txt2}>
-                  {episodesss?.currentEpisode?.name}:
-                  {episodesss?.currentEpisode?.ep_number}פרק
+                  {episodesss?.currentEpisode?.name}{" "}:
+                  {episodesss?.currentEpisode?.ep_number}{" "}פרק
                 </div>
                 {isTabletOrMobile && (
                   <div style={styles.txt3}>
                     {" "}
-                    {episodesss?.currentEpisode?.author_name}
+                    Hosted by {episodesss?.currentEpisode?.author_name}
                   </div>
                 )}
                 {isTabletOrMobile && (
@@ -686,7 +732,7 @@ const Players = ({
                           marginRight: "12%",
                         }}
                       >
-                        <div>{episodesss?.currentEpisode?.author_name}</div>
+                        <div>Hosted by: {episodesss?.currentEpisode?.author_name}</div>
                      
                         <div
                           style={{
@@ -975,7 +1021,7 @@ const Players = ({
                     <div
                       style={{
                         width: "75%",
-                        height: active == 1 ? 2.5 : 1.5,
+                        height: active == 1 ? 2 : 1,
 
                         background:
                           active == 1 && darkMode
@@ -987,8 +1033,8 @@ const Players = ({
                     />
                     <div
                       style={{
-                        width: window.innerWidth < 425 ? "28%" : "36%",
-                        height: active == 0 ? 2.5 : 1.5,
+                        width: window.innerWidth < 500 ? "43%" : "140px",
+                        height: active == 0 ? 2 : 1,
 
                         background:
                           active == 0 && darkMode

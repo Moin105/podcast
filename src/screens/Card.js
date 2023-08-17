@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import { useTheme } from "../components/ThemeContext";
 function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
   const { categories, episodes, series, tags,id } = item;
-
     // console.log("wfewewwefewfebitches",item);
   ////console.log("datta",item.categories);
   const idArray = categories ? categories.map(category => ({ id: category.id })) : [];
@@ -25,16 +24,13 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
   const [tag, setTag] = useState(null);
   const [tagEpisode,setTagEpisode]=useState(null);
   const [categorySeries,setCategorySeries]=useState(null);
-
   const navigate = useNavigate();
-
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
   };
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
-
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const width = window.innerWidth;
   const height = window.innerHeight;
@@ -63,8 +59,6 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
     setCategory(categories);
     setSerie(series);
     setTag(tags);
-   
-
     if (episode && episode.length > 0) {
       ////console.log("THE LIST ========epsiode==", episode);
     }
@@ -77,27 +71,20 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
     }
   }, []);
   const postData = async () => {
-      // Define the data body
-      
       let data = {
           tags: item.carousel.tags,
           carousel_id: item.id
       };
-  
       try {
         if(item.carousel.tags == "" ){
-
         }else{
           const response = await axios.post('https://podcasts.cucurico.co.il/podcast/public/api/episodetag', data);
           if( response.data.data !== null){
             // console.log("response.data.data",response.data.data)
               setTagEpisode([ response.data.data]);
-
           } else if(response.data.data.length == [] || response.data.data == null){
-   
-          } else { 
+          } else {
           }}
-  
       } catch (error) {
           // Handle the error
           console.error('Error posting data', error);
@@ -108,7 +95,6 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
     let data = {
         categories: id,
     };
-
     try {
         // Make the POST request
         const response = await axios.post('https://podcasts.cucurico.co.il/podcast/public/api/categoryseries', data);
@@ -120,45 +106,29 @@ function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
 }
 const searchings = useSelector((state) => state);
 const unfinishedSongs = useSelector((state) => state.seriesEpisodes.playedSongs);
-// let uniqueArray = [];
-// if (unfinishedSongs && unfinishedSongs.length) {
-//    uniqueArray = unfinishedSongs.filter((obj, index, self) =>
-//     index === self.findIndex((t) => (
-//       t.id === obj.id && t.name === obj.name
-//     ))
-//   );
-
-//   console.log("werwerwer",uniqueArray); // Output: [{ id: 1, name: 'Object 1' }, { id: 2, name: 'Object 2' }]
-// }
-// useEffect(() => {
-//   console.log("werwerwer",uniqueArray)
-// }, [unfinishedSongs])
-
 const fetchResponses = async () => {
     const responses = await Promise.all(idArray.map(id => postSeries(id.id)));
-    setCategorySeries(responses);
+  const flattenedResponses = responses.flat();
+  // console.log("flattenedResponses",flattenedResponses)
+    setCategorySeries(flattenedResponses);
 }
 useEffect(() => {
-      postData();   
+      postData();
       fetchResponses();
-      // console.log("werwerwer",uniqueArray);
 }, [tags])
 const filteredSerie = serie?.filter(ser => ser.status=='published');
 const filteredEpisode = episode?.filter(ep => ep.status == 'published');
-
 const filteredEpisodes = filteredEpisode?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
 const filteredSeries = filteredSerie?.filter(ser => ser.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
 const filteredTagEpisodes = tagEpisode?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
 const filteredUnfinishedEpisodes = unfinishedSongs?.filter(ep => ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
-const filteredCategorySeries = categorySeries?.map(series => series?.filter(ser => ser.name?.toLowerCase().includes(searchings.search.search.toLowerCase())));
-useEffect(() => {
-  // console.log("filteredEpisodes",filteredEpisodes,filteredSeries,tagEpisode,filteredCategorySeries)
-  //console.log("miseeeeee",filteredSeries)
-   console.log("aasing episode",item.carousel.sorting,filteredEpisodes)
-   console.log("aasing series",item.carousel.sorting,filteredSeries)
-   console.log("aasing filtered",item.carousel.sorting,filteredTagEpisodes)
-   console.log("aasing categories",item.carousel.sorting,filteredCategorySeries)
-  }, [])
+const filteredCategorySeries = categorySeries?.filter(ser => ser.series.name?.toLowerCase().includes(searchings.search.search.toLowerCase()));
+// useEffect(() => {
+//   console.log("aasing episode",item.carousel.sorting,filteredEpisodes)
+//    console.log("aasing series",item.carousel.sorting,filteredSeries)
+//    console.log("aasing filtered",item.carousel.sorting,filteredTagEpisodes)
+//    console.log("aasing categories",categorySeries)
+//   }, [])
   function sortByCreatedAt(array, sortOrder) {
     if (sortOrder === "old_to_new") {
         return array?.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
@@ -187,7 +157,6 @@ const tagSort = sortByCreatedAt(filteredTagEpisodes, item.carousel.sorting);
 const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel.sorting);
   return (
     <>
-      {/* <Draggable> */}
       {episodeSort && episodeSort.length > 0
           ? episodeSort.map((epos, index) => {
         // //console.log("epos",epos);
@@ -205,11 +174,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                       />
                  </Draggable>
                 </>
-
               );
             })
           : ""}
-
               {seriesSort && seriesSort.length > 0
           ? seriesSort.map((serie, index) => {
               return (
@@ -223,11 +190,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                         list={episode}
                         volume={volume}
                         setIsPlaying={setIsPlaying}
-                       
                       />
                 </Draggable>
                 </>
-              
               );
             })
           : ""}
@@ -247,19 +212,16 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                       />
                 </Draggable>
                 </>
-           
               );
             })
           : ""}
             {categorySort && categorySort.length > 0
           ? categorySort.map((series, index) => {
-          return  series?.map((serie,index)=>{
                     return (
-                      
                         <>
                         <Draggable>
                               <ListRenderTwo
-                     item={serie}
+                     item={series.series}
                      index={index}
                         audioRef={audioRef}
                         setVolume={setVolume}
@@ -269,15 +231,11 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                       />
                         </Draggable>
                         </>
-    
               );
             })
-        
-            })
           : ""}
-          {item.carousel.name == "Continue Listening" && filteredUnfinishedEpisodes && filteredUnfinishedEpisodes.length > 0 ? 
+          {item.carousel.name == "Continue Listening" && filteredUnfinishedEpisodes && filteredUnfinishedEpisodes.length > 0 ?
            filteredUnfinishedEpisodes.map((epos, index) => {
-            // //console.log("epos",epos);
                   return (
                     <>
                      <Draggable>
@@ -292,15 +250,10 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                           />
                      </Draggable>
                     </>
-    
                   );
                 }):<p style={{margin:"0 auto",padding:"50px 0px"}}>  {item.carousel.name == "Continue Listening"&&"No Songs Played Yet"} </p>
-
           }
-      {/* </Draggable> */}
-   
     </>
   );
 }
-
 export default Card;

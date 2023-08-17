@@ -109,40 +109,42 @@ const ListRenderTwo = ({
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    cursor:"pointer",
                   }}
+                  onClick={() => {
+                    //console.log(item.id)
+                    dispatch(setPlayingEpisodeData(null));
+                    dispatch(setSeriesEpisodes([]));
+                    handleRouteChange(`/player/${item.id}`, item.id);
+                    // setCurrentSong({
+                    //   song: item?.episodes[0]?.url,
+                    //   index: 0,
+                    // });
+
+                    // if (index == selectedEpisodeIndex) {
+                    //   setSelectedSeries(item?.episodes);
+                    //   setSelectedEpisodeIndex(0);
+                    //   const { episodes, ...selectedSeriesData } = item;
+                    //   setSelectedSeriesData(selectedSeriesData);
+                    // } else {
+                    //   audioRef.current.pause();
+                    //   audioRef.current.currentTime = 0;
+                    //   setSelectedSeries(item?.episodes);
+                    //   setSelectedEpisodeIndex(0);
+                    //   const { episodes, ...selectedSeriesData } = item;
+                    //   setSelectedSeriesData(selectedSeriesData);
+                    // }
+
+                    //   setTimeout(() => {
+                    //     navigate("/player");
+                    //     // setShowPlayer(true);
+                    //   }, 500);
+                  }}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
                 >
                   <div
-                    onClick={() => {
-                      //console.log(item.id)
-                      dispatch(setPlayingEpisodeData(null));
-                      dispatch(setSeriesEpisodes([]));
-                      handleRouteChange(`/player/${item.id}`, item.id);
-                      // setCurrentSong({
-                      //   song: item?.episodes[0]?.url,
-                      //   index: 0,
-                      // });
 
-                      // if (index == selectedEpisodeIndex) {
-                      //   setSelectedSeries(item?.episodes);
-                      //   setSelectedEpisodeIndex(0);
-                      //   const { episodes, ...selectedSeriesData } = item;
-                      //   setSelectedSeriesData(selectedSeriesData);
-                      // } else {
-                      //   audioRef.current.pause();
-                      //   audioRef.current.currentTime = 0;
-                      //   setSelectedSeries(item?.episodes);
-                      //   setSelectedEpisodeIndex(0);
-                      //   const { episodes, ...selectedSeriesData } = item;
-                      //   setSelectedSeriesData(selectedSeriesData);
-                      // }
-
-                      //   setTimeout(() => {
-                      //     navigate("/player");
-                      //     // setShowPlayer(true);
-                      //   }, 500);
-                    }}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
                     style={{
                       width: 60,
                       height: 60,
