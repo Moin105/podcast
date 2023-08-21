@@ -454,42 +454,50 @@ const Players = ({
         </div>
         <div style={styles.cont1}>
           <div style={styles.cont2}>
-          <div className="imageHeightDiv"
-                            style={{
-                              // height: isTabletOrMobile ?  452 :  681 ,
-                            }}
+            <div
+              className="imageHeightDiv"
+              style={
+                {
+                  // height: isTabletOrMobile ?  452 :  681 ,
+                }
+              }
             >
               <div className="ImageHeightGradient">
-              <div
-              className="button-container"
-              style={{
-                position: "absolute",
-                top: "0px",
-                flexDirection: isTabletOrMobile ? "column" : null,
-               
-              }}
-            >
-              <button
-              style={{ fontSize: 15,
-                padding:isTabletOrMobile? "8.5px 19.45px" : "7px 14.45px"
-              }}
-              className="qwe">הושמע</button>
-              <button
-                        style={{ fontSize: 17,}}
-                className="share"
-                alt="Share"
-                onClick={() => {
-                  share();
-                }}
-              >
-                שיתוף <img src={kinina} />
-              </button>
-            </div>
+                <div
+                  className="button-container"
+                  style={{
+                    position: "absolute",
+                    top: "0px",
+                    flexDirection: isTabletOrMobile ? "column" : null,
+                  }}
+                >
+                  <button
+                    style={{
+                      fontSize: 15,
+                      padding: isTabletOrMobile
+                        ? "8.5px 19.45px"
+                        : "7px 14.45px",
+                    }}
+                    className="qwe"
+                  >
+                    הושמע
+                  </button>
+                  <button
+                    style={{ fontSize: 17 }}
+                    className="share"
+                    alt="Share"
+                    onClick={() => {
+                      share();
+                    }}
+                  >
+                    שיתוף <img src={kinina} />
+                  </button>
+                </div>
               </div>
               <img
                 className="imageHeight"
                 style={{
-                  height: isTabletOrMobile ? 250 :  681 ,
+                  height: isTabletOrMobile ? 250 : 681,
                 }}
                 src={
                   "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -498,39 +506,7 @@ const Players = ({
                 }
                 alt=""
               />
-
             </div>
-            {/* <div
-              className="button-container"
-              style={{
-                position: "absolute",
-                top: "0px",
-                flexDirection: isTabletOrMobile ? "column" : null,
-              }}
-            >
-              <button className="qwe">הושמע</button>
-              <button
-                className="share"
-                alt="Share"
-                onClick={() => {
-                  share();
-                }}
-              >
-                שיתוף <img src={kinina} />
-              </button>
-            </div>
-            <img
-              className="imageHeight"
-              // height: isTabletOrMobile ? 250 : 500
-              // style={{ width: "100%",
-              //  objectFit:"contain",height: isTabletOrMobile ? 250 : 550,background:"#313131"  }}
-              src={
-                "https://podcasts.cucurico.co.il/podcast/public/images/" +
-                // selectedSeriesData?.profile_image
-                episodesss?.currentEpisode?.series?.featured_image
-              }
-              alt=""
-            /> */}
 
             <div className="absoluteImage" style={styles.cont3}>
               <div
@@ -545,8 +521,8 @@ const Players = ({
                   {episodesss?.currentEpisode?.series?.name}
                 </div>
                 <div style={styles.txt2}>
-                  {episodesss?.currentEpisode?.name}{" "}:
-                  {episodesss?.currentEpisode?.ep_number}{" "}פרק
+                  {episodesss?.currentEpisode?.name} :
+                  {episodesss?.currentEpisode?.ep_number} פרק
                 </div>
                 {isTabletOrMobile && (
                   <div style={styles.txt3}>
@@ -556,15 +532,14 @@ const Players = ({
                 )}
                 {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    {episodesss?.currentEpisode?.tags.map((item, index) => {
+                    {episodesss?.currentEpisode?.tags?.map((item, index) => {
                       return (
                         <div
                           style={{
                             display: "flex",
                           }}
                         >
-                          {index !==
-                            0 && (
+                          {index !== 0 && (
                             <div
                               style={{
                                 marginTop: "1px",
@@ -732,52 +707,53 @@ const Players = ({
                           marginRight: "12%",
                         }}
                       >
-                        <div>Hosted by: {episodesss?.currentEpisode?.author_name}</div>
-                     
+                        <div>
+                          Hosted by: {episodesss?.currentEpisode?.author_name}
+                        </div>
+
                         <div
                           style={{
                             color: "#9B9A9A",
                             display: "flex",
-                            justifyContent:"flex-end"
+                            justifyContent: "flex-end",
                           }}
                         >
-                          {episodesss?.currentEpisode?.tags.map((item, index) => {
-                      return (
-                        <div
-                          style={{
-                            display: "flex",
-                           
-                          }}
-                        >
-                          {index !==0 && (
-                            <div
-                              style={{
-                                marginTop: "1.5px",
-                                marginRight: "4px",
-                                marginLeft: "4px",
-                              }}
-                            >
-                              &bull;
-                            </div>
-                          )}
+                          {console.log(episodesss)}
+                          {/* {episodesss?.currentEpisode?.tags?.map(
+                            (item, index) => {
+                              return (
+                                <div
+                                  style={{
+                                    display: "flex",
+                                  }}
+                                >
+                                  {index !== 0 && (
+                                    <div
+                                      style={{
+                                        marginTop: "1.5px",
+                                        marginRight: "4px",
+                                        marginLeft: "4px",
+                                      }}
+                                    >
+                                      &bull;
+                                    </div>
+                                  )}
 
-                          {item.name}
-                          
+                                  {item.name}
+                                </div>
+                              );
+                            }
+                          )} */}
+
+                          <div
+                            style={{
+                              marginLeft: 3,
+                            }}
+                          >
+                            {" "}
+                            | {filteredEpisodes().length}
+                          </div>
                         </div>
-                        
-                      );
-                    })}
-
-                    <div
-                      style={{
-                        marginLeft: 3,
-                      }}
-                    >
-                      {" "}
-                      | {filteredEpisodes().length}
-                    </div>
-                        </div>
-
                       </div>
                       {more ? (
                         <div

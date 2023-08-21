@@ -81,9 +81,9 @@ const Player = ({
     }
   };
   useEffect(() => {
-    console.log("koi data nhi====",  episodesss);
-    
-    console.log("koi data nhi",  filteredEpisodes);
+    console.log("koi data nhi====", episodesss);
+
+    console.log("koi data nhi", filteredEpisodes);
     postData(data);
   }, []);
   const searchings = useSelector((state) => state);
@@ -92,8 +92,6 @@ const Player = ({
     ep.name?.toLowerCase().includes(searchings.search.search.toLowerCase())
   );
 
-
-  
   useEffect(() => {
     //console.log("laila", episodesss);
     //console.log("laila", episodesss.currentEpisode);
@@ -156,7 +154,12 @@ const Player = ({
       // position: "absolute",
       // top: 100,
       marginTop: isTabletOrMobile ? "-235px" : "-350px",
-      background:isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#1A1A1A" : "#FFFFFF",
+      background:
+        isTabletOrMobile && darkMode
+          ? "#161616"
+          : !isTabletOrMobile && darkMode
+          ? "#1A1A1A"
+          : "#FFFFFF",
     },
     cont2: {
       width: isTabletOrMobile ? "94%" : "60%",
@@ -364,17 +367,14 @@ const Player = ({
   const linkRef = useRef();
 
   const handleCopyLink = () => {
-
-  
-      navigator.clipboard
-        .writeText(window.location.href)
-        .then(() => {
-          alert("Link copied to clipboard!");
-        })
-        .catch((error) => {
-          alert("Failed to copy link to clipboard:", error);
-        });
-    
+    navigator.clipboard
+      .writeText(window.location.href)
+      .then(() => {
+        alert("Link copied to clipboard!");
+      })
+      .catch((error) => {
+        alert("Failed to copy link to clipboard:", error);
+      });
   };
   return (
     <>
@@ -403,43 +403,50 @@ const Player = ({
         </div>
         <div style={styles.cont1}>
           <div style={styles.cont2}>
-
-          <div className="imageHeightDiv"
-                            style={{
-                              // height: isTabletOrMobile ?  452 :  681 ,
-                            }}
+            <div
+              className="imageHeightDiv"
+              style={
+                {
+                  // height: isTabletOrMobile ?  452 :  681 ,
+                }
+              }
             >
               <div className="ImageHeightGradient">
-              <div
-              className="button-container"
-              style={{
-                position: "absolute",
-                top: "0px",
-                flexDirection: isTabletOrMobile ? "column" : null,
-               
-              }}
-            >
-              <button
-              style={{ fontSize: 15,
-                padding:isTabletOrMobile? "8.5px 19.45px" : "7px 14.45px"
-              }}
-              className="qwe">הושמע</button>
-              <button
-                        style={{ fontSize: 17,}}
-                className="share"
-                alt="Share"
-                onClick={() => {
-                  share();
-                }}
-              >
-                שיתוף <img src={kinina} />
-              </button>
-            </div>
+                <div
+                  className="button-container"
+                  style={{
+                    position: "absolute",
+                    top: "0px",
+                    flexDirection: isTabletOrMobile ? "column" : null,
+                  }}
+                >
+                  <button
+                    style={{
+                      fontSize: 15,
+                      padding: isTabletOrMobile
+                        ? "8.5px 19.45px"
+                        : "7px 14.45px",
+                    }}
+                    className="qwe"
+                  >
+                    הושמע
+                  </button>
+                  <button
+                    style={{ fontSize: 17 }}
+                    className="share"
+                    alt="Share"
+                    onClick={() => {
+                      share();
+                    }}
+                  >
+                    שיתוף <img src={kinina} />
+                  </button>
+                </div>
               </div>
               <img
                 className="imageHeight"
                 style={{
-                  height: isTabletOrMobile ? 250 :  681 ,
+                  height: isTabletOrMobile ? 250 : 681,
                 }}
                 src={
                   "https://podcasts.cucurico.co.il/podcast/public/images/" +
@@ -448,7 +455,6 @@ const Player = ({
                 }
                 alt=""
               />
-
             </div>
             {/* <div
               className="button-container"
@@ -496,25 +502,28 @@ const Player = ({
                   marginBottom: isTabletOrMobile ? -10 : 17.4,
                 }}
               >
-                <div style={styles.txt1}>{ episodesss?.currentEpisode?.series?.name}</div>
+                <div style={styles.txt1}>
+                  {episodesss?.currentEpisode?.series?.name}
+                </div>
                 <div style={styles.txt2}>
-                  {episodesss?.currentEpisode?.name}{" "}:
-                  {episodesss?.currentEpisode?.ep_number} {" "}פרק
+                  {episodesss?.currentEpisode?.name} :
+                  {episodesss?.currentEpisode?.ep_number} פרק
                 </div>
                 {isTabletOrMobile && (
-                  <div style={styles.txt3}>Hosted by: {episodesss?.currentEpisode?.author_name}</div>
+                  <div style={styles.txt3}>
+                    Hosted by: {episodesss?.currentEpisode?.author_name}
+                  </div>
                 )}
-                  {isTabletOrMobile && (
+                {isTabletOrMobile && (
                   <div style={styles.txt4}>
-                    {episodesss?.currentEpisode?.tags.map((item, index) => {
+                    {episodesss?.currentEpisode?.tags?.map((item, index) => {
                       return (
                         <div
                           style={{
                             display: "flex",
                           }}
                         >
-                          {index !==
-                            0 && (
+                          {index !== 0 && (
                             <div
                               style={{
                                 marginTop: "1px",
@@ -536,7 +545,7 @@ const Player = ({
                       }}
                     >
                       {" "}
-                      | {filteredEpisodes.length}
+                      | {filteredEpisodes?.length}
                     </div>
                   </div>
                 )}
@@ -673,56 +682,56 @@ const Player = ({
                           textAlign: "right",
                           fontSize: 12,
                           marginRight: "12%",
-                          
+
                           // marginTop:"-1%",
                           // lineHeight:"0.1",
                         }}
                       >
-                        <div>Hosted by: {episodesss?.currentEpisode?.author_name}</div>
+                        <div>
+                          Hosted by: {episodesss?.currentEpisode?.author_name}
+                        </div>
                         <div
                           style={{
                             color: "#9B9A9A",
                             display: "flex",
-                            justifyContent:"flex-end"
+                            justifyContent: "flex-end",
                           }}
                         >
-                          {episodesss?.currentEpisode?.tags.map((item, index) => {
-                      return (
-                        <div
-                          style={{
-                            display: "flex",
-                           
-                          }}
-                        >
-                          {index !==0 && (
-                            <div
-                              style={{
-                                marginTop: "1.5px",
-                                marginRight: "4px",
-                                marginLeft: "4px",
-                              }}
-                            >
-                              &bull;
-                            </div>
+                          {episodesss?.currentEpisode?.tags?.map(
+                            (item, index) => {
+                              return (
+                                <div
+                                  style={{
+                                    display: "flex",
+                                  }}
+                                >
+                                  {index !== 0 && (
+                                    <div
+                                      style={{
+                                        marginTop: "1.5px",
+                                        marginRight: "4px",
+                                        marginLeft: "4px",
+                                      }}
+                                    >
+                                      &bull;
+                                    </div>
+                                  )}
+
+                                  {item.name}
+                                </div>
+                              );
+                            }
                           )}
 
-                          {item.name}
-                          
+                          <div
+                            style={{
+                              marginLeft: 3,
+                            }}
+                          >
+                            {" "}
+                            | {filteredEpisodes.length}
+                          </div>
                         </div>
-                        
-                      );
-                    })}
-
-                    <div
-                      style={{
-                        marginLeft: 3,
-                      }}
-                    >
-                      {" "}
-                      | {filteredEpisodes.length}
-                    </div>
-                        </div>
-
                       </div>
                       {more ? (
                         <div
@@ -751,7 +760,7 @@ const Player = ({
                         >
                           <p
                             style={{
-                              margin:0,
+                              margin: 0,
                             }}
                           >
                             {" "}
@@ -1125,7 +1134,12 @@ const Player = ({
                 flexDirection: "column",
                 alignItems: "center",
                 // background: darkMode ? "#252525" : "none",
-                background: isTabletOrMobile && darkMode ? "#161616" : !isTabletOrMobile && darkMode ? "#252525" : "none",
+                background:
+                  isTabletOrMobile && darkMode
+                    ? "#161616"
+                    : !isTabletOrMobile && darkMode
+                    ? "#252525"
+                    : "none",
                 // background: "red",
                 boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                 marginBottom: 100,
@@ -1205,20 +1219,27 @@ const Player = ({
                             flexDirection: "row",
 
                             backgroundColor:
-                            darkMode && isTabletOrMobile && index == selectedEpisodeIndex
-                            ? "#1A1A1A"
-                            : darkMode && !isTabletOrMobile && index == selectedEpisodeIndex
-                            ? "#1A1A1A"
-                            : !darkMode && isTabletOrMobile && index == selectedEpisodeIndex
-                            ? "#F9F3F2"
-                            : !darkMode && !isTabletOrMobile && index == selectedEpisodeIndex
-                            ? "#F9F3F2"
-                            :  darkMode && isTabletOrMobile
-                            ?
-                            "#1A1A1A"
-                            :  darkMode
-                            ? "#252525"
-                            : "#FFFFFF",
+                              darkMode &&
+                              isTabletOrMobile &&
+                              index == selectedEpisodeIndex
+                                ? "#1A1A1A"
+                                : darkMode &&
+                                  !isTabletOrMobile &&
+                                  index == selectedEpisodeIndex
+                                ? "#1A1A1A"
+                                : !darkMode &&
+                                  isTabletOrMobile &&
+                                  index == selectedEpisodeIndex
+                                ? "#F9F3F2"
+                                : !darkMode &&
+                                  !isTabletOrMobile &&
+                                  index == selectedEpisodeIndex
+                                ? "#F9F3F2"
+                                : darkMode && isTabletOrMobile
+                                ? "#1A1A1A"
+                                : darkMode
+                                ? "#252525"
+                                : "#FFFFFF",
                             margin: "0% 2%",
                             padding: "2%",
                             padding: "0px 8px",
@@ -1455,17 +1476,17 @@ const Player = ({
             <div className="modal">
               Copy Link{" "}
               <div className="modalInner">
-              <p className="modalP">{window.location.href}</p>
-              <img
-                className="copyImage"
-                src={copyLink}
-                alt=""
-                ref={linkRef}
-                value={window.location.href}
-                readOnly
-                onClick={handleCopyLink}
-              />
-            </div>
+                <p className="modalP">{window.location.href}</p>
+                <img
+                  className="copyImage"
+                  src={copyLink}
+                  alt=""
+                  ref={linkRef}
+                  value={window.location.href}
+                  readOnly
+                  onClick={handleCopyLink}
+                />
+              </div>
             </div>
           </div>
         )}
