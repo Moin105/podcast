@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import "./home.css";
+// import "./home.css";
+import './listRenderOne.css'
 import { ThemeContext } from "../components/ThemeContext";
 import { Link, useNavigate } from "react-router-dom";
 import hoverImg from "../images/hoverImg.png";
@@ -82,17 +83,18 @@ const ListRenderTwo = ({
             return ( */}
           <>
             <div
+               className="listRenderOneMain"
               key={index}
               style={{
                 width: customWidthThird,
-                marginLeft: 10,
               }}
             >
               <div
-                style={{
-                  marginTop: 10,
-                  color: "#000",
-                }}
+                   className="listRenderInner"
+                // style={{
+                //   marginTop: 10,
+                //   color: "#000",
+                // }}
               ></div>
               <div
                 style={{
@@ -101,15 +103,16 @@ const ListRenderTwo = ({
                 }}
               >
                 <div
+                  className="onClickPlay"
                   style={{
-                    position: "absolute",
-                    color: "#fff",
+                    // position: "absolute",
+                    // color: "#fff",
                     width: customWidthThird,
                     height: customHeightThird + 15,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor:"pointer",
+                    // display: "flex",
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    // cursor:"pointer",
                   }}
                   onClick={() => {
                     //console.log(item.id)
@@ -144,13 +147,13 @@ const ListRenderTwo = ({
                   onMouseLeave={handleMouseLeave}
                 >
                   <div
-
+ className="onClickPlayHover"
                     style={{
                       width: 60,
                       height: 60,
-                      // background: "red",
-                      position: "absolute",
-                      cursor: "pointer",
+                
+                      // position: "absolute",
+                      // cursor: "pointer",
                     }}
                   />
                   {hoveredIndex === index && (
@@ -181,42 +184,45 @@ const ListRenderTwo = ({
                 />
               </div>
               <div
+                className="itemNameRenderTwoMain"
                 style={{
                   background: darkMode ? "#282828" : "#E97B65",
                   paddingTop: isTabletOrMobile ? 8 : 10,
                   paddingBottom: isTabletOrMobile ? 23 : 20,
-                  borderBottomLeftRadius: "10px",
-                  borderBottomRightRadius: "10px",
-                  paddingRight: 12,
-                  paddingLeft: 12,
-                  minHeight: 57,
+                  // borderBottomLeftRadius: "10px",
+                  // borderBottomRightRadius: "10px",
+                  // paddingRight: 12,
+                  // paddingLeft: 12,
+                  // minHeight: 57,
                 }}
               >
                 <div
+                  className="itemNameRenderTwo"
                   style={{
-                    fontSize: "15px",
-                    fontWeight: "bold",
-                    color: "#fff",
-                    textAlign: "right",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
+                    // fontSize: "15px",
+                    // fontWeight: "bold",
+                    // color: "#fff",
+                    // textAlign: "right",
+                    // whiteSpace: "nowrap",
+                    // overflow: "hidden",
+                    // textOverflow: "ellipsis",
                   }}
                 >
                   {item?.name}
                 </div>
 
                 <div
-                  style={{
-                    marginTop: 3,
-                    fontSize: 12,
-                    color: "#fff",
-                    textAlign: "right",
-                    marginBottom: 3,
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
+                className="itemRepresenter"
+                  // style={{
+                  //   marginTop: 3,
+                  //   fontSize: 12,
+                  //   color: "#fff",
+                  //   textAlign: "right",
+                  //   marginBottom: 3,
+                  //   whiteSpace: "nowrap",
+                  //   overflow: "hidden",
+                  //   textOverflow: "ellipsis",
+                  // }}
                 >
                   {item?.presenter}
                 </div>
@@ -233,24 +239,26 @@ const ListRenderTwo = ({
                       }}
                     >  {item?.about_series}</div> */}
                 <div
+                className="episodeDurationMain"
                   style={{
-                    marginTop: 2,
+                    // marginTop: 2,
                     color: darkMode ? "#777777" : "#E9D9D6",
-                    fontSize: 12,
-                    textAlign: "right",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    display: "flex",
-                    flexDirection: "row-reverse",
-                    textOverflow: "ellipsis",
-                    justifyContent: "flex-end",
+                    // fontSize: 12,
+                    // textAlign: "right",
+                    // whiteSpace: "nowrap",
+                    // overflow: "hidden",
+                    // display: "flex",
+                    // flexDirection: "row-reverse",
+                    // textOverflow: "ellipsis",
+                    // justifyContent: "flex-end",
                   }}
                 >
-                  <p
+                  <p 
+                    className="episodeDurationMainPara"
                     style={{
-                      margin: "1px 4px 0px 0px",
-                      display: "flex",
-                      alignItems: "center",
+                      // margin: "1px 4px 0px 0px",
+                      // display: "flex",
+                      // alignItems: "center",
                     }}
                   >
                     {item?.episodes[0]
@@ -259,10 +267,11 @@ const ListRenderTwo = ({
                   </p>
                   {Array.isArray(tag) && tag.length > 0 && (
                     <p
+                    className="dashTwo"
                       style={{
-                        margin: "0px 4px",
-                        display: "flex",
-                        alignItems: "center",
+                        // margin: "0px 4px",
+                        // display: "flex",
+                        // alignItems: "center",
                       }}
                     >
                       |
@@ -273,14 +282,18 @@ const ListRenderTwo = ({
                       return (
                         <>
                           {" "}
-                          <p style={{ margin: "0px", display: "flex" }}>
+                          <p 
+                          className="bulllMain"
+                          // style={{ margin: "0px", display: "flex" }}
+                          >
                             {item.name}
                             {index != 0 && (
                               <div
+                              className="bulll"
                                 style={{
-                                  marginTop: "1px",
-                                  marginRight: "4px",
-                                  marginLeft: "4px",
+                                  // marginTop: "1px",
+                                  // marginRight: "4px",
+                                  // marginLeft: "4px",
                                 }}
                               >
                                 &bull;
@@ -301,21 +314,23 @@ const ListRenderTwo = ({
       ) : (
         <>
           <div
+          className="nothing"
             style={{
-              marginTop: "4%",
+              // marginTop: "4%",
 
-              marginBottom: "7%",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
+              // marginBottom: "7%",
+              // textAlign: "center",
+              // display: "flex",
+              // justifyContent: "center",
             }}
           >
             <p
+             className= "nothingInner"
               style={{
                 background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,0.7)",
-                padding: 20,
-                fontWeight: "Bold",
-                color: "white",
+                // padding: 20,
+                // fontWeight: "Bold",
+                // color: "white",
 
                 // minWidth:"fitContent"
               }}

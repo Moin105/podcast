@@ -102,6 +102,382 @@ display: flex;
   z-index: 111111111111111100;
 }
 
+.tcont3 {
+  text-align: right;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 0px 10px 0px 0px;
+  padding-right: 3px;
+}
+.cont1 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.cont2 {
+  object-fit: contain;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+.cont3 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.txt1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  color: white;
+}
+ 
+.txt2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: white;
+}
+ 
+.txt3 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: white;
+  font-size: 9.4px;
+}
+ 
+.txt4 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: #ADADAD;
+  font-size: 9.4px;
+}
+.rangestyle {
+  cursor: pointer;
+  height: 3.5px;
+  width: 100%;
+  appearance: none;
+  border-radius: 5px;
+}
+
+ 
+.moreMain {
+  color: white;
+  text-align: right;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+.notMoreMain {
+  color: white;
+  text-align: right;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  overflow: scroll;
+}
+ 
+.readLess {
+  display: flex;
+  gap: 1%;
+  text-align: right;
+  justify-content: flex-end;
+  color: #9B9A9A;
+  cursor: pointer;
+}
+ 
+.txt5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  font-size: 4.356px;
+}
+.txt7{
+  font-size: 15px;
+}
+ 
+.rangecont {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 2px;
+}
+.rangetxt{
+  color: #767676;
+}
+ 
+.btn2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  gap: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+ 
+.btn1 {
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+ 
+.btn1second {
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  /* gap: 3px; */ /* Gap is not supported on flex containers in some browsers */
+  padding: 12px;
+  width: 42%;
+  cursor: pointer;
+}
+ 
+.btn2second {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  gap: 3px;
+  padding: 12px;
+  width: 42%;
+  cursor: pointer;
+}
+ 
+.cont6 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 7px;
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
+}
+ 
+.cont6second {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 7px;
+  color: white;
+  font-size: 15px;
+  margin-top: 15px;
+}
+ 
+.tcont1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 7px;
+}
+ 
+.tcont2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  padding-right: 35px;
+}
+ 
+.seeMore {
+  display: flex;
+  gap: 1%;
+  text-align: right;
+  justify-content: flex-end;
+  color: #9B9A9A;
+  cursor: pointer;
+}
+ 
+.cont6Main {
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  width: 100%;
+}
+ 
+.moree {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+ 
+.seeMorePhone {
+  display: flex;
+  gap: 4%;
+  text-align: right;
+  justify-content: flex-end;
+  color: #9B9A9A;
+  cursor: pointer;
+  font-size: 11px;
+  height: 48px;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+ 
+.seeMoreNotPhone {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+ 
+.seeMoreNotPhone {
+  /* color: ${darkMode ? "#FFFFFF" : "#161616"}; */
+  text-align: right;
+  font-size: 10px;
+  width: 80%;
+  height: 60px;
+  overflow: scroll;
+}
+ 
+.readLessPhonee {
+  display: flex;
+  gap: 4%;
+  text-align: right;
+  justify-content: flex-end;
+  color: #9B9A9A;
+  cursor: pointer;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+ 
+.add {
+  /* margin-top: ${isTabletOrMobile ? "5px" : "35px"}; */
+  margin-bottom: 15px;
+  width: 80%;
+  /* height: ${isTabletOrMobile ? "80px" : "105px"}; */
+  background-color: #F9F3F2;
+  /* color: ${darkMode ? "#FFFFFF" : "#E4B1B1"}; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: ${isTabletOrMobile && darkMode ? "#1A1A1A" : !isTabletOrMobile && darkMode ? "#1A1A1A" : isTabletOrMobile ? "#F9F3F2" : "#F9F3F2"}; */
+  border-radius: 5px;
+}
+ 
+.blwadd {
+  margin-top: 5px;
+  margin-bottom: -5px;
+  width: 96%;
+  display: flex;
+  justify-content: flex-end;
+  /* color: ${darkMode ? "#FFFFFF" : "#212121"}; */
+}
+.episodes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin: 0% 2%;
+  padding: 2%;
+  padding: 0px 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 8px;
+}
+
+.phoneMain {
+  width: 80%;
+  padding: 10px;
+  padding-right: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.phoneMainInner {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+ 
+.itemDurPhone {
+  font-size: 12px;
+  width: 20%;
+  justify-content: flex-start;
+  align-items: center;
+}
+ 
+.footerr {
+  background: #282828;
+  width: 100%;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+ 
+.createdByMain {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Your element's class name */
+.hostedBy {
+  color: white;
+  width: 45%;
+  text-align: right;
+  font-size: 12px;
+  margin-right: 12%;
+}
+/* Your element's class name */
+.setActive {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+  padding-right: 53px;
+}
+/* Your element's class name */
+.setActiveInner {
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer;
+  margin: 0px 10px 0px 0px;
+  padding-right: 25px;
+}
+/* Your element's class name */
+.hebDate {
+  margin-top: -1px;;
+  display: flex;
+  gap: 4px;
+}
+
+
+
+
+
+
+
 @media only screen and (min-width: 1619px) {
 .figee{
   font-size: 36px !important;

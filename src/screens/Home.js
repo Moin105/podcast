@@ -137,9 +137,9 @@ const Home = ({
     <>
       {loading ? (
         <div
+        className="homeMain"
           style={{
             background: darkMode ? "#1A1A1A" : "#fff",
-            minHeight: "100vh",
           }}
         >
           <Header list={finalArray} />
@@ -160,9 +160,9 @@ const Home = ({
       ) : (
         <>
           <div
+           className="homeMain"
             style={{
               background: darkMode ? "#1A1A1A" : "#fff",
-              minHeight: "100vh",
             }}
           >
             <Header />
@@ -185,22 +185,15 @@ const Home = ({
                   }}
                   >  
                     <div
-                      className="dots-heading"
+                      className="dotsHeading"
                       style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        gap: "5px",
-                        marginTop:window.innerWidth < 1020 ? "35px":"65px",
-                      
+                        marginTop:window.innerWidth < 1020 ? "35px":"65px",   
                       }}
                     >
                       <img src={darkMode ? rectDark : dot} alt="" style={{width:"9px",height:"9px"}}/>
                       <div
                         className="figee"
                         style={{
-                          fontSize: 21,
-                          fontWeight: "bold",
                           color: darkMode ? "#fff" : "#212121",
                         }}
                       >  {item.carousel.name}</div>
@@ -209,24 +202,22 @@ const Home = ({
                     </div>
                     
                     <div
+                    className="shortDesc"
                       style={{
-                        margin: "0px",
-                        fontSize: 13,
-                        fontWeight: "400",
+                        // margin: "0px",
+                        // fontSize: 13,
+                        // fontWeight: "400",
                         marginTop: height * 0.005,
                         color: darkMode ? "#dddddd" : "#212121",
-                        width: "90%", 
-                        textAlign:"end",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap", 
+                        // width: "90%", 
+                        // textAlign:"end",
+                        // overflow: "hidden",
+                        // textOverflow: "ellipsis",
+                        // whiteSpace: "nowrap", 
                       }}
                     >{item.carousel.short_description}</div>
                     
                     <div
-                      // style={{
-                      //   marginRight: customDivMargin,
-                      // }}
                       className="row"
                     >
                       <Card 

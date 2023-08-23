@@ -1,0 +1,162 @@
+.listRenderOneMain{
+    margin-left: 10px !important;
+}
+
+.listRenderInner{
+    margin-top: 10px;
+    color: black;
+}
+
+.onClickPlay{
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    cursor: pointer;
+}
+
+.onClickPlayHover{
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    cursor: pointer;
+}
+.renderOneDescription{
+    margin-top: 2px;
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.renderOneItemGuests {
+    margin-top: 2px;
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+.durationMain {
+    margin-top: 2px;
+    color: #777777;
+    text-align: right;
+    display: flex;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+.DurationPara {
+    margin: 1px 4px 0 0;
+    display: flex;
+    align-items: center;
+  }
+
+.dash {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+.itemName {
+    margin: 0px 3px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    text-overflow: ellipsis;
+  }
+
+.bulll {
+    margin-top: 1px;
+    margin-right: 4px;
+    margin-left: 1px;
+  }
+
+.nothing {
+    margin-top: 4%;
+    margin-bottom: 7%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+.nothingInner {
+    padding: 20px;
+    font-weight: bold;
+    color: white;
+  }
+  .itemName{
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .itemNameRenderTwo {
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+   
+.itemNameRenderTwoMain {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-right: 12px;
+    padding-left: 12px;
+    min-height: 57px;
+  }
+   
+.itemRepresenter {
+    margin-top: 3px;
+    font-size: 12px;
+    color: #fff;
+    text-align: right;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+.episodeDurationMain {
+    margin-top: 2px;
+    font-size: 12px;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row-reverse;
+    text-overflow: ellipsis;
+    justify-content: flex-end;
+  }
+  
+  .episodeDurationMainPara{
+    margin: 1px 4px 0 0;
+    display: flex;
+    align-items: center;
+  }
+.dashTwo {
+margin: 0px 4px;
+display:flex;
+align-items: center;
+
+}
+.bulllMain{
+    margin: 0;
+    display: flex;
+}
+  

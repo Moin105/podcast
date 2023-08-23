@@ -176,88 +176,72 @@ const Players = ({
   // STYLES >>>>>>>>
 
   const styles = {
-    tcont3: {
-      textAlign: "right",
-      color: "white",
-      fontSize: 14,
-      cursor: "pointer",
-      margin: "0px 10px 0px 0px",
-      paddingRight: 3,
-    },
-    cont1: {
-      display: "flex",
-      flexDirection: "column",
-      width: "100%",
-      alignItems: "center",
-      // position: "absolute",
-      // top: 130,
+    // tcont3: {
+    //   textAlign: "right",
+    //   color: "white",
+    //   fontSize: 14,
+    //   cursor: "pointer",
+    //   margin: "0px 10px 0px 0px",
+    //   paddingRight: 3,
+    // },
+    // cont1: {
+    //   display: "flex",
+    //   flexDirection: "column",
+    //   width: "100%",
+    //   alignItems: "center",
 
-      background:
-        isTabletOrMobile && darkMode
-          ? "#161616"
-          : !isTabletOrMobile && darkMode
-          ? "#1A1A1A"
-          : "#FFFFFF",
-    },
+    // },
 
-    cont2: {
-      width: isTabletOrMobile ? "94%" : "58%",
-      objectFit: "contain",
-      display: "flex",
-      position: "relative",
-      flexDirection: "column",
-      alignItems: "center",
-      // height:"1000px"
-      background: darkMode ? "#1A1A1A" : "#FFFFFF",
-      marginTop: isTabletOrMobile ? "-220px" : "-350px",
-    },
-    cont3: {
-      display: "flex",
-      // width: 620,
-      // height: 300,
-      alignItems: "flex-end",
-      justifyContent: "center",
-    },
-    txt1: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "right",
-      textAlign: "right",
-      color: "white",
-      fontSize: isTabletOrMobile ? 34 : 45,
-      marginBottom: isTabletOrMobile ? null : "-3px",
-    },
-    txt2: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "right",
-      color: "white",
-      fontSize: isTabletOrMobile ? 12 : 15,
-      marginBottom: isTabletOrMobile ? 7 : 6,
-    },
-    txt3: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "right",
-      color: "white",
-      fontSize: 9.4,
-    },
-    txt4: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "right",
-      color: "#ADADAD",
-      fontSize: 9.4,
-    },
-    cont4: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "right",
-      gap: "7px",
-      color: "white",
-      fontSize: "15px",
-      marginTop: "17px",
-    },
+    // cont2: {
+    
+    //   objectFit: "contain",
+    //   display: "flex",
+    //   position: "relative",
+    //   flexDirection: "column",
+    //   alignItems: "center",
+    // },
+    // cont3: {
+    //   display: "flex",
+    //   alignItems: "flex-end",
+    //   justifyContent: "center",
+    // },
+    // txt1: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "right",
+    //   textAlign: "right",
+    //   color: "white",
+    // },
+    // txt2: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "right",
+    //   color: "white",
+    
+    // },
+    // txt3: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "right",
+    //   color: "white",
+    //   fontSize: 9.4,
+    // },
+    // txt4: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "right",
+    //   color: "#ADADAD",
+    //   fontSize: 9.4,
+    // },
+    // cont4: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "right",
+    //   gap: "7px",
+    //   color: "white",
+    //   fontSize: "15px",
+    //   marginTop: "17px",
+    // },
     rangestyle: {
       cursor: "pointer",
 
@@ -274,123 +258,117 @@ const Players = ({
           }%, #eaeaea ${(currentTime / duration) * 100}%, #eaeaea 100%)`,
     },
 
-    txt5: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "3px",
-      fontSize: "4.356px",
-    },
-    cont5: {
-      // height: "25px",
-      // widtth: "40px",
-
-      background: darkMode ? "#E50914" : "#E97B65",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: "3px",
-      gap: "3px",
-      paddingRight: width * 0.01,
-      paddingLeft: width * 0.01,
-      paddingTop: height * 0.01,
-      paddingBottom: height * 0.01,
-      fontSize: "13px",
-    },
-    txt6: {
-      fontSize: 15,
-    },
-    txt7: {
-      fontSize: 15,
-    },
+    // txt5: {
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   gap: "3px",
+    //   fontSize: "4.356px",
+    // },
+    // cont5: {
+    //   background: darkMode ? "#E50914" : "#E97B65",
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   borderRadius: "3px",
+    //   gap: "3px",
+    //   paddingRight: width * 0.01,
+    //   paddingLeft: width * 0.01,
+    //   paddingTop: height * 0.01,
+    //   paddingBottom: height * 0.01,
+    //   fontSize: "13px",
+    // },
+    // txt6: {
+    //   fontSize: 15,
+    // },
+    // txt7: {
+    //   fontSize: 15,
+    // },
     rangecont: {
-      display: "flex",
-      justifyContent: "space-between",
-      marginLeft: "2px",
+      // display: "flex",
+      // justifyContent: "space-between",
+      // marginLeft: "2px",
       marginTop: isTabletOrMobile ? 6 : 0,
       marginBottom: isTabletOrMobile ? -8 : -10,
     },
     rangetxt: {
       fontSize: isTabletOrMobile ? 9.5 : 13,
-      color: "#767676",
     },
     btn2: {
       background: darkMode ? "#E50914" : "#E97B65",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: "3px",
-      gap: "3px",
-      padding: "10px 20px",
-      cursor: "pointer",
-    },
-    btn1: {
-      background: "#0a0a0a",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: "3px",
+      // display: "flex",
+      // justifyContent: "center",
+      // alignItems: "center",
+      // borderRadius: "3px",
       // gap: "3px",
-      padding: "10px 20px",
-      cursor: "pointer",
+      // padding: "10px 20px",
+      // cursor: "pointer",
     },
-    btn1second: {
-      background: "#0a0a0a",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: "3px",
-      // gap: "3px",
-      padding: "12px",
-      width: "42%",
-      cursor: "pointer",
-    },
+    // btn1: {
+    //   background: "#0a0a0a",
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   borderRadius: "3px",
+    //   padding: "10px 20px",
+    //   cursor: "pointer",
+    // },
+    // btn1second: {
+    //   background: "#0a0a0a",
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    //   borderRadius: "3px",
+    //   padding: "12px",
+    //   width: "42%",
+    //   cursor: "pointer",
+    // },
     btn2second: {
       background: darkMode ? "#E50914" : "#E97B65",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      borderRadius: "3px",
-      gap: "3px",
-      padding: "12px",
-      width: "42%",
-      cursor: "pointer",
+      // display: "flex",
+      // justifyContent: "center",
+      // alignItems: "center",
+      // borderRadius: "3px",
+      // gap: "3px",
+      // padding: "12px",
+      // width: "42%",
+      // cursor: "pointer",
     },
-    cont6: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "right",
-      gap: "7px",
-      color: "white",
-      fontSize: "15px",
-      marginTop: "10px",
-    },
-    cont6second: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "right",
-      gap: "7px",
-      color: "white",
-      fontSize: "15px",
-      marginTop: "15px",
-    },
-    tcont1: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      color: "white",
-      fontSize: "15px",
-      marginTop: "10px",
-      marginBottom: "7px",
-    },
-    tcont2: {
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      fontSize: 14,
-      cursor: "pointer",
-      paddingRight: 35,
-    },
+    // cont6: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "right",
+    //   gap: "7px",
+    //   color: "white",
+    //   fontSize: "15px",
+    //   marginTop: "10px",
+    // },
+    // cont6second: {
+    //   display: "flex",
+    //   justifyContent: "space-between",
+    //   alignItems: "right",
+    //   gap: "7px",
+    //   color: "white",
+    //   fontSize: "15px",
+    //   marginTop: "15px",
+    // },
+    // tcont1: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "center",
+    //   color: "white",
+    //   fontSize: "15px",
+    //   marginTop: "10px",
+    //   marginBottom: "7px",
+    // },
+    // tcont2: {
+    //   display: "flex",
+    //   justifyContent: "flex-end",
+    //   alignItems: "center",
+    //   fontSize: 14,
+    //   cursor: "pointer",
+    //   paddingRight: 35,
+    // },
   };
   useEffect(() => {
     console.log("seriesEpisodes", episodesss);
@@ -452,8 +430,23 @@ const Players = ({
             alt=""
           />
         </div>
-        <div style={styles.cont1}>
-          <div style={styles.cont2}>
+        <div 
+        className="cont1"
+        style={{
+            background:
+            isTabletOrMobile && darkMode
+              ? "#161616"
+              : !isTabletOrMobile && darkMode
+              ? "#1A1A1A"
+              : "#FFFFFF",
+        }}>
+          <div 
+          className="cont2"
+          style={{
+            width: isTabletOrMobile ? "94%" : "58%",
+                  background: darkMode ? "#1A1A1A" : "#FFFFFF",
+                  marginTop: isTabletOrMobile ? "-220px" : "-350px",
+          }}>
             <div
               className="imageHeightDiv"
               style={
@@ -508,7 +501,7 @@ const Players = ({
               />
             </div>
 
-            <div className="absoluteImage" style={styles.cont3}>
+            <div className="cont3">
               <div
                 className="absoluteImageText"
                 style={{
@@ -517,21 +510,37 @@ const Players = ({
                   marginBottom: isTabletOrMobile ? -10 : 17.4,
                 }}
               >
-                <div style={styles.txt1}>
+                <div 
+                className="txt1"
+                style={{
+                  fontSize: isTabletOrMobile ? 34 : 45,
+                  marginBottom: isTabletOrMobile ? null : "-3px",
+                }}>
                   {episodesss?.currentEpisode?.series?.name}
                 </div>
-                <div style={styles.txt2}>
+                <div 
+                className="txt2"
+                style={{
+                  fontSize: isTabletOrMobile ? 12 : 15,
+                  marginBottom: isTabletOrMobile ? 7 : 6,
+                }}>
                   {episodesss?.currentEpisode?.name} :
                   {episodesss?.currentEpisode?.ep_number} פרק
                 </div>
                 {isTabletOrMobile && (
-                  <div style={styles.txt3}>
+                  <div 
+                  className="txt3"
+                  // style={styles.txt3}
+                  >
                     {" "}
                     Hosted by {episodesss?.currentEpisode?.author_name}
                   </div>
                 )}
                 {isTabletOrMobile && (
-                  <div style={styles.txt4}>
+                  <div 
+                  className="txt4"
+                  // style={styles.txt4}
+                  >
                     {episodesss?.currentEpisode?.tags?.map((item, index) => {
                       return (
                         <div
@@ -566,9 +575,15 @@ const Players = ({
                   </div>
                 )}
 
-                <div style={styles.rangecont}>
-                  <div style={styles.rangetxt}>{formatTime(currentTime)}</div>
-                  <div style={styles.rangetxt}>
+                <div
+                 className="rangecont"
+                style={styles.rangecont}>
+                  <div 
+                   className="rangetxt"
+                  style={styles.rangetxt}>{formatTime(currentTime)}</div>
+                  <div 
+                   className="rangetxt"
+                  style={styles.rangetxt}>
                     {formatTime(duration - currentTime)}
                   </div>
                 </div>
@@ -582,9 +597,15 @@ const Players = ({
                   className="other-range"
                 />
                 {!isTabletOrMobile && (
-                  <div style={styles.cont6}>
-                    <div style={styles.btn1}>
-                      <div style={styles.txt7}>עוד פעולות</div>
+                  <div 
+                  className="cont6"
+                  style={styles.cont6}>
+                    <div 
+                     className="btn1"
+                    style={styles.btn1}>
+                      <div 
+                       className="txt7"
+                      >עוד פעולות</div>
 
                       <img
                         style={{
@@ -597,6 +618,7 @@ const Players = ({
                       />
                     </div>
                     <div
+                     className="btn2"
                       style={styles.btn2}
                       onClick={() => {
                         if (!audioRef.current.paused) {
@@ -633,21 +655,28 @@ const Players = ({
 
                 {!isTabletOrMobile ? (
                   <>
-                    <div style={styles.tcont1}>
+                    <div 
+                     className="tcont1"
+                    style={styles.tcont1}>
                       <div
                         onClick={() => {
                           setActive(1);
                         }}
                         style={{}}
                       >
-                        <div style={styles.tcont2}>אודות הסדרה</div>
+                        <div
+                        className="tcont2"
+                        style={styles.tcont2}>אודות הסדרה</div>
                       </div>
                       <div
                         onClick={() => {
                           setActive(0);
                         }}
                       >
-                        <div style={styles.tcont3}>תקציר הפרק</div>
+                        <div 
+                        className="tcont3"
+                        // style={styles.tcont3}
+                        >תקציר הפרק</div>
                       </div>
                     </div>
                     <div
@@ -696,16 +725,14 @@ const Players = ({
                       }}
                     >
                       <div
-                        style={{
-                          color: "white",
-                          width: "45%",
-                          textAlign: "right",
-                          fontSize: 12,
-
-                          // marginTop:"-1%",
-                          // lineHeight:"0.1",
-                          marginRight: "12%",
-                        }}
+                      className="hostedBy"
+                        // style={{
+                        //   color: "white",
+                        //   width: "45%",
+                        //   textAlign: "right",
+                        //   fontSize: 12,
+                        //   marginRight: "12%",
+                        // }}
                       >
                         <div>
                           Hosted by: {episodesss?.currentEpisode?.author_name}
@@ -718,7 +745,7 @@ const Players = ({
                             justifyContent: "flex-end",
                           }}
                         >
-                          {console.log(episodesss)}
+                          {/* {console.log(episodesss)} */}
                           {/* {episodesss?.currentEpisode?.tags?.map(
                             (item, index) => {
                               return (
@@ -757,27 +784,18 @@ const Players = ({
                       </div>
                       {more ? (
                         <div
+                        className="moreMain"
                           style={{
-                            color: "white",
-                            // lineHeight:"1.2",
-                            // display: "flex",
-                            // justifyContent: "center",
-                            // alignItems: "flex-end",
-                            textAlign: "right",
-                            fontSize: 12,
+                            // color: "white",
+                            // textAlign: "right",
+                            // fontSize: 12,
                             width: isTabletOrMobile ? "100%" : "65%",
-                            display: "flex",
-                            flexDirection: "column",
-                            height: "70px",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-
-                            // maxHeight: more ? "50px" : "50px",
-
-                            // overflow: more ? "hidden" : null,
-                            // textOverflow: more ? "ellipsis" : null,
-                            // whiteSpace:"nowrap",
+                            // display: "flex",
+                            // flexDirection: "column",
+                            // height: "70px",
+                            // whiteSpace: "nowrap",
+                            // overflow: "hidden",
+                            // textOverflow: "ellipsis",
                           }}
                         >
                           <p
@@ -791,14 +809,15 @@ const Players = ({
                               : episodesss?.currentEpisode?.description}
                           </p>
                           <div
-                            style={{
-                              display: "flex",
-                              gap: "1%",
-                              textAlign: "right",
-                              justifyContent: "flex-end",
-                              color: "#9B9A9A",
-                              cursor: "pointer",
-                            }}
+                          className="seeMore"
+                            // style={{
+                            //   display: "flex",
+                            //   gap: "1%",
+                            //   textAlign: "right",
+                            //   justifyContent: "flex-end",
+                            //   color: "#9B9A9A",
+                            //   cursor: "pointer",
+                            // }}
                             onClick={() => {
                               setMore(!more);
                             }}
@@ -817,25 +836,16 @@ const Players = ({
                         </div>
                       ) : (
                         <div
+                        className="notMoreMain"
                           style={{
-                            color: "white",
-                            // lineHeight:"1.2",
-                            // display: "flex",
-                            // justifyContent: "center",
-                            // alignItems: "flex-end",
-                            textAlign: "right",
-                            fontSize: 12,
+                            // color: "white",
+                            // textAlign: "right",
+                            // fontSize: 12,
                             width: isTabletOrMobile ? "100%" : "65%",
-                            display: "flex",
-                            flexDirection: "column",
-                            height: "70px",
-                            overflow: "scroll",
-
-                            // maxHeight: more ? "50px" : "50px",
-
-                            // overflow: more ? "hidden" : null,
-                            // textOverflow: more ? "ellipsis" : null,
-                            // whiteSpace:"nowrap",
+                            // display: "flex",
+                            // flexDirection: "column",
+                            // height: "70px",
+                            // overflow: "scroll",
                           }}
                         >
                           <p>
@@ -845,14 +855,15 @@ const Players = ({
                               : episodesss?.currentEpisode?.description}
                           </p>
                           <div
-                            style={{
-                              display: "flex",
-                              gap: "1%",
-                              textAlign: "right",
-                              justifyContent: "flex-end",
-                              color: "#9B9A9A",
-                              cursor: "pointer",
-                            }}
+                          className="readLess"
+                            // style={{
+                            //   display: "flex",
+                            //   gap: "1%",
+                            //   textAlign: "right",
+                            //   justifyContent: "flex-end",
+                            //   color: "#9B9A9A",
+                            //   cursor: "pointer",
+                            // }}
                             onClick={() => {
                               setMore(!more);
                             }}
@@ -880,18 +891,22 @@ const Players = ({
             </div>
             {isTabletOrMobile && (
               <div
+              className="cont6Main"
                 style={{
                   background: darkMode ? "#161616" : "#FFFFFF",
-                  // paddingRight: 15,
-                  // paddingLeft: 15,
-                  display: "flex",
-                  alignSelf: "center",
-                  flexDirection: "column",
-                  width: "100%",
+                  // display: "flex",
+                  // alignSelf: "center",
+                  // flexDirection: "column",
+                  // width: "100%",
                 }}
               >
-                <div style={styles.cont6second}>
-                  <div style={styles.btn1second}>
+                <div 
+                className="cont6second"
+                style={styles.cont6second}>
+                  <div 
+                  className="btn1second"
+                  // style={styles.btn1second}
+                  >
                     <div style={styles.txt7}>עוד פעולות</div>
 
                     <img
@@ -905,6 +920,7 @@ const Players = ({
                     />
                   </div>
                   <div
+                  className="btn2second"
                     style={styles.btn2second}
                     onClick={() => {
                       if (!audioRef?.current?.paused) {
@@ -956,14 +972,15 @@ const Players = ({
                       style={{}}
                     >
                       <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-end",
-                          alignItems: "center",
-                          fontSize: 13,
-                          cursor: "pointer",
-                          paddingRight: 53,
-                        }}
+                      className="setActive"
+                        // style={{
+                        //   display: "flex",
+                        //   justifyContent: "flex-end",
+                        //   alignItems: "center",
+                        //   fontSize: 13,
+                        //   cursor: "pointer",
+                        //   paddingRight: 53,
+                        // }}
                       >
                         אודות הסדרה
                       </div>
@@ -974,13 +991,14 @@ const Players = ({
                       }}
                     >
                       <div
+                          className="setActiveInner"
                         style={{
-                          textAlign: "center",
+                          // textAlign: "center",
                           color: darkMode ? "white" : "black",
-                          fontSize: 13,
-                          cursor: "pointer",
-                          margin: "0px 10px 0px 0px",
-                          paddingRight: 25,
+                          // fontSize: 13,
+                          // cursor: "pointer",
+                          // margin: "0px 10px 0px 0px",
+                          // paddingRight: 25,
                         }}
                       >
                         תקציר הפרק
@@ -1032,12 +1050,13 @@ const Players = ({
                   >
                     {more ? (
                       <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-end",
-                        }}
+                      className="moree"
+                        // style={{
+                        //   width: "100%",
+                        //   display: "flex",
+                        //   flexDirection: "column",
+                        //   alignItems: "flex-end",
+                        // }}
                       >
                         <div
                           style={{
@@ -1056,18 +1075,19 @@ const Players = ({
                             : episodesss?.currentEpisode?.description}
                         </div>
                         <div
-                          style={{
-                            display: "flex",
-                            gap: "4%",
-                            textAlign: "right",
-                            justifyContent: "flex-end",
-                            color: "#9B9A9A",
-                            cursor: "pointer",
-                            fontSize: "11px",
-                            height: "48px",
-                            alignItems: "flex-start",
-                            marginBottom: "10px",
-                          }}
+                        className="seeMorePhone"
+                          // style={{
+                          //   display: "flex",
+                          //   gap: "4%",
+                          //   textAlign: "right",
+                          //   justifyContent: "flex-end",
+                          //   color: "#9B9A9A",
+                          //   cursor: "pointer",
+                          //   fontSize: "11px",
+                          //   height: "48px",
+                          //   alignItems: "flex-start",
+                          //   marginBottom: "10px",
+                          // }}
                           onClick={() => {
                             setMore(!more);
                           }}
@@ -1086,25 +1106,25 @@ const Players = ({
                         </div>
                       </div>
                     ) : (
+                      
                       <div
-                        style={{
-                          width: "100%",
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-end",
-                        }}
+                      className="seeMoreNotPhone"
+                        // style={{
+                        //   width: "100%",
+                        //   display: "flex",
+                        //   flexDirection: "column",
+                        //   alignItems: "flex-end",
+                        // }}
                       >
                         <div
+                          className="seeMoreNotPhone"
                           style={{
                             color: darkMode ? "#FFFFFF" : "#161616",
-
-                            textAlign: "right",
-                            fontSize: 10,
-                            width: "80%",
-                            // margin: "0px 10px 0px 0px",
-
-                            height: 60,
-                            overflow: "scroll",
+                            // textAlign: "right",
+                            // fontSize: 10,
+                            // width: "80%",
+                            // height: 60,
+                            // overflow: "scroll",
                           }}
                         >
                           {active == 1
@@ -1112,16 +1132,17 @@ const Players = ({
                             : episodesss?.currentEpisode?.description}
                         </div>
                         <div
-                          style={{
-                            display: "flex",
-                            gap: "4%",
-                            textAlign: "right",
-                            justifyContent: "flex-end",
-                            color: "#9B9A9A",
-                            cursor: "pointer",
-                            fontSize: "11px",
-                            marginBottom: "10px",
-                          }}
+                        className="readLessPhonee"
+                          // style={{
+                          //   display: "flex",
+                          //   gap: "4%",
+                          //   textAlign: "right",
+                          //   justifyContent: "flex-end",
+                          //   color: "#9B9A9A",
+                          //   cursor: "pointer",
+                          //   fontSize: "11px",
+                          //   marginBottom: "10px",
+                          // }}
                           onClick={() => {
                             setMore(!more);
                           }}
@@ -1165,16 +1186,17 @@ const Players = ({
               }}
             >
               <div
+              className="add"
                 style={{
                   marginTop: isTabletOrMobile ? "5px" : "35px",
-                  marginBottom: "15px",
-                  width: "80%",
+                  // marginBottom: "15px",
+                  // width: "80%",
                   height: isTabletOrMobile ? "80px" : "105px",
-                  backgroundColor: "#F9F3F2",
+                  // backgroundColor: "#F9F3F2",
                   color: darkMode ? "#FFFFFF" : "#E4B1B1",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  // display: "flex",
+                  // alignItems: "center",
+                  // justifyContent: "center",
                   background:
                     isTabletOrMobile && darkMode
                       ? "#1A1A1A"
@@ -1183,7 +1205,7 @@ const Players = ({
                       : isTabletOrMobile
                       ? "#F9F3F2"
                       : "#F9F3F2",
-                  borderRadius: "5px",
+                  // borderRadius: "5px",
                 }}
                 // const background = isTabletOrMobile && darkMode ? "#1A1A1A" : !isTabletOrMobile && darkMode ? "#333333" : isTabletOrMobile ? "#F9F3F2" : "#F9F3F2";
               >
@@ -1191,12 +1213,13 @@ const Players = ({
               </div>
 
               <div
+              className="blwadd"
                 style={{
-                  marginTop: "5px",
-                  marginBottom: "-5px",
-                  width: "96%",
-                  display: "flex",
-                  justifyContent: "flex-end",
+                  // marginTop: "5px",
+                  // marginBottom: "-5px",
+                  // width: "96%",
+                  // display: "flex",
+                  // justifyContent: "flex-end",
                   color: darkMode ? "#FFFFFF" : "#212121",
                 }}
               >
@@ -1241,10 +1264,10 @@ const Players = ({
                         <div
                           className="episodes"
                           style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            flexDirection: "row",
+                            // display: "flex",
+                            // justifyContent: "center",
+                            // alignItems: "center",
+                            // flexDirection: "row",
 
                             backgroundColor:
                               darkMode &&
@@ -1268,41 +1291,44 @@ const Players = ({
                                 : darkMode
                                 ? "#252525"
                                 : "#FFFFFF",
-                            margin: "0% 2%",
-                            padding: "2%",
-                            padding: "0px 8px",
-                            paddingTop: 8,
-                            paddingBottom: 8,
-                            marginTop: 8,
+                            // margin: "0% 2%",
+                            // padding: "2%",
+                            // padding: "0px 8px",
+                            // paddingTop: 8,
+                            // paddingBottom: 8,
+                            // marginTop: 8,
                           }}
                         >
                           <div
-                            style={{
-                              width: "80%",
-                              padding: "10px",
-                              paddingRight: "4%",
-                              display: "flex",
-                              flexDirection: "column",
-                              justifyContent: "center",
-                              alignItems: "flex-end",
-                              textAlign: "right",
-                            }}
+                          className="phoneMain"
+                            // style={{
+                            //   width: "80%",
+                            //   padding: "10px",
+                            //   paddingRight: "4%",
+                            //   display: "flex",
+                            //   flexDirection: "column",
+                            //   justifyContent: "center",
+                            //   alignItems: "flex-end",
+                            //   textAlign: "right",
+                            // }}
                           >
                             <div
-                              style={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "flex-end",
-                                alignItems: "center",
-                              }}
+                               className="phoneMainInner"
+                              // style={{
+                              //   width: "100%",
+                              //   display: "flex",
+                              //   justifyContent: "flex-end",
+                              //   alignItems: "center",
+                              // }}
                             >
                               <div
+                              className="itemDurPhone"
                                 style={{
-                                  fontSize: 12,
-                                  width: "20%",
+                                  // fontSize: 12,
+                                  // width: "20%",
                                   display: isTabletOrMobile ? "none" : "flex",
-                                  justifyContent: "flex-start",
-                                  alignItems: "center",
+                                  // justifyContent: "flex-start",
+                                  // alignItems: "center",
                                   color: darkMode ? "#777777" : "#484848",
                                 }}
                               >
@@ -1346,12 +1372,13 @@ const Players = ({
                             {item?.author_name}
                           </div> */}
                             <div
+                            className="hebDate"
                               style={{
                                 fontSize: isTabletOrMobile ? 10 : 12,
-                                marginTop: "-1px",
+                                // marginTop: "-1px",
                                 color: darkMode ? "#777777" : "#484848",
-                                display: "flex",
-                                gap: "4px",
+                                // display: "flex",
+                                // gap: "4px",
                               }}
                             >
                               <p> {item?.hebrew_date} </p>
@@ -1456,16 +1483,17 @@ const Players = ({
             </div>
           </div>
           <div
-            style={{
-              background: "#282828",
-              width: "100%",
-              paddingTop: 13,
-              paddingBottom: 13,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
+          className="footerr"
+            // style={{
+            //   background: "#282828",
+            //   width: "100%",
+            //   paddingTop: 13,
+            //   paddingBottom: 13,
+            //   display: "flex",
+            //   alignItems: "center",
+            //   justifyContent: "center",
+            //   flexDirection: "column",
+            // }}
           >
             <div
               style={{
@@ -1476,10 +1504,11 @@ const Players = ({
               © כל הזכויות שמורות משפחה
             </div>
             <div
+            className="createdByMain"
               style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
+                // display: "flex",
+                // flexDirection: "row",
+                // alignItems: "center",
               }}
             >
               <div

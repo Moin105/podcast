@@ -10,6 +10,8 @@ import hoverImg from "../images/hoverImg.png";
 import ListRenderTwo from "./ListRenderTwo";
 import { useSelector } from "react-redux";
 import { useTheme } from "../components/ThemeContext";
+import './card.css'
+
 function Card({ audioRef, setVolume, list, volume, setIsPlaying,item }) {
   const { categories, episodes, series, tags,id } = item;
     // console.log("wfewewwefewfebitches",item);
@@ -162,6 +164,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
         // //console.log("epos",epos);
               return (
                 <>
+                <div 
+                className={index === 0 ? "draggableFirst" : "draggableRest"}
+                >
                  <Draggable>
                 <ListRenderOne
                         item={epos}
@@ -173,6 +178,7 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                         setIsPlaying={setIsPlaying}
                       />
                  </Draggable>
+                 </div>
                 </>
               );
             })
@@ -181,6 +187,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
           ? seriesSort.map((serie, index) => {
               return (
                 <>
+                 <div 
+                className={index === 0 ? "draggableFirst" : "draggableRest"}
+                >
                 <Draggable>
                    <ListRenderTwo
                      item={serie}
@@ -192,6 +201,7 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                         setIsPlaying={setIsPlaying}
                       />
                 </Draggable>
+                </div>
                 </>
               );
             })
@@ -200,6 +210,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
           ? tagSort?.map((epos, index) => {
             return (
                 <>
+                <div 
+                className={index === 0 ? "draggableFirst" : "draggableRest"}
+                >
                 <Draggable>
                 <ListRenderOne
                         item={epos}
@@ -211,6 +224,7 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                         setIsPlaying={setIsPlaying}
                       />
                 </Draggable>
+                </div>
                 </>
               );
             })
@@ -219,6 +233,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
           ? categorySort.map((series, index) => {
                     return (
                         <>
+                    <div 
+                className={index === 0 ? "draggableFirst" : "draggableRest"}
+                >
                         <Draggable>
                               <ListRenderTwo
                      item={series.series}
@@ -230,7 +247,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                         setIsPlaying={setIsPlaying}
                       />
                         </Draggable>
+                        </div>
                         </>
+                        
               );
             })
           : ""}
@@ -238,6 +257,9 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
            filteredUnfinishedEpisodes.map((epos, index) => {
                   return (
                     <>
+                   <div 
+                className={index === 0 ? "draggableFirst" : "draggableRest"}
+                >
                      <Draggable>
                     <ListRenderOne
                             item={epos}
@@ -249,9 +271,11 @@ const categorySort = sortByCreatedAtSeries(filteredCategorySeries, item.carousel
                             setIsPlaying={setIsPlaying}
                           />
                      </Draggable>
+                     </div>
                     </>
                   );
-                }):<p style={{margin:"0 auto",padding:"50px 0px"}}>  {item.carousel.name == "Continue Listening"&&"No Songs Played Yet"} </p>
+                }):<p 
+                className="cardPara">  {item.carousel.name == "Continue Listening"&&"No Songs Played Yet"} </p>
           }
     </>
   );

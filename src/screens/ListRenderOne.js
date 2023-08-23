@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import "./home.css";
+// import "./home.css";
+import './listRenderOne.css'
+
 import { ThemeContext } from "../components/ThemeContext";
 import { Link, useNavigate } from "react-router-dom";
 import hoverImg from "../images/hoverImg.png";
@@ -99,16 +101,17 @@ const ListRenderOne = ({
             return ( */}
           <>
             <div
+            className="listRenderOneMain"
               style={{
                 width: customWidth,
-                marginLeft: 10,
               }}
             >
               <div
-                style={{
-                  marginTop: 10,
-                  color: "#000",
-                }}
+              className="listRenderInner"
+                // style={{
+                //   marginTop: 10,
+                //   color: "#000",
+                // }}
               ></div>
               <div
                 style={{
@@ -117,14 +120,16 @@ const ListRenderOne = ({
                 }}
               >
                 <div
+                className="onClickPlay"
                   style={{
-                    position: "absolute",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    display: "flex",
+                    // position: "absolute",
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    // display: "flex",
                     width: customWidth,
                     height: customHeight,
-                    cursor:"pointer",
+                    // cursor:"pointer",
+                 
                   }}
                   onClick={() => {
                     dispatch(setPlayingEpisodeData(null));
@@ -136,12 +141,13 @@ const ListRenderOne = ({
                 >
                   <div
  
-         
+         className="onClickPlayHover"
                     style={{
-                      width: 75,
-                      height: 75,
-                      position: "absolute",
-                      cursor: "pointer",
+                      // width: 75,
+                      // height: 75,
+                      // position: "absolute",
+                      // cursor: "pointer",
+                     
                     }}
                   />
                   {hoveredIndex === index && (
@@ -171,80 +177,86 @@ const ListRenderOne = ({
                 />
               </div>
               <div
+              className="itemName"
                 style={{
-                  fontSize: "15px",
-                  fontWeight: "bold",
-                  marginTop: 5,
+                  // fontSize: "15px",
+                  // fontWeight: "bold",
+                  // marginTop: 5,
                   color: darkMode ? "#fff" : "#212121",
-                  textAlign: "right",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
+                  // textAlign: "right",
+                  // whiteSpace: "nowrap",
+                  // overflow: "hidden",
+                  // textOverflow: "ellipsis",
                 }}
               >
                 {item?.name}
               </div>
 
               <div
+              className="renderOneDescription"
                 style={{
-                  marginTop: 2,
-                  fontSize: "12px",
-                  color: darkMode ? "#fff" : "#E97B65",
-                  textAlign: "right",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
+                  // marginTop: 2,
+                  // fontSize: "12px",
+                  // color: darkMode ? "#fff" : "#E97B65",
+                  // textAlign: "right",
+                  // whiteSpace: "nowrap",
+                  // overflow: "hidden",
+                  // textOverflow: "ellipsis",
                 }}
               >
                 {item?.description}
               </div>
 
               <div
+              className="renderOneItemGuests"
                 style={{
-                  marginTop: 2,
+                  // marginTop: 2,
                   color: darkMode ? "#777777" : "#000",
-                  fontSize: 12,
+                  // fontSize: 12,
 
-                  textAlign: "right",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
+                  // textAlign: "right",
+                  // whiteSpace: "nowrap",
+                  // overflow: "hidden",
+                  // textOverflow: "ellipsis",
                 }}
               >
                 {item?.guests}
               </div>
 
               <div
+              className="durationMain"
                 style={{
-                  marginTop: 2,
-                  color: "#777777",
-                  textAlign: "right",
-                  display: "flex",
-                  fontSize: 12,
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  flexDirection: "row-reverse",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
+                  // marginTop: 2,
+                  // color: "#777777",
+                  // textAlign: "right",
+                  // display: "flex",
+                  // fontSize: 12,
+                  // whiteSpace: "nowrap",
+                  // overflow: "hidden",
+                  // textOverflow: "ellipsis",
+                  // flexDirection: "row-reverse",
+                  // justifyContent: "flex-end",
+                  // alignItems: "center",
                 }}
               >
                 {/* {item?.tags?.length > 0 ? item.tags.map((tag,index)=>{return <p key={index}>{tag.name}</p>}) :item?.tags[0].name} | {item?.duration} */}
                 <p
+                className="DurationPara"
                   style={{
-                    margin: "1px 4px 0px 0px",
-                    display: "flex",
-                    alignItems: "center",
+                    // margin: "1px 4px 0px 0px",
+                    // display: "flex",
+                    // alignItems: "center",
                   }}
                 >
                   {item?.duration}
                 </p>
                 {Array.isArray(tag) && tag.length > 0 && (
                   <p
+                  className="dash"
                     style={{
-                      margin: "0px",
-                      display: "flex",
-                      alignItems: "center",
+                      // margin: "0px",
+                      // display: "flex",
+                      // alignItems: "center",
                     }}
                   >
                     |
@@ -254,25 +266,24 @@ const ListRenderOne = ({
                   tag.map((item, index) => {
                     return (
                       <p
+                      className="itemName"
                         style={{
-                          margin: "0px 3px",
-                          display: "flex",
-                          alignItems: "center",
-                          // whiteSpace: "nowrap",
-                          // overflow: "hidden",
-                          // width:"120px",
-                          textAlign: "left",
-                          textOverflow: "ellipsis",
-                          alignItems: "center",
+                          // margin: "0px 3px",
+                          // display: "flex",
+                          // alignItems: "center",
+                          // textAlign: "left",
+                          // textOverflow: "ellipsis",
+                          // alignItems: "center",
                         }}
                       >
                         {item.name}
                         {index != 0 && (
                           <div
+                          className="bulll"
                             style={{
-                              marginTop: "1px",
-                              marginRight: "4px",
-                              marginLeft: "1px",
+                              // marginTop: "1px",
+                              // marginRight: "4px",
+                              // marginLeft: "1px",
                             }}
                           >
                             &bull;
@@ -299,23 +310,24 @@ const ListRenderOne = ({
       ) : (
         <>
           <div
+          className="nothing"
             style={{
-              marginTop: "4%",
+              // marginTop: "4%",
 
-              marginBottom: "7%",
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
+              // marginBottom: "7%",
+              // textAlign: "center",
+              // display: "flex",
+              // justifyContent: "center",
             }}
           >
             <p
+            className= "nothingInner"
               style={{
                 background: darkMode ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,0.7)",
-                padding: 20,
-                fontWeight: "Bold",
-                color: "white",
+                // padding: 20,
+                // fontWeight: "Bold",
+                // color: "white",
 
-                // minWidth:"fitContent"
               }}
             >
               Nothing to show here

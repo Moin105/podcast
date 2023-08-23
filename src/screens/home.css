@@ -1,10 +1,14 @@
+.homeMain{
+  min-height: 100vh;
+}
+
 .upper-row {
   display: flex;
   flex-direction: column;
   align-items: end;
   justify-content: center;
 
-  width: 97.5%;
+  width: 100%;
   margin: 0;
  
 }
@@ -24,6 +28,25 @@
   width: 100%;
 }/*# sourceMappingURL=Home.css.map */
 
-.dots-heading{
-  
+.dotsHeading{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  gap: "5px";
+}
+
+.figee{
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.shortDesc{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  width: 90%;
+  text-align: end;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
